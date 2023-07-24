@@ -1,0 +1,32 @@
+{
+  "cli": {
+    "version": ">= 2.6.1"
+  },
+
+  "build": {
+    "preview": {
+      "android": {
+        "buildType": "apk"
+      }
+    },
+    "preview2": {
+      "android": {
+        "gradleCommand": ":app:assembleRelease"
+      }
+    },
+    "preview3": {
+      "developmentClient": true
+    },
+    "production": {}
+  },
+
+  "submit": {
+    "production": {
+      "ios": {
+        "appleId": "info@hidetrade.eu",
+        "ascAppId": "6446217406",
+        "appleTeamId": "3Z2K7A2Y56"
+      }
+    }
+  }
+}

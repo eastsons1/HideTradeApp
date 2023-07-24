@@ -1,0 +1,53 @@
+{
+  "expo": {
+    "name": "hidetrade",
+    "slug": "hidetrade",
+    "version": "15.0.1",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "light",
+    "splash": {
+      "image": "./assets/301.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "updates": {
+      "fallbackToCacheTimeout": 0
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.HideTrade.Hide",
+      "buildNumber": "1.0.30"
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/300.png",
+        "backgroundColor": "#FFFFFF"
+      },
+      "package": "com.HideTrade.hide",
+      "versionCode": 15,
+      "permissions": [
+        "android.permission.RECORD_AUDIO"
+      ]
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "246beb0c-6a55-4780-928f-eb6e958e5fd5"
+      }
+    },
+    "plugins": [
+      [
+        "expo-image-picker",
+        {
+          "photosPermission": "The app accesses your photos to let you share them with your friends."
+        }
+      ]
+    ]
+  }
+}
