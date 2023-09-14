@@ -11,7 +11,8 @@ import {
   Image,
   ActivityIndicator,
   KeyboardAvoidingView,
-  Platform, BackHandler
+  Platform,
+  BackHandler,
   //TextInput,
 } from "react-native";
 import Constants from "expo-constants";
@@ -21,7 +22,7 @@ import CheckBox from "expo-checkbox";
 import axios from "axios";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import SpinView from "../../components/Spin";
-import { StackActions } from '@react-navigation/native';
+import { StackActions } from "@react-navigation/native";
 
 import Colors from "../../constants/Colors";
 import ButtonComp from "../../components/ButtonComp";
@@ -53,18 +54,18 @@ const Login = (props) => {
 
   useEffect(() => {
     if (dataLoad == false) {
-      console.log('inside login page useEffect');
-      setApiLoader(false)
-      setDataLoaded(true)
+      console.log("inside login page useEffect");
+      setApiLoader(false);
+      setDataLoaded(true);
     }
     const backAction = () => {
       Alert.alert("Hold on!", "Are you sure you want to go back?", [
         {
           text: "Cancel",
           onPress: () => null,
-          style: "cancel"
+          style: "cancel",
         },
-        { text: "YES", onPress: () => BackHandler.exitApp() }
+        { text: "YES", onPress: () => BackHandler.exitApp() },
       ]);
       return true;
     };
@@ -75,14 +76,17 @@ const Login = (props) => {
     );
 
     return () => backHandler.remove();
-  }, [])
+  }, []);
 
   const popAction = StackActions.pop(1);
 
   const renderLabel = () => {
     if (value || isFocus) {
       return (
-        <Text allowFontScaling={false} style={[styles.label, isFocus && { color: "blue" }]}>
+        <Text
+          allowFontScaling={false}
+          style={[styles.label, isFocus && { color: "blue" }]}
+        >
           --Select User Type--
         </Text>
       );
@@ -92,90 +96,113 @@ const Login = (props) => {
 
   const loginHandler = useCallback(async () => {
     setApiLoader(true);
-    let webApiUrl = `https://www.hidetrade.eu/app/api/User/login.php?user_type=${label == "Tannery" ? "Tanneries" : "Agents"}&email=${email}&password=${password}`;
+    let webApiUrl = `https://www.hidetrade.eu/app/api/User/login.php?user_type=${
+      label == "Tannery" ? "Tanneries" : "Agents"
+    }&email=${email}&password=${password}`;
     console.log("webapiurl=" + webApiUrl);
-    axios.get(webApiUrl).then(async (res) => {
-      console.log("response in login=" + JSON.stringify(res.data));
-      if (res.data.status == true) {
-        await AsyncStorage.setItem("loginStatus", "true");
-        await AsyncStorage.setItem("user_id", res.data.User_Details.user_id);
-        await AsyncStorage.setItem("user_type", res.data.User_Details.user_type);
+    axios
+      .get(webApiUrl)
+      .then(async (res) => {
+        console.log("response in login=" + JSON.stringify(res.data));
+        if (res.data.status == true) {
+          await AsyncStorage.setItem("loginStatus", "true");
+          await AsyncStorage.setItem("user_id", res.data.User_Details.user_id);
+          await AsyncStorage.setItem(
+            "user_type",
+            res.data.User_Details.user_type
+          );
 
-        console.log(res.data.User_Details)
+          console.log(res.data.User_Details);
 
-        let flag = false;
+          let flag = false;
 
-        if (label === "Tannery") {
-          if (Platform.OS === "android" || Platform.OS === "ios") {
-            const timestamp = res.data.User_Details.timestamp + "";
+          if (label === "Tannery") {
+            if (Platform.OS === "android" || Platform.OS === "ios") {
+              const timestamp = res.data.User_Details.timestamp + "";
 
-            if (timestamp === "" || timestamp.length == 0 || isNaN(Number(timestamp))) {
-              flag = true;
+              if (
+                timestamp === "" ||
+                timestamp.length == 0 ||
+                isNaN(Number(timestamp))
+              ) {
+                flag = true;
+              } else {
+                const date_exp = new Date(Number(timestamp) * 1000);
+                console.log("Exp : " + date_exp);
+                if (date_exp < new Date()) {
+                  flag = true;
+                }
+              }
             } else {
-              const date_exp = new Date(Number(timestamp) * 1000);
-              console.log("Exp : " + date_exp);
-              if (date_exp < new Date()) {
+              const response = await useRevenueCat();
+              const customerInfo = response.ci;
+              const isSubscribed =
+                customerInfo.activeSubscriptions.includes("tannery");
+
+              if (!isSubscribed) {
                 flag = true;
               }
             }
+          }
+
+          if (flag) {
+            const Data = {
+              email: res.data.User_Details.email,
+              name: res.data.User_Details.user_id,
+            };
+            setEmail("");
+            setPassword("");
+            setApiLoader(false);
+            // props.navigation.dispatch(StackActions.replace('Tabs'));
+
+            props.navigation.navigate("CheckoutScreen", { Data: Data });
           } else {
-            const response = await useRevenueCat()
-            const customerInfo = response.ci
-            const isSubscribed = customerInfo.activeSubscriptions.includes("tannery")
-
-            if (!isSubscribed) {
-              flag = true;
-            }
+            setEmail("");
+            setPassword("");
+            setApiLoader(false);
+            props.navigation.dispatch(StackActions.replace("Tabs"));
           }
-        }
-
-        if (flag) {
-          const Data = {
-            email: res.data.User_Details.email,
-            name: res.data.User_Details.user_id
-          }
-          setEmail('');
-          setPassword('');
+        } else if (res.data.status == false) {
+          Alert.alert("", res.data.message);
           setApiLoader(false);
-          // props.navigation.dispatch(StackActions.replace('Tabs'));
-
-          props.navigation.navigate("CheckoutScreen", { Data: Data });
         } else {
-          setEmail('');
-          setPassword('');
+          Alert.alert("", "Kindly recheck the fields");
           setApiLoader(false);
-          props.navigation.dispatch(StackActions.replace('Tabs'));
         }
-      } else if (res.data.status == false) {
-        Alert.alert("", res.data.message);
-        setApiLoader(false);
-      }
-      else {
-        Alert.alert("", "Kindly recheck the fields");
-        setApiLoader(false);
-      }
-    })
+      })
       .catch((err) => {
-        console.log('error==', err);
+        console.log("error==", err);
         setApiLoader(false);
-        Alert.alert("Bad Internet Connection", "Kindly Check Your Internet Connection or try after some time");
+        Alert.alert(
+          "Bad Internet Connection",
+          "Kindly Check Your Internet Connection or try after some time"
+        );
       });
   }, [value, email, password]);
 
   return (
-    <KeyboardAvoidingView behavior={Platform.OS === "ios" && "padding"} style={{
-      flex: 1, paddingTop: Constants.statusBarHeight,
-      backgroundColor: "#fff",
-    }}>
+    <KeyboardAvoidingView
+      behavior={Platform.OS === "ios" && "padding"}
+      style={{
+        flex: 1,
+        paddingTop: Constants.statusBarHeight,
+        backgroundColor: "#fff",
+      }}
+    >
       <View style={styles.container}>
         {apiLoader ? (
-          <SpinView style={{ alignItems: 'center', justifyContent: 'center', flex: 1 }}>
+          <SpinView
+            style={{ alignItems: "center", justifyContent: "center", flex: 1 }}
+          >
             <Image
               source={require("../../assets/loader.jpg")}
               resizeMode="contain"
               resizeMethod="scale"
               style={{ width: 80, height: 80 }}
-            /><Text style={{ fontWeight: 'bold', marginTop: 10 }}>Loading...</Text>
+            />
+            <Text style={{ fontWeight: "bold", marginTop: 10 }}>
+              Loading...
+            </Text>
           </SpinView>
         ) : (
           <View style={{ flex: 1 }}>
@@ -184,12 +211,26 @@ const Login = (props) => {
                 <View style={{ alignItems: "center" }}>
                   <Text
                     allowFontScaling={false}
-                    style={{ color: Colors.text, fontSize: 30, fontWeight: "bold" }}
+                    style={{
+                      color: Colors.text,
+                      fontSize: 30,
+                      fontWeight: "bold",
+                    }}
                   >
                     Welcome to
                   </Text>
-                  <Text allowFontScaling={false} style={styles.hideTradeTextSTyle}>
-                    HIDE <Text allowFontScaling={false} style={{ color: Colors.heading2 }}> TRADE</Text>
+                  <Text
+                    allowFontScaling={false}
+                    style={styles.hideTradeTextSTyle}
+                  >
+                    HIDE{" "}
+                    <Text
+                      allowFontScaling={false}
+                      style={{ color: Colors.heading2 }}
+                    >
+                      {" "}
+                      TRADE
+                    </Text>
                   </Text>
                 </View>
                 <View style={{ marginTop: 40 }}>
@@ -206,7 +247,10 @@ const Login = (props) => {
                   </Text>
                   {/* {renderLabel()} */}
                   <Dropdown
-                    style={[styles.dropdown, isFocus && { borderColor: "black" }]}
+                    style={[
+                      styles.dropdown,
+                      isFocus && { borderColor: "black" },
+                    ]}
                     placeholderStyle={{ fontSize: 16 }}
                     selectedTextStyle={styles.selectedTextStyle}
                     inputSearchStyle={styles.inputSearchStyle}
@@ -260,7 +304,8 @@ const Login = (props) => {
                     mode="outlined"
                     style={{ marginVertical: 15, backgroundColor: "white" }}
                     activeOutlineColor={Colors.buttonBackground}
-                    allowFontScaling={false} maxFontSizeMultiplier={1}
+                    allowFontScaling={false}
+                    maxFontSizeMultiplier={1}
                   />
                   <TextInput
                     label="Enter Password"
@@ -271,10 +316,13 @@ const Login = (props) => {
                     }}
                     allowFontScaling={false}
                     mode="outlined"
-                    secureTextEntry={passwordVisible} maxFontSizeMultiplier={1}
+                    secureTextEntry={passwordVisible}
+                    maxFontSizeMultiplier={1}
                     right={
                       <TextInput.Icon
-                        name={passwordVisible == true ? "eye-off-outline" : "eye"}
+                        name={
+                          passwordVisible == true ? "eye-off-outline" : "eye"
+                        }
                         onPress={() => {
                           setPasswordVisible(!passwordVisible);
                         }}
@@ -309,16 +357,23 @@ const Login = (props) => {
             <View style={{ marginBottom: 20, marginHorizontal: 30 }}>
               {/* <ButtonComp title="SIGN IN" onPress={loginHandler} /> */}
               <View style={{ flexDirection: "row" }}>
-                <Text allowFontScaling={false} style={{}}>IF YOU DON'T HAVE ACCOUNT </Text>
+                <Text allowFontScaling={false} style={{}}>
+                  IF YOU DON'T HAVE ACCOUNT{" "}
+                </Text>
                 <TouchableOpacity
                   style={{}}
-                  onPress={() => { props.navigation.navigate("RegisterAs"); setEmail(''); setPassword('') }}
+                  onPress={() => {
+                    props.navigation.navigate("RegisterAs");
+                    setEmail("");
+                    setPassword("");
+                  }}
                 >
                   <Text
                     style={{
                       color: Colors.registerNowText,
                       textDecorationLine: "underline",
-                    }} allowFontScaling={false}
+                    }}
+                    allowFontScaling={false}
                   >
                     REGISTER NOW
                   </Text>
@@ -340,7 +395,8 @@ const Login = (props) => {
                     style={{
                       color: Colors.registerNowText,
                       textDecorationLine: "underline",
-                    }} allowFontScaling={false}
+                    }}
+                    allowFontScaling={false}
                   >
                     FORGOT PASSWORD
                   </Text>
