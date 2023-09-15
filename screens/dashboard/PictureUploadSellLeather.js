@@ -6,10 +6,11 @@ import {
   StyleSheet,
   TouchableOpacity,
   Image,
-  FlatList,ActivityIndicator
+  FlatList,
+  ActivityIndicator,
 } from "react-native";
 import * as ImagePicker from "expo-image-picker";
-import {Ionicons} from '@expo/vector-icons'
+import { Ionicons } from "@expo/vector-icons";
 
 import Colors from "../../constants/Colors";
 import ButtonComp from "../../components/ButtonComp";
@@ -22,7 +23,7 @@ const PictureUploadSellLeather = (props) => {
   const [apiLoader, setApiLoader] = useState(true);
 
   var uri = props.route.params.images;
-  console.log("uri in picture upload=" + uri.length);
+  // console.log("uri in picture upload=" + uri.length);
 
   const pickImage = async () => {
     let result = await ImagePicker.launchImageLibraryAsync({
@@ -99,7 +100,7 @@ const PictureUploadSellLeather = (props) => {
   var preservationType = props.route.params.preservationType;
   var origin = props.route.params.origin;
   var continent = props.route.params.continent;
-  var Specification=props.route.params.Specification;
+  var Specification = props.route.params.Specification;
   var weightCatType = props.route.params.weightCatType;
   var weightCatType2 = props.route.params.weightCatType2;
   var weightCatType3 = props.route.params.weightCatType3;
@@ -150,38 +151,41 @@ const PictureUploadSellLeather = (props) => {
   var priceSelection6 = props.route.params.priceSelection6;
   var labelSelectionPrice6 = props.route.params.labelSelectionPrice6;
   var document = props.route.params.document;
-  var packingList=props.route.params.packingList
+  var packingList = props.route.params.packingList;
 
   var base64Icon;
 
   return (
     <View style={{ flex: 1, backgroundColor: "white" }}>
       {apiLoader ? (
-      //   <View
-      //   style={{
-      //     width: "100%",
-      //     height: "100%",
-      //     justifyContent: "center",
-      //     alignItems: "center",
-      //     backgroundColor: "#ffffff",
-      //     opacity: 1,
-      //     zIndex: 5,
-      //   }}
-      // >
-      //   <Image
-      //     source={require("../../assets/loader.jpg")}
-      //     resizeMode="contain"
-      //     resizeMethod="scale"
-      //     style={{ width: 100, height: 100, marginBottom:10 }}
-      //   /><ActivityIndicator size={"large"} color='red' />
-      // </View>
-      <SpinView style={{alignItems:'center', justifyContent:'center', flex:1}}>
-           <Image
+        //   <View
+        //   style={{
+        //     width: "100%",
+        //     height: "100%",
+        //     justifyContent: "center",
+        //     alignItems: "center",
+        //     backgroundColor: "#ffffff",
+        //     opacity: 1,
+        //     zIndex: 5,
+        //   }}
+        // >
+        //   <Image
+        //     source={require("../../assets/loader.jpg")}
+        //     resizeMode="contain"
+        //     resizeMethod="scale"
+        //     style={{ width: 100, height: 100, marginBottom:10 }}
+        //   /><ActivityIndicator size={"large"} color='red' />
+        // </View>
+        <SpinView
+          style={{ alignItems: "center", justifyContent: "center", flex: 1 }}
+        >
+          <Image
             source={require("../../assets/loader.jpg")}
             resizeMode="contain"
             resizeMethod="scale"
             style={{ width: 80, height: 80 }}
-          /><Text style={{fontWeight:'bold', marginTop:10}}>Loading...</Text>
+          />
+          <Text style={{ fontWeight: "bold", marginTop: 10 }}>Loading...</Text>
         </SpinView>
       ) : (
         <View style={{ height: "100%" }}>
@@ -299,8 +303,8 @@ const PictureUploadSellLeather = (props) => {
                     fromValue: fromValue,
                     toValue: toValue,
                     origin: origin,
-                    continent:continent,
-                    Specification:Specification,
+                    continent: continent,
+                    Specification: Specification,
                     weightCatType: weightCatType,
                     weightCatType2: weightCatType2,
                     weightCatType3: weightCatType3,
@@ -351,9 +355,9 @@ const PictureUploadSellLeather = (props) => {
                     labelSelectionUnit6: labelSelectionUnit6,
                     labelSelectionPrice6: labelSelectionPrice6,
                     priceSelection6: priceSelection6,
-                    images:  uri!=undefined && uri.length!=0?uri: images,
+                    images: uri != undefined && uri.length != 0 ? uri : images,
                     document: document,
-                    packingList:packingList
+                    packingList: packingList,
                   })
                 }
               >
@@ -367,7 +371,8 @@ const PictureUploadSellLeather = (props) => {
                     fontSize: 20,
                     alignSelf: "center",
                     color: Colors.text,
-                  }}allowFontScaling={false}
+                  }}
+                  allowFontScaling={false}
                 >
                   Back
                 </Text>

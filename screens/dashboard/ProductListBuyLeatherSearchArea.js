@@ -6,10 +6,10 @@ import {
   StyleSheet,
   TouchableOpacity,
   Image,
-  FlatList, ActivityIndicator
+  FlatList,
+  ActivityIndicator,
 } from "react-native";
 import axios from "axios";
-
 
 import Colors from "../../constants/Colors";
 import SpinView from "../../components/Spin";
@@ -36,7 +36,6 @@ const ProductListBuyLeatherSearchArea = (props) => {
           country: selectedCountry,
         },
         { continents: selectedContinent },
-
       ];
 
       console.log("object=" + JSON.stringify(object));
@@ -60,7 +59,7 @@ const ProductListBuyLeatherSearchArea = (props) => {
     }
   }, []);
 
-  console.log("product list=" + JSON.stringify(productList));
+  // console.log("product list=" + JSON.stringify(productList));
 
   return (
     <View style={{ flex: 1, backgroundColor: "white" }}>
@@ -83,18 +82,25 @@ const ProductListBuyLeatherSearchArea = (props) => {
         //     style={{ width: 100, height: 100, marginBottom:10 }}
         //   /><ActivityIndicator size={"large"} color='red' />
         // </View>
-        <SpinView style={{ alignItems: 'center', justifyContent: 'center', flex: 1 }}>
+        <SpinView
+          style={{ alignItems: "center", justifyContent: "center", flex: 1 }}
+        >
           <Image
             source={require("../../assets/loader.jpg")}
             resizeMode="contain"
             resizeMethod="scale"
             style={{ width: 80, height: 80 }}
-          /><Text style={{ fontWeight: 'bold', marginTop: 10 }}>Loading...</Text>
+          />
+          <Text style={{ fontWeight: "bold", marginTop: 10 }}>Loading...</Text>
         </SpinView>
       ) : (
         <View style={{ marginHorizontal: 10, marginTop: 5, marginBottom: 140 }}>
-          <Text allowFontScaling={false} style={styles.heading}>Results List</Text>
-          <Text allowFontScaling={false} style={styles.countryHeading}>{selectedCountry}</Text>
+          <Text allowFontScaling={false} style={styles.heading}>
+            Results List
+          </Text>
+          <Text allowFontScaling={false} style={styles.countryHeading}>
+            {selectedCountry}
+          </Text>
           <View style={{ marginTop: 15 }}>
             {/* {productList != undefined || productList != null ? (
               <FlatList
@@ -107,7 +113,7 @@ const ProductListBuyLeatherSearchArea = (props) => {
             )  */}
             {productList != undefined || productList != null ? (
               <FlatList
-              // inverted
+                // inverted
                 showsVerticalScrollIndicator={false}
                 data={productList}
                 renderItem={({ item }) => (
@@ -118,7 +124,16 @@ const ProductListBuyLeatherSearchArea = (props) => {
                           product_id: item.product_id,
                         })
                       }
-                    ><Text allowFontScaling={false} style={{ fontSize: 16, fontWeight: 'bold', marginBottom: 15, marginTop: 10 }}>
+                    >
+                      <Text
+                        allowFontScaling={false}
+                        style={{
+                          fontSize: 16,
+                          fontWeight: "bold",
+                          marginBottom: 15,
+                          marginTop: 10,
+                        }}
+                      >
                         {item.product_title}
                       </Text>
                       <View
@@ -126,10 +141,9 @@ const ProductListBuyLeatherSearchArea = (props) => {
                           flexDirection: "row",
                           justifyContent: "flex-start",
                         }}
-                       >
+                      >
                         {item.product_upload_images.length != 0 ? (
-                          <View style={{ width: '40%', }}>
-
+                          <View style={{ width: "40%" }}>
                             <Image
                               source={{
                                 uri:
@@ -137,78 +151,262 @@ const ProductListBuyLeatherSearchArea = (props) => {
                                   item.product_upload_images[0].images_name,
                               }}
                               style={{ width: 100, height: 85 }}
-                              resizeMode='cover'
+                              resizeMode="cover"
                             />
                           </View>
                         ) : (
-                          <View style={{ width: '40%' ,}}>
-
-                            <Image source={require('../../assets/IconUpload3.png')} style={{ width: 120, height: 120 }} />
+                          <View style={{ width: "40%" }}>
+                            <Image
+                              source={require("../../assets/IconUpload3.png")}
+                              style={{ width: 120, height: 120 }}
+                            />
                           </View>
                         )}
 
                         <View style={{ flexShrink: 1 }}>
                           <View style={{}}>
-                          <Text allowFontScaling={false} style={{ fontWeight: 'bold' }}>Selection: <Text allowFontScaling={false} style={{ fontWeight: 'normal' }}>{item.Selected_Leathers == "Yes" ? `${item.selection}`: `Table Roll`} </Text></Text>
-                            <Text allowFontScaling={false} style={{ fontWeight: 'bold', width: '100%',marginVertical:5 }} numberOfLines={1}>
+                            <Text
+                              allowFontScaling={false}
+                              style={{ fontWeight: "bold" }}
+                            >
+                              Selection:{" "}
+                              <Text
+                                allowFontScaling={false}
+                                style={{ fontWeight: "normal" }}
+                              >
+                                {item.Selected_Leathers == "Yes"
+                                  ? `${item.selection}`
+                                  : `Table Roll`}{" "}
+                              </Text>
+                            </Text>
+                            <Text
+                              allowFontScaling={false}
+                              style={{
+                                fontWeight: "bold",
+                                width: "100%",
+                                marginVertical: 5,
+                              }}
+                              numberOfLines={1}
+                            >
                               Category :{" "}
                               {item.product_Leaher_shape?.map((values) => (
-                                <Text allowFontScaling={false} style={{ fontWeight: 'normal' }} >{values.title} </Text>
+                                <Text
+                                  allowFontScaling={false}
+                                  style={{ fontWeight: "normal" }}
+                                >
+                                  {values.title}{" "}
+                                </Text>
                               ))}
                             </Text>
-                            <Text allowFontScaling={false} style={{ fontWeight: 'bold', marginVertical: 5 }}>Sub-Category:{" "} <Text allowFontScaling={false} style={{ fontWeight: 'normal' }}>{item.sub_category_name}</Text></Text>
-                            
-                            <Text allowFontScaling={false} style={{ fontWeight: 'bold' }}>Origin: <Text allowFontScaling={false} style={{ fontWeight: 'normal' }}>{item.Country_Name}</Text></Text>
-                            <Text allowFontScaling={false} style={{ fontWeight: 'bold', width: '100%',marginVertical:5 }} numberOfLines={1}>
+                            <Text
+                              allowFontScaling={false}
+                              style={{ fontWeight: "bold", marginVertical: 5 }}
+                            >
+                              Sub-Category:{" "}
+                              <Text
+                                allowFontScaling={false}
+                                style={{ fontWeight: "normal" }}
+                              >
+                                {item.sub_category_name}
+                              </Text>
+                            </Text>
+
+                            <Text
+                              allowFontScaling={false}
+                              style={{ fontWeight: "bold" }}
+                            >
+                              Origin:{" "}
+                              <Text
+                                allowFontScaling={false}
+                                style={{ fontWeight: "normal" }}
+                              >
+                                {item.Country_Name}
+                              </Text>
+                            </Text>
+                            <Text
+                              allowFontScaling={false}
+                              style={{
+                                fontWeight: "bold",
+                                width: "100%",
+                                marginVertical: 5,
+                              }}
+                              numberOfLines={1}
+                            >
                               Conditions :{" "}
                               {item.product_categories.map((values) => (
-                                <Text allowFontScaling={false} style={{ fontWeight: 'normal' }} >{values.category} </Text>
+                                <Text
+                                  allowFontScaling={false}
+                                  style={{ fontWeight: "normal" }}
+                                >
+                                  {values.category}{" "}
+                                </Text>
                               ))}
                             </Text>
 
-                            <Text allowFontScaling={false} style={{ fontWeight: 'bold', width: '100%', }} numberOfLines={1}>
+                            <Text
+                              allowFontScaling={false}
+                              style={{ fontWeight: "bold", width: "100%" }}
+                              numberOfLines={1}
+                            >
                               Tanning :{" "}
                               {item.product_tanning_leathers?.map((values) => (
-                                <Text allowFontScaling={false} style={{ fontWeight: 'normal' }} >{values.tanningLeathers}, </Text>
+                                <Text
+                                  allowFontScaling={false}
+                                  style={{ fontWeight: "normal" }}
+                                >
+                                  {values.tanningLeathers},{" "}
+                                </Text>
                               ))}
                             </Text>
-                            <Text allowFontScaling={false} style={{ fontWeight: 'bold', marginVertical: 5 }}>Substance:{" "} <Text allowFontScaling={false} style={{ fontWeight: 'normal' }}>{item.Selected_Leathers == "Yes" ? `${item.thiknessType}  ${item.thinkessFrom}` : `${item.thinknessTo}`}</Text></Text>
-                            <Text allowFontScaling={false} style={{ fontWeight: 'bold', marginVertical: 5 }}>Weight Category:{" "} <Text allowFontScaling={false} style={{ fontWeight: 'normal' }}>{item.weightCatType}-{item.weightCatType2} ({item.weightCatType3}) {item.weightSelectionSize}</Text></Text>
-                            <Text allowFontScaling={false} style={{ fontWeight: 'bold', marginVertical: 5 }}>Surface Category:{" "} <Text allowFontScaling={false} style={{ fontWeight: 'normal' }}> {item.surfaceCatType}-{item.surfaceCatType2} ({item.surfaceCatType3}) {item.surfaceSelectionSize}</Text></Text>
-                            <Text allowFontScaling={false} style={{ fontWeight: 'bold', width: '100%', }} numberOfLines={1}>
+                            <Text
+                              allowFontScaling={false}
+                              style={{ fontWeight: "bold", marginVertical: 5 }}
+                            >
+                              Substance:{" "}
+                              <Text
+                                allowFontScaling={false}
+                                style={{ fontWeight: "normal" }}
+                              >
+                                {item.Selected_Leathers == "Yes"
+                                  ? `${item.thiknessType}  ${item.thinkessFrom}`
+                                  : `${item.thinknessTo}`}
+                              </Text>
+                            </Text>
+                            <Text
+                              allowFontScaling={false}
+                              style={{ fontWeight: "bold", marginVertical: 5 }}
+                            >
+                              Weight Category:{" "}
+                              <Text
+                                allowFontScaling={false}
+                                style={{ fontWeight: "normal" }}
+                              >
+                                {item.weightCatType}-{item.weightCatType2} (
+                                {item.weightCatType3}){" "}
+                                {item.weightSelectionSize}
+                              </Text>
+                            </Text>
+                            <Text
+                              allowFontScaling={false}
+                              style={{ fontWeight: "bold", marginVertical: 5 }}
+                            >
+                              Surface Category:{" "}
+                              <Text
+                                allowFontScaling={false}
+                                style={{ fontWeight: "normal" }}
+                              >
+                                {" "}
+                                {item.surfaceCatType}-{item.surfaceCatType2} (
+                                {item.surfaceCatType3}){" "}
+                                {item.surfaceSelectionSize}
+                              </Text>
+                            </Text>
+                            <Text
+                              allowFontScaling={false}
+                              style={{ fontWeight: "bold", width: "100%" }}
+                              numberOfLines={1}
+                            >
                               Color :{" "}
                               {item.product_color.map((values) => (
-                                <Text allowFontScaling={false} style={{ fontWeight: 'normal' }} >{values.Color} </Text>
+                                <Text
+                                  allowFontScaling={false}
+                                  style={{ fontWeight: "normal" }}
+                                >
+                                  {values.Color}{" "}
+                                </Text>
                               ))}
                             </Text>
-                            <Text allowFontScaling={false} style={{ fontWeight: 'bold', marginVertical: 5 }}>Inspection:{" "} <Text allowFontScaling={false} style={{ fontWeight: 'normal' }}>{item.inspection_possible}</Text></Text>
-                            <Text allowFontScaling={false} style={{ fontWeight: 'bold', marginVertical: 5 }}>Quantity :{" "} <Text allowFontScaling={false} style={{ fontWeight: 'normal' }}>{item.Selected_Leathers == "Yes" ? `${item.selectionQuantity} ${item.selectionQuantityUnit}` : `${item.tableRollLeatherQty} ${item.tableRollLeatherQtySelection}`}</Text></Text>
-                            <Text allowFontScaling={false} style={{ fontWeight: 'bold', marginVertical: 5 }}>Price :{" "} <Text allowFontScaling={false} style={{ fontWeight: 'normal' }}>{item.Selected_Leathers == "Yes" ? `${item.SelectionPrice} ${item.SelectionPriceUnit} / ${item.selectionQuantityUnit}`: `${item.tableRollLeatherPrice} ${item.tableRollLeatherPriceUnit?item.tableRollLeatherPriceUnit: ''} / ${item.tableRollLeatherQtySelection}`}</Text></Text>
+                            <Text
+                              allowFontScaling={false}
+                              style={{ fontWeight: "bold", marginVertical: 5 }}
+                            >
+                              Inspection:{" "}
+                              <Text
+                                allowFontScaling={false}
+                                style={{ fontWeight: "normal" }}
+                              >
+                                {item.inspection_possible}
+                              </Text>
+                            </Text>
+                            <Text
+                              allowFontScaling={false}
+                              style={{ fontWeight: "bold", marginVertical: 5 }}
+                            >
+                              Quantity :{" "}
+                              <Text
+                                allowFontScaling={false}
+                                style={{ fontWeight: "normal" }}
+                              >
+                                {item.Selected_Leathers == "Yes"
+                                  ? `${item.selectionQuantity} ${item.selectionQuantityUnit}`
+                                  : `${item.tableRollLeatherQty} ${item.tableRollLeatherQtySelection}`}
+                              </Text>
+                            </Text>
+                            <Text
+                              allowFontScaling={false}
+                              style={{ fontWeight: "bold", marginVertical: 5 }}
+                            >
+                              Price :{" "}
+                              <Text
+                                allowFontScaling={false}
+                                style={{ fontWeight: "normal" }}
+                              >
+                                {item.Selected_Leathers == "Yes"
+                                  ? `${item.SelectionPrice} ${item.SelectionPriceUnit} / ${item.selectionQuantityUnit}`
+                                  : `${item.tableRollLeatherPrice} ${
+                                      item.tableRollLeatherPriceUnit
+                                        ? item.tableRollLeatherPriceUnit
+                                        : ""
+                                    } / ${item.tableRollLeatherQtySelection}`}
+                              </Text>
+                            </Text>
 
-
-                            <Text allowFontScaling={false} style={{ width: '100%', fontWeight: 'bold', marginVertical:5,}} numberOfLines={1}>Size: {item.product_sizes.map((abc) => (<Text allowFontScaling={false} style={{ fontWeight: 'normal' }}>{abc.product_size} </Text>))}</Text>
+                            <Text
+                              allowFontScaling={false}
+                              style={{
+                                width: "100%",
+                                fontWeight: "bold",
+                                marginVertical: 5,
+                              }}
+                              numberOfLines={1}
+                            >
+                              Size:{" "}
+                              {item.product_sizes.map((abc) => (
+                                <Text
+                                  allowFontScaling={false}
+                                  style={{ fontWeight: "normal" }}
+                                >
+                                  {abc.product_size}{" "}
+                                </Text>
+                              ))}
+                            </Text>
 
                             {/* <Text allowFontScaling={false} style={{ fontWeight: 'bold',marginVertical:5 }}>Selection: <Text allowFontScaling={false} style={{ fontWeight: 'normal' }}>{item.selection}</Text></Text> */}
-
-
                           </View>
                         </View>
                       </View>
-
                     </TouchableOpacity>
-                    <View style={{ borderWidth: 0.5, marginTop: 10, backgroundColor: "grey" }}></View>
-
+                    <View
+                      style={{
+                        borderWidth: 0.5,
+                        marginTop: 10,
+                        backgroundColor: "grey",
+                      }}
+                    ></View>
                   </View>
                 )}
               />
-            )
-              : (
-                <View style={{ alignItems: "center" }}>{console.log('product lst buy leather')}
-                  <Text allowFontScaling={false} style={{ textAlignVertical: "center" }}>
-                    No products available for current filters
-                  </Text>
-                </View>
-              )}
+            ) : (
+              <View style={{ alignItems: "center" }}>
+                {console.log("product lst buy leather")}
+                <Text
+                  allowFontScaling={false}
+                  style={{ textAlignVertical: "center" }}
+                >
+                  No products available for current filters
+                </Text>
+              </View>
+            )}
           </View>
         </View>
       )}

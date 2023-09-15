@@ -1,15 +1,8 @@
 import React, { useEffect, useState } from "react";
-import {
-  Image,
-  Text,
-  View,
-  Platform
-} from "react-native";
+import { Image, Text, View, Platform } from "react-native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import {
-  useIsFocused
-} from "@react-navigation/native";
+import { useIsFocused } from "@react-navigation/native";
 
 import SplashScreen from "../screens/SplashScreen";
 import Login from "../screens/signup/Login";
@@ -27,7 +20,7 @@ import SubCategorySellLeather from "../screens/dashboard/SubCategorySellLeather"
 import SizePageSellLeather from "../screens/dashboard/SizePageSellLeather";
 import LeatherConditionSellLeather from "../screens/dashboard/LeatherConditionSellLeather";
 import TanningLeatherSellLeather from "../screens/dashboard/TanningLeatherSellLeather";
-import TanningLeatherOriginSellLeather from '../screens/dashboard/TannningLeatherOriginSellLeather'
+import TanningLeatherOriginSellLeather from "../screens/dashboard/TannningLeatherOriginSellLeather";
 import SubstanceThicknessSellLeather from "../screens/dashboard/SubstanceThicknessSellLeather";
 import KindOfTrimSellLeather from "../screens/dashboard/KindOfTrimSellLeather";
 import FlayLeatherSellLeather from "../screens/dashboard/FlayLeatherSellLeather";
@@ -100,25 +93,23 @@ import CheckoutScreen from "../screens/paymentScreens/checkout";
 import Subscription from "../screens/dashboard/Subscription";
 import MyStripeCheckout from "../screens/paymentScreens/changeCard";
 
-
 const HomeTabNavigator = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
 const SellTab = createNativeStackNavigator();
 const HomeScreenNavigator = createNativeStackNavigator();
 const BuyTab = createNativeStackNavigator();
 const ProfileTab = createNativeStackNavigator();
-const FeedbackTab=createNativeStackNavigator();
-
+const FeedbackTab = createNativeStackNavigator();
 
 export const ProfileTabScreens = () => {
   return (
     <ProfileTab.Navigator>
-       <ProfileTab.Screen
+      <ProfileTab.Screen
         name="User Profile"
         component={UserProfile}
         options={{
           headerBackVisible: false,
-          headerBackTitle:'',
+          headerBackTitle: "",
           headerTitle: "Profile",
           headerTitleAlign: "center",
           headerStyle: { backgroundColor: Colors.headerBackground },
@@ -134,7 +125,7 @@ export const ProfileTabScreens = () => {
           headerStyle: { backgroundColor: Colors.headerBackground },
           headerTintColor: "white",
           headerTitleStyle: { fontWeight: "bold" },
-          headerBackVisible:false
+          headerBackVisible: false,
         })}
       />
       <ProfileTab.Screen
@@ -154,7 +145,7 @@ export const ProfileTabScreens = () => {
         component={SubCategoryInProfile}
         options={{
           headerBackVisible: false,
-          headerBackTitle:'',
+          headerBackTitle: "",
           headerTitle: "Sub Category",
           headerTitleAlign: "center",
           headerStyle: { backgroundColor: Colors.headerBackground },
@@ -167,7 +158,7 @@ export const ProfileTabScreens = () => {
         component={TanningInProfile}
         options={{
           headerBackVisible: false,
-          headerBackTitle:'',
+          headerBackTitle: "",
           headerTitle: "Tanning Leather",
           headerTitleAlign: "center",
           headerStyle: { backgroundColor: Colors.headerBackground },
@@ -180,7 +171,7 @@ export const ProfileTabScreens = () => {
         component={SizeInProfile}
         options={{
           headerBackVisible: true,
-          headerBackTitle:'',
+          headerBackTitle: "",
           headerTitle: "Size Page",
           headerTitleAlign: "center",
           headerStyle: { backgroundColor: Colors.headerBackground },
@@ -197,7 +188,7 @@ export const ProfileTabScreens = () => {
           headerStyle: { backgroundColor: Colors.headerBackground },
           headerTintColor: "white",
           headerTitleStyle: { fontWeight: "bold" },
-          headerBackVisible:false
+          headerBackVisible: false,
         })}
       />
 
@@ -209,17 +200,16 @@ export const ProfileTabScreens = () => {
           headerStyle: { backgroundColor: Colors.headerBackground },
           headerTintColor: "white",
           headerTitleStyle: { fontWeight: "bold" },
-          headerBackVisible:false
+          headerBackVisible: false,
         })}
       />
-
     </ProfileTab.Navigator>
   );
 };
 
 export const BuyTabScreens = () => {
   return (
-    <BuyTab.Navigator screenOptions={{gestureEnabled:false}}>
+    <BuyTab.Navigator screenOptions={{ gestureEnabled: false }}>
       <BuyTab.Screen
         name="Buy"
         component={Buy}
@@ -230,7 +220,8 @@ export const BuyTabScreens = () => {
           headerTitleAlign: "center",
           headerStyle: { backgroundColor: Colors.headerBackground },
           headerTintColor: "white",
-          headerTitleStyle: { fontWeight: "bold" },gestureEnabled:false
+          headerTitleStyle: { fontWeight: "bold" },
+          gestureEnabled: false,
         }}
       />
       <BuyTab.Screen
@@ -347,7 +338,7 @@ export const BuyTabScreens = () => {
         component={ProductsSearchTanneriesBuyLeather}
         options={{
           headerBackVisible: true,
-          headerBackTitle:"",
+          headerBackTitle: "",
           headerTitle: "Products",
           headerTitleAlign: "center",
           headerStyle: { backgroundColor: Colors.headerBackground },
@@ -406,7 +397,7 @@ export const BuyTabScreens = () => {
           headerTitleStyle: { fontWeight: "bold" },
         }}
       />
-       <BuyTab.Screen
+      <BuyTab.Screen
         name="Substance and Thickness "
         component={SubstanceThicknessBuyLeatherSearchProduct}
         options={{
@@ -431,17 +422,17 @@ export const BuyTabScreens = () => {
         }}
       />
       <BuyTab.Screen
-      name="Leather Color "
-      component={ColorBuyLeatherSearchProduct}
-      options={{
-        headerBackVisible: false,
-        headerTitle: "Leather Color",
-        headerTitleAlign: "center",
-        headerStyle: { backgroundColor: Colors.headerBackground },
-        headerTintColor: "white",
-        headerTitleStyle: { fontWeight: "bold" },
-      }}
-    />
+        name="Leather Color "
+        component={ColorBuyLeatherSearchProduct}
+        options={{
+          headerBackVisible: false,
+          headerTitle: "Leather Color",
+          headerTitleAlign: "center",
+          headerStyle: { backgroundColor: Colors.headerBackground },
+          headerTintColor: "white",
+          headerTitleStyle: { fontWeight: "bold" },
+        }}
+      />
       <BuyTab.Screen
         name="Destination "
         component={DestinationBuyLeatherSearchProduct}
@@ -539,7 +530,7 @@ export const BuyTabScreens = () => {
           headerTitleStyle: { fontWeight: "bold" },
         }}
       />
-        <BuyTab.Screen
+      <BuyTab.Screen
         name="Product Details "
         component={IndividualProductBuyLeatherSearchProduct}
         options={{
@@ -578,7 +569,7 @@ export const BuyTabScreens = () => {
           headerTitleStyle: { fontWeight: "bold" },
         }}
       />
-       <BuyTab.Screen
+      <BuyTab.Screen
         name="Docs/Certificate  "
         component={DocsCertificatesSearchTanneriesBuyLeather}
         options={{
@@ -597,7 +588,10 @@ export const BuyTabScreens = () => {
 
 export const HomeScreens = () => {
   return (
-    <HomeScreenNavigator.Navigator initialRouteName="Home" screenOptions={()=>({gestureEnabled:false})}>
+    <HomeScreenNavigator.Navigator
+      initialRouteName="Home"
+      screenOptions={() => ({ gestureEnabled: false })}
+    >
       <HomeScreenNavigator.Screen
         name="Home"
         component={Home}
@@ -607,7 +601,8 @@ export const HomeScreens = () => {
           headerTitleAlign: "center",
           headerStyle: { backgroundColor: Colors.headerBackground },
           headerTintColor: "white",
-          headerTitleStyle: { fontWeight: "bold" },gestureEnabled:false,
+          headerTitleStyle: { fontWeight: "bold" },
+          gestureEnabled: false,
         }}
       />
       <HomeScreenNavigator.Screen
@@ -1044,12 +1039,13 @@ export const SellTabScreens = () => {
   );
 };
 
-export const FeedbackNavigator=()=>{
-  return(
+export const FeedbackNavigator = () => {
+  return (
     <FeedbackTab.Navigator>
-      <FeedbackTab.Screen name="Feedback"
+      <FeedbackTab.Screen
+        name="Feedback"
         component={Feedback}
-        options={({ navigation })=>({
+        options={({ navigation }) => ({
           headerBackVisible: false,
           //headerShown:false,
           headerTitle: "Feedback",
@@ -1058,20 +1054,24 @@ export const FeedbackNavigator=()=>{
           headerTintColor: "white",
           headerTitleStyle: { fontWeight: "bold" },
           //headerRight:()=>(<View><Text onPress={()=>{navigation.navigate("Approval List")}} style={{color:'white', fontSize:16, fontWeight:'bold'}}>Approval List</Text></View>)
-        })} />
-        <FeedbackTab.Screen name="Approval List"
+        })}
+      />
+      <FeedbackTab.Screen
+        name="Approval List"
         component={ApprovalListFeedback}
-        options={({ navigation })=>({
+        options={({ navigation }) => ({
           //headerBackVisible: false,
           headerTitle: "Approval List",
           headerTitleAlign: "center",
           headerStyle: { backgroundColor: Colors.headerBackground },
           headerTintColor: "white",
           headerTitleStyle: { fontWeight: "bold" },
-          headerBackTitle:"",
+          headerBackTitle: "",
           // headerRight:()=>(<View><Text onPress={()=>{navigation.navigate("ListFeedback")}} style={{color:'white', fontSize:20, fontWeight:'bold'}}>List</Text></View>)
-        })} />
-        <FeedbackTab.Screen name="Tanneries List"
+        })}
+      />
+      <FeedbackTab.Screen
+        name="Tanneries List"
         component={TanneriesListFeedback}
         options={({ navigation }) => ({
           //rheaderBackVisible: false,
@@ -1080,10 +1080,12 @@ export const FeedbackNavigator=()=>{
           headerStyle: { backgroundColor: Colors.headerBackground },
           headerTintColor: "white",
           headerTitleStyle: { fontWeight: "bold" },
-          headerBackTitle:"",
+          headerBackTitle: "",
           // headerRight:()=>(<View><Text onPress={()=>{navigation.navigate("ApprovalListFeedback")}} style={{color:'white', fontSize:20, fontWeight:'bold'}}>List</Text></View>)
-        })} />
-        <FeedbackTab.Screen name="Tanneries Profile"
+        })}
+      />
+      <FeedbackTab.Screen
+        name="Tanneries Profile"
         component={TanneriesProfileFeedback}
         options={{
           //headerBackVisible: false,
@@ -1092,9 +1094,11 @@ export const FeedbackNavigator=()=>{
           headerStyle: { backgroundColor: Colors.headerBackground },
           headerTintColor: "white",
           headerTitleStyle: { fontWeight: "bold" },
-          headerBackTitle:""
-        }} />
-        <FeedbackTab.Screen name="Feedback List"
+          headerBackTitle: "",
+        }}
+      />
+      <FeedbackTab.Screen
+        name="Feedback List"
         component={ListFeedback}
         options={{
           //headerBackVisible: false,
@@ -1103,21 +1107,25 @@ export const FeedbackNavigator=()=>{
           headerStyle: { backgroundColor: Colors.headerBackground },
           headerTintColor: "white",
           headerTitleStyle: { fontWeight: "bold" },
-          headerBackTitle:""
-        }} />
-        <FeedbackTab.Screen name="Agent List"
+          headerBackTitle: "",
+        }}
+      />
+      <FeedbackTab.Screen
+        name="Agent List"
         component={AgentsListFeedback}
-        options={({ navigation }) =>({
+        options={({ navigation }) => ({
           //headerBackVisible: false,
           headerTitle: "Agent List",
           headerTitleAlign: "center",
           headerStyle: { backgroundColor: Colors.headerBackground },
           headerTintColor: "white",
           headerTitleStyle: { fontWeight: "bold" },
-          headerBackTitle:"",
+          headerBackTitle: "",
           // headerRight:()=>(<View><Text onPress={()=>{navigation.navigate("ApprovalListFeedback")}} style={{color:'white', fontSize:20, fontWeight:'bold'}}>List</Text></View>)
-        })} />
-             <FeedbackTab.Screen name="Agents Profile"
+        })}
+      />
+      <FeedbackTab.Screen
+        name="Agents Profile"
         component={AgentsProfileFeedback}
         options={{
           //headerBackVisible: false,
@@ -1126,71 +1134,92 @@ export const FeedbackNavigator=()=>{
           headerStyle: { backgroundColor: Colors.headerBackground },
           headerTintColor: "white",
           headerTitleStyle: { fontWeight: "bold" },
-          headerBackTitle:""
-        }} />
-
+          headerBackTitle: "",
+        }}
+      />
     </FeedbackTab.Navigator>
-  )
-}
+  );
+};
 
 export const TabNavigator = () => {
+  const isFocused = useIsFocused();
 
-  const isFocused=useIsFocused();
-
-const [userType,setUserType] = useState()
-  const setDetails=async()=>{
-    setUserType(await AsyncStorage.getItem("user_type"))
-   }
-    useEffect(() => {
-      setDetails()
-   });
-  console.log(">>>>>@@@>>>>>>",userType)
+  const [userType, setUserType] = useState();
+  const setDetails = async () => {
+    setUserType(await AsyncStorage.getItem("user_type"));
+  };
+  useEffect(() => {
+    setDetails();
+  });
+  console.log(">>>>>@@@>>>>>>", userType);
 
   return (
-    <View style={{flex:1}}>
-      {isFocused?(
-        <HomeTabNavigator.Navigator initialRouteName="Home "
-        screenOptions={({ props }) => ({
-          tabBarInactiveTintColor: '#dbdbdb',
-          tabBarActiveTintColor: "white",
-          tabBarStyle:({height:Platform.OS=='android'?60:100}),
-          tabBarShowLabel:true,
-          // tabBarShowLabel:false,
-          // tabBarLabel:()=>(<View style={{paddingBottom:10}}><Text>H</Text></View>),
-           //tabBarLabelStyle:({margin:0, padding:0, flex:1}),tabBarIconStyle:({}),tabBarItemStyle:({justifyContent:'center', flex:1}),
-           tabBarIconStyle:({marginTop:9}),
-           //tabBarLabelStyle:({ marginBottom:6}),
-          tabBarBackground: (props) => (
-            <View
-              style={{ backgroundColor: Colors.headerBackground, flex: 1 }}
-            ></View>
-          ),
-        })}
-      >
-        <HomeTabNavigator.Screen
-          name="Home "
-          component={HomeScreens}
-          options={({ navigation }) => ({
-            tabBarIcon: ({ focused }) =>
-              focused ? (
-                // <Icon name="home" size={26} color={"white"} />
-                <Image source={require('../assets/BottomTabIcons/HOMEWHITE.png')} style={{width:Platform.OS=='android'?30:35, height:Platform.OS=='android'?30:35, tintColor: "white" }} resizeMode={Platform.OS=='android'?'center':'contain'} />
-              ) : (
-                // <Icon name="home-outline" size={24} color={'#dbdbdb'} />
-                <Image source={require('../assets/BottomTabIcons/HOMEWHITE.png')} style={{width:Platform.OS=='android'?25:30, height:Platform.OS=='android'?25:30, tintColor: 'white', opacity:0.8}}  resizeMode={Platform.OS=='android'?'center':'contain'} />
-              ),
+    <View style={{ flex: 1, justifyContent: "center" }}>
+      {isFocused ? (
+        <HomeTabNavigator.Navigator
+          initialRouteName="Home "
+          screenOptions={({ props }) => ({
+            tabBarInactiveTintColor: "#dbdbdb",
             tabBarActiveTintColor: "white",
-          //  tabBarLabel:({focused})=>focused?(<Text allowFontScaling={false} style={{color:'white', fontSize:9, marginBottom:9}}>Home</Text>):(<Text allowFontScaling={false} style={{color:'#dbdbdb',fontSize:9, marginBottom:9}}>Home</Text>),
-            tabBarItemStyle:({}),
-            tabBarAllowFontScaling: true,
-            tabBarInactiveTintColor: '#dbdbdb',
-            headerShown: false,
-            headerTitleAlign: "center",
-            headerStyle: { backgroundColor: Colors.headerBackground },
-            headerTintColor: "white",
-            headerTitleStyle: { fontWeight: "bold" },
+            tabBarStyle: { height: Platform.OS == "android" ? 60 : 100 },
+            tabBarShowLabel: true,
+            // tabBarShowLabel:false,
+            // tabBarLabel:()=>(<View style={{paddingBottom:10}}><Text>H</Text></View>),
+            tabBarLabelStyle: { margin: 0, padding: 0, flex: 1 },
+            tabBarIconStyle: {},
+            tabBarItemStyle: { justifyContent: "center", flex: 1 },
+            tabBarIconStyle: { marginTop: 12 },
+            //tabBarLabelStyle:({ marginBottom:6}),
+            tabBarBackground: (props) => (
+              <View
+                style={{ backgroundColor: Colors.headerBackground, flex: 1 }}
+              ></View>
+            ),
           })}
-        />
+        >
+          <HomeTabNavigator.Screen
+            name="Home"
+            component={HomeScreens}
+            options={({ navigation }) => ({
+              tabBarIcon: ({ focused }) =>
+                focused ? (
+                  // <Icon name="home" size={26} color={"white"} />
+                  <Image
+                    source={require("../assets/BottomTabIcons/HOMEWHITE.png")}
+                    style={{
+                      marginBottom: 10,
+                      width: Platform.OS == "android" ? 30 : 35,
+                      height: Platform.OS == "android" ? 30 : 35,
+                      tintColor: "white",
+                    }}
+                    resizeMode={Platform.OS == "android" ? "center" : "contain"}
+                  />
+                ) : (
+                  // <Icon name="home-outline" size={24} color={'#dbdbdb'} />
+                  <Image
+                    source={require("../assets/BottomTabIcons/HOMEWHITE.png")}
+                    style={{
+                      marginBottom: 10,
+                      width: Platform.OS == "android" ? 25 : 30,
+                      height: Platform.OS == "android" ? 25 : 30,
+                      tintColor: "white",
+                      opacity: 0.8,
+                    }}
+                    resizeMode={Platform.OS == "android" ? "center" : "contain"}
+                  />
+                ),
+              tabBarActiveTintColor: "white",
+              //  tabBarLabel:({focused})=>focused?(<Text allowFontScaling={false} style={{color:'white', fontSize:9, marginBottom:9}}>Home</Text>):(<Text allowFontScaling={false} style={{color:'#dbdbdb',fontSize:9, marginBottom:9}}>Home</Text>),
+              tabBarItemStyle: {},
+              tabBarAllowFontScaling: true,
+              tabBarInactiveTintColor: "#dbdbdb",
+              headerShown: false,
+              headerTitleAlign: "center",
+              headerStyle: { backgroundColor: Colors.headerBackground },
+              headerTintColor: "white",
+              headerTitleStyle: { fontWeight: "bold" },
+            })}
+          />
 
           <HomeTabNavigator.Screen
             name="Buy "
@@ -1200,14 +1229,32 @@ const [userType,setUserType] = useState()
                 focused ? (
                   // <Image source={require('../assets/ByClient/BUYGREEN.png')} style={{width:Platform.OS=='android'?40:35, height:Platform.OS=='android'?40:35, tintColor: "white", }} resizeMode={Platform.OS=='android'?'center':'contain'} />
 
-                  <Image source={require('../assets/BottomTabIcons/BUYWHITE.png')} style={{ width: Platform.OS == 'android' ? 30 : 35, height: Platform.OS == 'android' ? 30 : 35, tintColor: "white", }} resizeMode={Platform.OS == 'android' ? 'center' : 'contain'} />
-
-                  ) : (
+                  <Image
+                    source={require("../assets/BottomTabIcons/BUYWHITE.png")}
+                    style={{
+                      marginBottom: 10,
+                      width: Platform.OS == "android" ? 30 : 35,
+                      height: Platform.OS == "android" ? 30 : 35,
+                      tintColor: "white",
+                    }}
+                    resizeMode={Platform.OS == "android" ? "center" : "contain"}
+                  />
+                ) : (
                   // <Image source={require('../assets/ByClient/BUYWHITE.png')} style={{width:Platform.OS=='android'?31:30, height:Platform.OS=='android'?31:30, tintColor: '#dbdbdb'}}  resizeMode={Platform.OS=='android'?'center':'contain'}  />
-                  <Image source={require('../assets/BottomTabIcons/BUYWHITE.png')} style={{ width: Platform.OS == 'android' ? 25 : 30, height: Platform.OS == 'android' ? 25 : 30, tintColor: 'white', opacity: 0.8 }} resizeMode={Platform.OS == 'android' ? 'center' : 'contain'} />
+                  <Image
+                    source={require("../assets/BottomTabIcons/BUYWHITE.png")}
+                    style={{
+                      marginBottom: 10,
+                      width: Platform.OS == "android" ? 25 : 30,
+                      height: Platform.OS == "android" ? 25 : 30,
+                      tintColor: "white",
+                      opacity: 0.8,
+                    }}
+                    resizeMode={Platform.OS == "android" ? "center" : "contain"}
+                  />
                 ),
               headerTitleAlign: "center",
-             // tabBarLabel: ({ focused }) => focused ? (<Text allowFontScaling={false} style={{ color: 'white', fontSize: 9, marginBottom: 9 }}>Buy</Text>) : (<Text allowFontScaling={false} style={{ color: '#dbdbdb', fontSize: 10, marginBottom: 10 }}>Buy</Text>),
+              // tabBarLabel: ({ focused }) => focused ? (<Text allowFontScaling={false} style={{ color: 'white', fontSize: 9, marginBottom: 9 }}>Buy</Text>) : (<Text allowFontScaling={false} style={{ color: '#dbdbdb', fontSize: 10, marginBottom: 10 }}>Buy</Text>),
               headerShown: false,
               //headerTitle: "Buy Leathers",
               headerStyle: { backgroundColor: Colors.headerBackground },
@@ -1216,73 +1263,133 @@ const [userType,setUserType] = useState()
             })}
           />
 
-        {userType != 'Agents' &&
+          {userType != "Agents" && (
+            <HomeTabNavigator.Screen
+              name="Sell"
+              component={SellTabScreens}
+              options={({ navigation }) => ({
+                tabBarIcon: ({ focused }) =>
+                  focused ? (
+                    // <Image source={require('../assets/ByClient/SELLGREEN.png')} style={{width:Platform.OS=='android'?40:35, height:Platform.OS=='android'?40:35, tintColor: "white", }} resizeMode={Platform.OS=='android'?'center':'contain'}  />
+                    <Image
+                      source={require("../assets/BottomTabIcons/SELLWHITE.png")}
+                      style={{
+                        marginBottom: 10,
+                        width: Platform.OS == "android" ? 30 : 35,
+                        height: Platform.OS == "android" ? 30 : 35,
+                        tintColor: "white",
+                      }}
+                      resizeMode={
+                        Platform.OS == "android" ? "center" : "contain"
+                      }
+                    />
+                  ) : (
+                    // <Image source={require('../assets/ByClient/SELLWHITE.png')} style={{width:Platform.OS=='android'?35:30, height:Platform.OS=='android'?35:30, tintColor: '#dbdbdb'}}  resizeMode={Platform.OS=='android'?'center':'contain'}  />
+                    <Image
+                      source={require("../assets/BottomTabIcons/SELLWHITE.png")}
+                      style={{
+                        marginBottom: 10,
+                        width: Platform.OS == "android" ? 25 : 30,
+                        height: Platform.OS == "android" ? 25 : 30,
+                        tintColor: "white",
+                        opacity: 0.8,
+                      }}
+                      resizeMode={
+                        Platform.OS == "android" ? "center" : "contain"
+                      }
+                    />
+                  ),
+                headerShown: false,
+                //  tabBarLabel: ({ focused }) => focused ? (<Text allowFontScaling={false} style={{ color: 'white', fontSize: 9, marginBottom: 9 }}>Sell</Text>) : (<Text allowFontScaling={false} style={{ color: '#dbdbdb', fontSize: 9, marginBottom: 9 }}>Sell</Text>),
+                headerTitleAlign: "center",
+                headerStyle: { backgroundColor: Colors.headerBackground },
+                headerTintColor: "white",
+                headerTitleStyle: { fontWeight: "bold" },
+              })}
+            />
+          )}
           <HomeTabNavigator.Screen
-            name="Sell"
-            component={SellTabScreens}
+            name="Feedback "
+            component={FeedbackNavigator}
             options={({ navigation }) => ({
               tabBarIcon: ({ focused }) =>
                 focused ? (
-                  // <Image source={require('../assets/ByClient/SELLGREEN.png')} style={{width:Platform.OS=='android'?40:35, height:Platform.OS=='android'?40:35, tintColor: "white", }} resizeMode={Platform.OS=='android'?'center':'contain'}  />
-                  <Image source={require('../assets/BottomTabIcons/SELLWHITE.png')} style={{ width: Platform.OS == 'android' ? 30 : 35, height: Platform.OS == 'android' ? 30 : 35, tintColor: "white", }} resizeMode={Platform.OS == 'android' ? 'center' : 'contain'} />
+                  // <Image source={require('../assets/ByClient/FEEDBACKGREEN.png')} style={{width:Platform.OS=='android'?35:35, height:Platform.OS=='android'?35:35, tintColor: "white", }} resizeMode={Platform.OS=='android'?'center':'contain'}  />
+                  <Image
+                    source={require("../assets/BottomTabIcons/FEEDBACKWHITE.png")}
+                    style={{
+                      marginBottom: 10,
+                      width: Platform.OS == "android" ? 30 : 35,
+                      height: Platform.OS == "android" ? 30 : 35,
+                      tintColor: "white",
+                    }}
+                    resizeMode={Platform.OS == "android" ? "center" : "contain"}
+                  />
                 ) : (
-                  // <Image source={require('../assets/ByClient/SELLWHITE.png')} style={{width:Platform.OS=='android'?35:30, height:Platform.OS=='android'?35:30, tintColor: '#dbdbdb'}}  resizeMode={Platform.OS=='android'?'center':'contain'}  />
-                  <Image source={require('../assets/BottomTabIcons/SELLWHITE.png')} style={{ width: Platform.OS == 'android' ? 25 : 30, height: Platform.OS == 'android' ? 25 : 30, tintColor: 'white', opacity: 0.8 }} resizeMode={Platform.OS == 'android' ? 'center' : 'contain'} />
+                  // <Image source={require('../assets/ByClient/FEEDBACKWHITE.png')} style={{width:Platform.OS=='android'?30:30, height:Platform.OS=='android'?30:30, tintColor: '#dbdbdb'}}  resizeMode={Platform.OS=='android'?'center':'contain'}  />
+                  <Image
+                    source={require("../assets/BottomTabIcons/FEEDBACKWHITE.png")}
+                    style={{
+                      marginBottom: 10,
+                      width: Platform.OS == "android" ? 25 : 30,
+                      height: Platform.OS == "android" ? 25 : 30,
+                      tintColor: "white",
+                      opacity: 0.8,
+                    }}
+                    resizeMode={Platform.OS == "android" ? "center" : "contain"}
+                  />
                 ),
               headerShown: false,
-            //  tabBarLabel: ({ focused }) => focused ? (<Text allowFontScaling={false} style={{ color: 'white', fontSize: 9, marginBottom: 9 }}>Sell</Text>) : (<Text allowFontScaling={false} style={{ color: '#dbdbdb', fontSize: 9, marginBottom: 9 }}>Sell</Text>),
+              //  tabBarLabel:({focused})=>focused?(<Text allowFontScaling={false} style={{color:'white', fontSize:9, marginBottom:9}}>Feedback</Text>):(<Text allowFontScaling={false} style={{color:'#dbdbdb',fontSize:9, marginBottom:9}}>Feedback</Text>),
               headerTitleAlign: "center",
               headerStyle: { backgroundColor: Colors.headerBackground },
               headerTintColor: "white",
               headerTitleStyle: { fontWeight: "bold" },
             })}
           />
-        }
-        <HomeTabNavigator.Screen
-          name="Feedback "
-          component={FeedbackNavigator}
-          options={({ navigation }) => ({
-            tabBarIcon: ({ focused }) =>
-              focused ? (
-                // <Image source={require('../assets/ByClient/FEEDBACKGREEN.png')} style={{width:Platform.OS=='android'?35:35, height:Platform.OS=='android'?35:35, tintColor: "white", }} resizeMode={Platform.OS=='android'?'center':'contain'}  />
-                <Image source={require('../assets/BottomTabIcons/FEEDBACKWHITE.png')} style={{width:Platform.OS=='android'?30:35, height:Platform.OS=='android'?30:35, tintColor: "white", }} resizeMode={Platform.OS=='android'?'center':'contain'} />
-              ) : (
-                // <Image source={require('../assets/ByClient/FEEDBACKWHITE.png')} style={{width:Platform.OS=='android'?30:30, height:Platform.OS=='android'?30:30, tintColor: '#dbdbdb'}}  resizeMode={Platform.OS=='android'?'center':'contain'}  />
-                <Image source={require('../assets/BottomTabIcons/FEEDBACKWHITE.png')} style={{width:Platform.OS=='android'?25:30, height:Platform.OS=='android'?25:30, tintColor: 'white', opacity:0.8 }} resizeMode={Platform.OS=='android'?'center':'contain'} />
-              ),
+          <HomeTabNavigator.Screen
+            name="Profile"
+            component={ProfileTabScreens}
+            options={({ navigation }) => ({
+              tabBarIcon: ({ focused }) =>
+                focused ? (
+                  // <Icon name="person" size={26} color={"white"} />
+                  // <Image source={require('../assets/ByClient/PROFILEGREEN.png')} style={{width:Platform.OS=='android'?35:35, height:Platform.OS=='android'?35:35, tintColor: "white", }} resizeMode={Platform.OS=='android'?'center':'contain'}  />
+                  <Image
+                    source={require("../assets/BottomTabIcons/PROFILEWHITE.png")}
+                    style={{
+                      marginBottom: 10,
+                      width: Platform.OS == "android" ? 30 : 35,
+                      height: Platform.OS == "android" ? 30 : 35,
+                      tintColor: "white",
+                    }}
+                    resizeMode={Platform.OS == "android" ? "center" : "contain"}
+                  />
+                ) : (
+                  // <Icon name="person-outline" size={24} color={'#dbdbdb'} />
+                  // <Image source={require('../assets/ByClient/PROFILEWHITE.png')} style={{width:Platform.OS=='android'?30:30, height:Platform.OS=='android'?30:30, tintColor: '#dbdbdb'}}  resizeMode={Platform.OS=='android'?'center':'contain'}  />
+                  <Image
+                    source={require("../assets/BottomTabIcons/PROFILEWHITE.png")}
+                    style={{
+                      marginBottom: 10,
+                      width: Platform.OS == "android" ? 25 : 30,
+                      height: Platform.OS == "android" ? 25 : 30,
+                      tintColor: "white",
+                      opacity: 0.8,
+                    }}
+                    resizeMode={Platform.OS == "android" ? "center" : "contain"}
+                  />
+                ),
               headerShown: false,
-            //  tabBarLabel:({focused})=>focused?(<Text allowFontScaling={false} style={{color:'white', fontSize:9, marginBottom:9}}>Feedback</Text>):(<Text allowFontScaling={false} style={{color:'#dbdbdb',fontSize:9, marginBottom:9}}>Feedback</Text>),
-            headerTitleAlign: "center",
-            headerStyle: { backgroundColor: Colors.headerBackground },
-            headerTintColor: "white",
-            headerTitleStyle: { fontWeight: "bold" },
-          })}
-        />
-        <HomeTabNavigator.Screen
-          name="Profile"
-          component={ProfileTabScreens}
-          options={({ navigation }) => ({
-            tabBarIcon: ({ focused }) =>
-            focused ? (
-              // <Icon name="person" size={26} color={"white"} />
-              // <Image source={require('../assets/ByClient/PROFILEGREEN.png')} style={{width:Platform.OS=='android'?35:35, height:Platform.OS=='android'?35:35, tintColor: "white", }} resizeMode={Platform.OS=='android'?'center':'contain'}  />
-              <Image source={require('../assets/BottomTabIcons/PROFILEWHITE.png')} style={{width:Platform.OS=='android'?30:35, height:Platform.OS=='android'?30:35, tintColor: "white", }} resizeMode={Platform.OS=='android'?'center':'contain'} />
-            ) : (
-              // <Icon name="person-outline" size={24} color={'#dbdbdb'} />
-              // <Image source={require('../assets/ByClient/PROFILEWHITE.png')} style={{width:Platform.OS=='android'?30:30, height:Platform.OS=='android'?30:30, tintColor: '#dbdbdb'}}  resizeMode={Platform.OS=='android'?'center':'contain'}  />
-              <Image source={require('../assets/BottomTabIcons/PROFILEWHITE.png')} style={{width:Platform.OS=='android'?25:30, height:Platform.OS=='android'?25:30, tintColor: 'white', opacity:0.8}} resizeMode={Platform.OS=='android'?'center':'contain'} />
-            ),
-            headerShown: false,
-           // tabBarLabel:({focused})=>focused?(<Text allowFontScaling={false} style={{color:'white', fontSize:9, marginBottom:9}}>Profile</Text>):(<Text allowFontScaling={false} style={{color:'#dbdbdb',fontSize:9, marginBottom:9}}>Profile</Text>),
-            headerTitleAlign: "center",
-            headerStyle: { backgroundColor: Colors.headerBackground },
-            headerTintColor: "white",
-            headerTitleStyle: { fontWeight: "bold" },
-          })}
-        />
-      </HomeTabNavigator.Navigator>
-      ):null}
-
+              // tabBarLabel:({focused})=>focused?(<Text allowFontScaling={false} style={{color:'white', fontSize:9, marginBottom:9}}>Profile</Text>):(<Text allowFontScaling={false} style={{color:'#dbdbdb',fontSize:9, marginBottom:9}}>Profile</Text>),
+              headerTitleAlign: "center",
+              headerStyle: { backgroundColor: Colors.headerBackground },
+              headerTintColor: "white",
+              headerTitleStyle: { fontWeight: "bold" },
+            })}
+          />
+        </HomeTabNavigator.Navigator>
+      ) : null}
     </View>
   );
 };
@@ -1295,8 +1402,6 @@ const [userType,setUserType] = useState()
 // export default DrawerTabScreens;
 
 export const StackNavigator = () => {
-
-
   return (
     <Stack.Navigator>
       <Stack.Screen
@@ -1342,9 +1447,9 @@ export const StackNavigator = () => {
         name="CheckoutScreen"
         component={CheckoutScreen}
         options={{
-          animation : "slide_from_right",
-          headerShown : false,
-          headerStyle : { backgroundColor: Colors.status },
+          animation: "slide_from_right",
+          headerShown: false,
+          headerStyle: { backgroundColor: Colors.status },
         }}
       />
       <Stack.Screen

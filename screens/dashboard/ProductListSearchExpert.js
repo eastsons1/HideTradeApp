@@ -12,7 +12,6 @@ import {
 } from "react-native";
 import axios from "axios";
 
-
 import Colors from "../../constants/Colors";
 import SpinView from "../../components/Spin";
 
@@ -64,13 +63,16 @@ const ProductListSearchExpert = (props) => {
         //   />
         //   <ActivityIndicator size={"large"} color="red" />
         // </View>
-        <SpinView style={{alignItems:'center', justifyContent:'center', flex:1}}>
-           <Image
+        <SpinView
+          style={{ alignItems: "center", justifyContent: "center", flex: 1 }}
+        >
+          <Image
             source={require("../../assets/loader.jpg")}
             resizeMode="contain"
             resizeMethod="scale"
             style={{ width: 80, height: 80 }}
-          /><Text style={{fontWeight:'bold', marginTop:10}}>Loading...</Text>
+          />
+          <Text style={{ fontWeight: "bold", marginTop: 10 }}>Loading...</Text>
         </SpinView>
       ) : (
         <ScrollView>
@@ -88,13 +90,19 @@ const ProductListSearchExpert = (props) => {
                       fontWeight: "700",
                       textAlign: "center",
                       marginTop: 20,
-                    }}allowFontScaling={false}
+                    }}
+                    allowFontScaling={false}
                   >
                     Leathers Available
                   </Text>
 
-                  <View style={{borderWidth:0.5,marginTop:10,backgroundColor:"grey"}}></View>
-                
+                  <View
+                    style={{
+                      borderWidth: 0.5,
+                      marginTop: 10,
+                      backgroundColor: "grey",
+                    }}
+                  ></View>
 
                   <View>
                     {value.Products_List.length != 0 ? (
@@ -112,7 +120,10 @@ const ProductListSearchExpert = (props) => {
                               }
                               style={{
                                 marginTop: 10,
-                                alignItems:value.Products_List.length>1?"center":"flex-start",
+                                alignItems:
+                                  value.Products_List.length > 1
+                                    ? "center"
+                                    : "flex-start",
                                 flex: 1,
                                 marginBottom: 10,
                               }}
@@ -140,28 +151,85 @@ const ProductListSearchExpert = (props) => {
                                 )}
                                 <View style={{ flexDirection: "row" }}>
                                   <Text allowFontScaling={false}>Product:</Text>
-                                  <Text allowFontScaling={false}>{item.product_title}</Text>
+                                  <Text allowFontScaling={false}>
+                                    {item.product_title}
+                                  </Text>
                                 </View>
                                 <View style={{ flexDirection: "row" }}>
-                                 <Text allowFontScaling={false}style={{fontWeight:'bold'}}>Category: </Text>
-                                <Text allowFontScaling={false}>{item.product_categories.map((abc)=>(<Text allowFontScaling={false} style={{fontWeight:'normal'}}>{abc.category}</Text>))}</Text>
-                              </View>
+                                  <Text
+                                    allowFontScaling={false}
+                                    style={{ fontWeight: "bold" }}
+                                  >
+                                    Category:{" "}
+                                  </Text>
+                                  <Text allowFontScaling={false}>
+                                    {item.product_categories.map((abc) => (
+                                      <Text
+                                        allowFontScaling={false}
+                                        style={{ fontWeight: "normal" }}
+                                      >
+                                        {abc.category}
+                                      </Text>
+                                    ))}
+                                  </Text>
+                                </View>
 
                                 <View style={{ flexDirection: "row" }}>
-                                <Text allowFontScaling={false}style={{fontWeight:'bold', width:160}} numberOfLines={1}>Size: {item.product_sizes.map((abc) => (
-                                  <Text allowFontScaling={false} style={{fontWeight:'normal'}}>{abc.product_size} </Text>
-                                ))}</Text>
-                              </View>
+                                  <Text
+                                    allowFontScaling={false}
+                                    style={{ fontWeight: "bold", width: 160 }}
+                                    numberOfLines={1}
+                                  >
+                                    Size:{" "}
+                                    {item.product_sizes.map((abc) => (
+                                      <Text
+                                        allowFontScaling={false}
+                                        style={{ fontWeight: "normal" }}
+                                      >
+                                        {abc.product_size}{" "}
+                                      </Text>
+                                    ))}
+                                  </Text>
+                                </View>
 
                                 <View style={{ flexDirection: "row" }}>
-                               <Text allowFontScaling={false}style={{fontWeight:'bold'}}>Raw Defects: </Text>
-                                <Text style={{width:60}}numberOfLines={1} ellipsizeMode='tail' allowFontScaling={false}>{item.product_rawdefects.map((abc)=>(<Text allowFontScaling={false} style={{fontWeight:'normal'}}>{abc.rawDefects}</Text>))}</Text>
-                              </View>
+                                  <Text
+                                    allowFontScaling={false}
+                                    style={{ fontWeight: "bold" }}
+                                  >
+                                    Raw Defects:{" "}
+                                  </Text>
+                                  <Text
+                                    style={{ width: 60 }}
+                                    numberOfLines={1}
+                                    ellipsizeMode="tail"
+                                    allowFontScaling={false}
+                                  >
+                                    {item.product_rawdefects.map((abc) => (
+                                      <Text
+                                        allowFontScaling={false}
+                                        style={{ fontWeight: "normal" }}
+                                      >
+                                        {abc.rawDefects}
+                                      </Text>
+                                    ))}
+                                  </Text>
+                                </View>
 
-                              <View style={{ flexDirection: "row" }}>
-                                <Text style={{fontWeight:'bold', width:160}} numberOfLines={1}>Country: <Text allowFontScaling={false}style={{fontWeight:'normal'}}>{value.Country}</Text></Text>
-                                
-                              </View>
+                                <View style={{ flexDirection: "row" }}>
+                                  <Text
+                                    style={{ fontWeight: "bold", width: 160 }}
+                                    numberOfLines={1}
+                                  >
+                                    Country:{" "}
+                                    <Text
+                                      allowFontScaling={false}
+                                      style={{ fontWeight: "normal" }}
+                                    >
+                                      {value.Country}
+                                    </Text>
+                                  </Text>
+                                </View>
 
                                 {/* <View style={{ flexDirection: "row" }}>
                                   <Text allowFontScaling={false}>Selection:</Text>
@@ -175,7 +243,9 @@ const ProductListSearchExpert = (props) => {
                                 </View> */}
                                 <View style={{ flexDirection: "row" }}>
                                   <Text allowFontScaling={false}>Price:</Text>
-                                  <Text allowFontScaling={false}>{item.product_price}</Text>
+                                  <Text allowFontScaling={false}>
+                                    {item.product_price}
+                                  </Text>
                                 </View>
                               </View>
                             </TouchableOpacity>
@@ -184,8 +254,21 @@ const ProductListSearchExpert = (props) => {
                         numColumns={2}
                       />
                     ) : (
-                      <View style={{justifyContent:'center', alignItems:'center'}}>
-                        <Text allowFontScaling={false} style={{textAlignVertical:'center', fontWeight:'bold'}}>No Products Available</Text>
+                      <View
+                        style={{
+                          justifyContent: "center",
+                          alignItems: "center",
+                        }}
+                      >
+                        <Text
+                          allowFontScaling={false}
+                          style={{
+                            textAlignVertical: "center",
+                            fontWeight: "bold",
+                          }}
+                        >
+                          No Products Available
+                        </Text>
                       </View>
                     )}
                   </View>

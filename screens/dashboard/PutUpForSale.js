@@ -20,7 +20,10 @@ import ButtonComp from "../../components/ButtonComp";
 import SpinView from "../../components/Spin";
 
 const PutUpForSale = (props) => {
-  console.log("🚀 ~ file: PutUpForSale.js ~ line 24 ~ PutUpForSale ~ props", props)
+  // console.log(
+  //   "🚀 ~ file: PutUpForSale.js ~ line 24 ~ PutUpForSale ~ props",
+  //   props
+  // );
   const [toggleCheckBox, setToggleCheckBox] = useState(false);
   const [toggleCheckBox2, setToggleCheckBox2] = useState(false);
   const [id, setId] = useState();
@@ -30,18 +33,21 @@ const PutUpForSale = (props) => {
   const [apiLoader, setApiLoader] = useState(true);
   const [dataLoaded, setDataLoaded] = useState(false);
 
-  const getDetails=async()=>{
-    setId(await  AsyncStorage.getItem("user_id"));
+  const getDetails = async () => {
+    setId(await AsyncStorage.getItem("user_id"));
     setUser_type(await AsyncStorage.getItem("user_type"));
-  }
+  };
 
-  useEffect( () => {
+  useEffect(() => {
     if (dataLoaded == false) {
-      setApiLoader(true)
-      getDetails()
+      setApiLoader(true);
+      getDetails();
       // console.log("🚀 ~ file: PutUpForSale.js ~ line 39 ~ useEffect ~ await AsyncStorage.getItem(user_type)", await AsyncStorage.getItem("user_type"))
       let webApiUrl = `https://www.hidetrade.eu/app/APIs/ViewSingleUserList/ViewSingleUserList.php?user_type=${user_type}&user_id=${id}`;
-      console.log("🚀 ~ file: PutUpForSale.js ~ line 41 ~ useEffect ~ webApiUrl", webApiUrl)
+      // console.log(
+      //   "🚀 ~ file: PutUpForSale.js ~ line 41 ~ useEffect ~ webApiUrl",
+      //   webApiUrl
+      // );
       // let webApiUrl = `https://www.hidetrade.eu/app/APIs/ViewSingleUserList/ViewSingleUserList.php?user_type=${user_type}&user_id=${id}`;
 
       axios
@@ -50,7 +56,7 @@ const PutUpForSale = (props) => {
           setAddress(res.data.User_Details[0].address);
           console.log("console=" + res.data.User_Details[0].address);
           setDataLoaded(true);
-          setApiLoader(false)
+          setApiLoader(false);
         })
         .catch((err) => {
           console.log("inside error");
@@ -65,10 +71,11 @@ const PutUpForSale = (props) => {
   var subCategory = props.route.params.subCategory;
   var continent = props.route.params.continent;
   var origin = props.route.params.origin;
-  var Specification=props.route.params.Specification; 
+  var Specification = props.route.params.Specification;
   var size = props.route.params.size;
   var leatherCondition = props.route.params.leatherCondition;
   var tanningLeather = props.route.params.tanningLeather;
+  console.log(tanningLeather, "tanningLeathertanningLeathertanningLeather");
   var substanceThickness = props.route.params.substanceThickness;
   var fromValue = props.route.params.fromValue;
   var toValue = props.route.params.toValue;
@@ -100,6 +107,7 @@ const PutUpForSale = (props) => {
   var labelTablePrice = props.route.params.labelTablePrice;
 
   var labelSelection = props.route.params.labelSelection;
+
   var quantitySelection = props.route.params.quantitySelection;
   var labelSelectionUnit = props.route.params.labelSelectionUnit;
   var priceSelection = props.route.params.priceSelection;
@@ -135,637 +143,817 @@ const PutUpForSale = (props) => {
   var priceSelection6 = props.route.params.priceSelection6;
   var labelSelectionPrice6 = props.route.params.labelSelectionPrice6;
 
-  var labelSelection7=props.route.params.labelSelection7;
-  var quantitySelection7=props.route.params.quantitySelection7;
-  var labelSelectionUnit7=props.route.params.labelSelectionUnit7;
-  var priceSelection7=props.route.params.priceSelection7;
-  var labelSelectionPrice7=props.route.params.labelSelectionPrice7;
+  var labelSelection7 = props.route.params.labelSelection7;
+  var quantitySelection7 = props.route.params.quantitySelection7;
+  var labelSelectionUnit7 = props.route.params.labelSelectionUnit7;
+  var priceSelection7 = props.route.params.priceSelection7;
+  var labelSelectionPrice7 = props.route.params.labelSelectionPrice7;
 
   var images = props.route.params.images;
   var document = props.route.params.document;
-  var documentLocation=props.route.params.documentLocation;
-  var packingList=props.route.params.packingList
+  var documentLocation = props.route.params.documentLocation;
+  var packingList = props.route.params.packingList;
 
   var leatherColor = props.route.params.leatherColor;
 
-  console.log('document location in put up for sale='+documentLocation)
-  console.log('packing list in sale='+packingList)
-  console.log('images in sale='+images)
-
+  //  console.log("document location in put up for sale=" + documentLocation);
+  // console.log("packing list in sale=" + packingList);
+  // console.log("images in sale=" + images);
 
   let arr = [];
 
   useEffect(() => {
-    
-      if (leatherCondition == "Raw") {
-        arr = [
-          {
-            sub_category: subCategory[0],
-            other_sub_category: "", //"Crust type",
-            origin: origin,
-            product_brand: "",//"origin",
-            continents: continent,//continent,
-            Specification:Specification,
-            product_title: productName,
-            product_title_itelian: "",//"Prod-1",
-            selection_choice:"",// "Nice",
-            where_are_leathers_comp_address:
-              toggleCheckBox == true ? address : null,
-            where_are_leathers_other_address:
-              toggleCheckBox2 == true && otherAddress != null
-                ? otherAddress
-                : null,
-            inspection_possible: goodsInspection[0],
-            product_desc: "", //"Nice product",
-            product_keywords: "", //"Nggggggggice product",
-            product_language: "English",
-            logged_in_user_id: id,
-            needExpert: "yes",
-            weightCatType: weightCatType,
-            weightCatType2: weightCatType2,
-            weightCatType3: weightCatType3,
-            weightSelectionSize: weightSelectionSize,
-            surfaceCatType: surfaceCatType,
-            surfaceCatType2: surfaceCatType2,
-            surfaceCatType3: surfaceCatType3,
-            surfaceSelectionSize: surfaceSelectionSize,
-            tableRollLeatherQty: quantityTableRoll,
-            tableRollLeatherQtySelection: labelTableRoll,
-            tableRollLeatherPrice: priceTableRoll,
-            tableRollLeatherPriceUnit: labelTablePrice,
-            selectionQtyPrice: "", //"45",
-            Price: "", //"345.00",
-            Qty: "", //"33",
-            thiknessType: substanceThickness && Array.isArray(substanceThickness) ? substanceThickness[0]: "",
-            thinkessFrom: fromValue,
-            thinknessTo: toValue,
-            lastInfo:  lastInfo,
-            goodsInspected: goodsInspection[0], //"Yes",
-            addProductType: "", //"Good quality",
-            Others_Tanning_Leathers_val: "",
-            Other_wannaSellLeather_val: "",
-            Other_FlayLeatherF_val: "",
-            Other_rawDefects_val: "",
-            other_HaveLeatherType_val: "",
-            Other_whichColor_val: "",
-            leather_color: leatherColor, //"Blue",
-            Other_certificates_val: "",
-            Other_pakingArrange_val: "",
-            Other_shipmentArrange_val: "",
-            Product_Destination: destination[0],
-            Other_Product_Destination: "",//"Room Furniture",
-            Selected_Leathers: labelTableRoll ? "No": "Yes",//"Yes",
-            created_date: new Date().toISOString().split('T')[0]//"2022-03-02"
-          },
-            console.log("🚀 ~ file: PutUpForSale.js ~ line 213 ~ useEffect ~ Specification", Specification)
-        ];
-        const arr3 = leatherCondition.map((value) => ({
-          ["multi_category"]: value,
-        }));
-        const arr4 = category.map((value) => ({ ["leather_shape"]: value }));
-        const arr5 = preservationType.map((value) => ({
-          ["preservation"]: value,
-        }));
-        const arr6 = size.map((value) => ({ ["product_multi_sizes"]: value }));
-        const arr7 = trim.map((value) => ({ ["wannasellleather_val"]: value }));
-        const arr8 = flay.map((value) => ({ ["Flay_Leather"]: value }));
-        const arr9 = rawDefects.map((value) => ({ ["rawdefects_val"]: value }));
-        const arr10 = hairLeather.map((value) => ({
-          ["haveleathertype_val"]: value,
-        }));
-        const arr11 = color.map((value) => ({ ["productcolor_val"]: value }));
-        const arr12 = certificate.map((value) => ({
-          ["productcertificates_val"]: value,
-        }));
-        const arr13 = kindOfPacking.map((value) => ({
-          ["productpakingarrange_val"]: value,
-        }));
-        const arr14 = kindOfShipment.map((value) => ({
-          ["productshipmentarrange_val"]: value,
-        }));
-        
-        const arr15 =
-          labelSelection == null
-            ? null
-            : [
-                {
-                  selection: labelSelection,
-                  selection_qty: quantitySelection,
-                  selection_qty_unit: labelSelectionUnit,
-                  selection_price: priceSelection,
-                  selection_price_unit: labelSelectionPrice,
-                },
-              ];
-        const arr16 =
-          labelSelection2 == null
-            ? null
-            : [
-                {
-                  selection: labelSelection2,
-                  selection_qty: quantitySelection2,
-                  selection_qty_unit: labelSelectionUnit2,
-                  selection_price: priceSelection2,
-                  selection_price_unit: labelSelectionPrice2,
-                },
-              ];
-        const arr17 =
-          labelSelection3 == null
-            ? null
-            : [
-                {
-                  selection: labelSelection3,
-                  selection_qty: quantitySelection3,
-                  selection_qty_unit: labelSelectionUnit3,
-                  selection_price: priceSelection3,
-                  selection_price_unit: labelSelectionPrice3,
-                },
-              ];
-        const arr18 =
-          labelSelection4 == null
-            ? null
-            : [
-                {
-                  selection: labelSelection4,
-                  selection_qty: quantitySelection4,
-                  selection_qty_unit: labelSelectionUnit4,
-                  selection_price: priceSelection4,
-                  selection_price_unit: labelSelectionPrice4,
-                },
-              ];
-        const arr19 =
-          labelSelection5 == null
-            ? null
-            : [
-                {
-                  selection: labelSelection5,
-                  selection_qty: quantitySelection5,
-                  selection_qty_unit: labelSelectionUnit5,
-                  selection_price: priceSelection5,
-                  selection_price_unit: labelSelectionPrice5,
-                },
-              ];
-        const arr20 =
-          labelSelection6 == null
-            ? null
-            : [
-                {
-                  selection: labelSelection6,
-                  selection_qty: quantitySelection6,
-                  selection_qty_unit: labelSelectionUnit6,
-                  selection_price: priceSelection6,
-                  selection_price_unit: labelSelectionPrice6,
-                },
-              ];
-              const arr23 =
-          labelSelection7 == null
-            ? null
-            : [
-                {
-                  selection: labelSelection7,
-                  selection_qty: quantitySelection7,
-                  selection_qty_unit: labelSelectionUnit7,
-                  selection_price: priceSelection7,
-                  selection_price_unit: labelSelectionPrice7,
-                },
-              ];
-        const arr21 = images.map((value) => ({ ["pimage"]: value }));
-        const arr22 = document.map((value) => ({ ["pdocument"]: value }));
-        let final;
-        final = arr3.concat(
-          arr4,
-          arr5,
-          arr6,
-          arr7,
-          arr8,
-          arr9,
-          arr10,
-          arr11,
-          arr12,
-          arr13,
-          arr14,
-          arr15,
-          arr16,
-          arr17,
-          arr18,
-          arr19,
-          arr20,
-          arr21,
-          arr22, arr23
-        );
-        let final1;
-        final1 = arr.push(final);
-        console.log("Raw=" + JSON.stringify(arr));
-   
-      } else if (
-        leatherCondition == "Pickled" ||
-        leatherCondition == "Tanned"
-      ) {
-        arr = [
-          {
-            sub_category: subCategory[0],
-            other_sub_category: "", //"Crust type",
-            origin: origin,
-            product_brand: "",//"origin",
-            continents: continent,//continent,
-            Specification:Specification,
+    if (leatherCondition == "Raw") {
+      arr = [
+        {
+          sub_category: subCategory[0],
+          other_sub_category: "", //"Crust type",
+          origin: origin,
+          product_brand: "", //"origin",
+          continents: continent, //continent,
+          Specification: Specification,
+          product_title: productName,
+          product_title_itelian: "", //"Prod-1",
+          selection_choice: "", // "Nice",
+          where_are_leathers_comp_address:
+            toggleCheckBox == true ? address : null,
+          where_are_leathers_other_address:
+            toggleCheckBox2 == true && otherAddress != null
+              ? otherAddress
+              : null,
+          inspection_possible: goodsInspection[0],
+          product_desc: "", //"Nice product",
+          product_keywords: "", //"Nggggggggice product",
+          product_language: "English",
+          logged_in_user_id: id,
+          needExpert: "yes",
+          weightCatType: weightCatType,
+          weightCatType2: weightCatType2,
+          weightCatType3: weightCatType3,
+          weightSelectionSize: weightSelectionSize,
+          surfaceCatType: surfaceCatType,
+          surfaceCatType2: surfaceCatType2,
+          surfaceCatType3: surfaceCatType3,
+          surfaceSelectionSize: surfaceSelectionSize,
+          tableRollLeatherQty: quantityTableRoll,
+          tableRollLeatherQtySelection: labelTableRoll,
+          tableRollLeatherPrice: priceTableRoll,
+          tableRollLeatherPriceUnit: labelTablePrice,
+          selectionQtyPrice: "", //"45",
+          Price: "", //"345.00",
+          Qty: "", //"33",
+          thiknessType:
+            substanceThickness && Array.isArray(substanceThickness)
+              ? substanceThickness[0]
+              : "",
+          thinkessFrom: fromValue,
+          thinknessTo: toValue,
+          lastInfo: lastInfo,
+          goodsInspected: goodsInspection[0], //"Yes",
+          addProductType: "", //"Good quality",
+          Others_Tanning_Leathers_val: "",
+          Other_wannaSellLeather_val: "",
+          Other_FlayLeatherF_val: "",
+          Other_rawDefects_val: "",
+          other_HaveLeatherType_val: "",
+          Other_whichColor_val: "",
+          leather_color: leatherColor, //"Blue",
+          Other_certificates_val: "",
+          Other_pakingArrange_val: "",
+          Other_shipmentArrange_val: "",
+          Product_Destination: destination[0],
+          Other_Product_Destination: "", //"Room Furniture",
+          Selected_Leathers: labelTableRoll ? "No" : "Yes", //"Yes",
+          created_date: new Date().toISOString().split("T")[0], //"2022-03-02"
+        },
+        // console.log(
+        //   "🚀 ~ file: PutUpForSale.js ~ line 213 ~ useEffect ~ Specification",
+        //   Specification
+        // ),
+      ];
 
-            product_title: productName,
-            product_title_itelian: "",//"Prod-1",
-            selection_choice:"",// "Nice",
-            where_are_leathers_comp_address:
-              toggleCheckBox == true ? address : null,
-            where_are_leathers_other_address:
-              toggleCheckBox2 == true && otherAddress != null
-                ? otherAddress
-                : null,
-            inspection_possible: goodsInspection[0],
-            product_desc: "", //"Nice product",
-            product_keywords: "", //"Nggggggggice product",
-            product_language: "English",
-            logged_in_user_id: id,
-            needExpert: "yes",
-            weightCatType: weightCatType,
-            weightCatType2: weightCatType2,
-            weightCatType3: weightCatType3,
-            weightSelectionSize: weightSelectionSize,
-            surfaceCatType: surfaceCatType,
-            surfaceCatType2: surfaceCatType2,
-            surfaceCatType3: surfaceCatType3,
-            surfaceSelectionSize: surfaceSelectionSize,
-            tableRollLeatherQty: quantityTableRoll,
-            tableRollLeatherQtySelection: labelTableRoll,
-            tableRollLeatherPrice: priceTableRoll,
-            tableRollLeatherPriceUnit: labelTablePrice,
-            selectionQtyPrice: "", //"45",
-            Price: "", //"345.00",
-            Qty: "", //"33",
-            thiknessType: substanceThickness[0],
-            thinkessFrom: fromValue,
-            thinknessTo: toValue,
-            lastInfo:  lastInfo,
-            goodsInspected: goodsInspection[0], //"Yes",
-            addProductType: "", //"Good quality",
-            Others_Tanning_Leathers_val: "",
-            Other_wannaSellLeather_val: "",
-            Other_FlayLeatherF_val: "",
-            Other_rawDefects_val: "",
-            other_HaveLeatherType_val: "",
-            Other_whichColor_val: "",
-            leather_color: leatherColor, //"Blue",
-            Other_certificates_val: "",
-            Other_pakingArrange_val: "",
-            Other_shipmentArrange_val: "",
-            Product_Destination: destination[0],
-            Other_Product_Destination: "",//"Room Furniture",
-            Selected_Leathers: labelTableRoll ? "": "Yes",//"Yes",
-            created_date: new Date().toISOString().split('T')[0]//"2022-03-02"
-          },
-        ];
-        const arr1 = tanningLeather.map((value) => ({
-          ["tanningLeathers"]: value,
-        }));
-        const arr2 = leatherCondition.map((value) => ({
-          ["multi_category"]: value,
-        }));
-        const arr3 =
-          labelSelection == null
-            ? null
-            : [
-                {
-                  selection: labelSelection,
-                  selection_qty: quantitySelection,
-                  selection_qty_unit: labelSelectionUnit,
-                  selection_price: priceSelection,
-                  selection_price_unit: labelSelectionPrice,
-                },
-              ];
-        const arr4 =
-          labelSelection2 == null
-            ? null
-            : [
-                {
-                  selection: labelSelection2,
-                  selection_qty: quantitySelection2,
-                  selection_qty_unit: labelSelectionUnit2,
-                  selection_price: priceSelection2,
-                  selection_price_unit: labelSelectionPrice2,
-                },
-              ];
-        const arr5 =
-          labelSelection3 == null
-            ? null
-            : [
-                {
-                  selection: labelSelection3,
-                  selection_qty: quantitySelection3,
-                  selection_qty_unit: labelSelectionUnit3,
-                  selection_price: priceSelection3,
-                  selection_price_unit: labelSelectionPrice3,
-                },
-              ];
-        const arr6 =
-          labelSelection4 == null
-            ? null
-            : [
-                {
-                  selection: labelSelection4,
-                  selection_qty: quantitySelection4,
-                  selection_qty_unit: labelSelectionUnit4,
-                  selection_price: priceSelection4,
-                  selection_price_unit: labelSelectionPrice4,
-                },
-              ];
-        const arr7 =
-          labelSelection5 == null
-            ? null
-            : [
-                {
-                  selection: labelSelection5,
-                  selection_qty: quantitySelection5,
-                  selection_qty_unit: labelSelectionUnit5,
-                  selection_price: priceSelection5,
-                  selection_price_unit: labelSelectionPrice5,
-                },
-              ];
-        const arr8 =
-          labelSelection6 == null
-            ? null
-            : [
-                {
-                  selection: labelSelection6,
-                  selection_qty: quantitySelection6,
-                  selection_qty_unit: labelSelectionUnit6,
-                  selection_price: priceSelection6,
-                  selection_price_unit: labelSelectionPrice6,
-                },
-              ];
-              const arr19 =
-              labelSelection7 == null
-                ? null
-                : [
-                    {
-                      selection: labelSelection7,
-                      selection_qty: quantitySelection7,
-                      selection_qty_unit: labelSelectionUnit7,
-                      selection_price: priceSelection7,
-                      selection_price_unit: labelSelectionPrice7,
-                    },
-                  ];
-        const arr9 = trim.map((value) => ({ ["wannasellleather_val"]: value }));
-        const arr10 = flay.map((value) => ({ ["Flay_Leather"]: value }));
-        const arr11 = rawDefects.map((value) => ({
-          ["rawdefects_val"]: value,
-        }));
-        const arr12 = hairLeather.map((value) => ({
-          ["haveleathertype_val"]: value,
-        }));
-        const arr13 = color.map((value) => ({ ["productcolor_val"]: value }));
-        const arr14 = certificate.map((value) => ({
-          ["productcertificates_val"]: value,
-        }));
-        const arr15 = kindOfPacking.map((value) => ({
-          ["productpakingarrange_val"]: value,
-        }));
-        const arr16 = kindOfShipment.map((value) => ({
-          ["productshipmentarrange_val"]: value,
-        }));
-        const arr17 = images.map((value) => ({ ["pimage"]: value }));
-        const arr18 = document.map((value) => ({ ["pdocument"]: value }));
-        const arr20 = category.map((value) => ({ ["leather_shape"]: value }));
-        const arr21 = size.map((value) => ({ ["product_multi_sizes"]: value }));
+      const arr3 = leatherCondition.map((value) => ({
+        ["multi_category"]: value,
+      }));
+      const arr4 = category.map((value) => ({ ["leather_shape"]: value }));
+      const arr5 = preservationType.map((value) => ({
+        ["preservation"]: value,
+      }));
 
+      const arr6 = size.map((value) => ({ ["product_multi_sizes"]: value }));
+      const arr7 = trim.map((value) => ({ ["wannasellleather_val"]: value }));
+      const arr8 = flay.map((value) => ({ ["Flay_Leather"]: value }));
+      const arr9 = rawDefects.map((value) => ({ ["rawdefects_val"]: value }));
+      const arr10 = hairLeather.map((value) => ({
+        ["haveleathertype_val"]: value,
+      }));
+      const arr11 = color.map((value) => ({ ["productcolor_val"]: value }));
+      const arr12 = certificate.map((value) => ({
+        ["productcertificates_val"]: value,
+      }));
+      const arr13 = kindOfPacking.map((value) => ({
+        ["productpakingarrange_val"]: value,
+      }));
+      const arr14 = kindOfShipment.map((value) => ({
+        ["productshipmentarrange_val"]: value,
+      }));
 
-        let final;
-        final = arr1.concat(
-          arr2,
-          arr3,
-          arr4,
-          arr5,
-          arr6,
-          arr7,
-          arr8,
-          arr9,
-          arr10,
-          arr11,
-          arr12,
-          arr13,
-          arr14,
-          arr15,
-          arr16,
-          arr17,
-          arr18, arr19,arr20,arr21
-        );
-        let final1;
-        final1 = arr.push(final);
-        console.log("Pickled and tanned=" + JSON.stringify(arr));
-       
-      } else if (
-        leatherCondition == "Crust" ||
-        leatherCondition == "Finished"
-      ) {
-        arr = [
-          {
-            sub_category: subCategory[0],
-            other_sub_category: "", //"Crust type",
-            origin: origin,
-            product_brand: "",//"origin,
-            continents: continent,//continent,
-            Specification:Specification,
+      const arr15 =
+        labelSelection == null
+          ? [
+              {
+                selection: "null",
+                selection_qty: "null",
+                selection_qty_unit: "null",
+                selection_price: "null",
+                selection_price_unit: "null",
+              },
+            ]
+          : [
+              {
+                selection: labelSelection,
+                selection_qty: quantitySelection,
+                selection_qty_unit: labelSelectionUnit,
+                selection_price: priceSelection,
+                selection_price_unit: labelSelectionPrice,
+              },
+            ];
+      const arr16 =
+        labelSelection2 == null
+          ? [
+              {
+                selection: "null",
+                selection_qty: "null",
+                selection_qty_unit: "null",
+                selection_price: "null",
+                selection_price_unit: "null",
+              },
+            ]
+          : [
+              {
+                selection: labelSelection2,
+                selection_qty: quantitySelection2,
+                selection_qty_unit: labelSelectionUnit2,
+                selection_price: priceSelection2,
+                selection_price_unit: labelSelectionPrice2,
+              },
+            ];
+      const arr17 =
+        labelSelection3 == null
+          ? [
+              {
+                selection: "null",
+                selection_qty: "null",
+                selection_qty_unit: "null",
+                selection_price: "null",
+                selection_price_unit: "null",
+              },
+            ]
+          : [
+              {
+                selection: labelSelection3,
+                selection_qty: quantitySelection3,
+                selection_qty_unit: labelSelectionUnit3,
+                selection_price: priceSelection3,
+                selection_price_unit: labelSelectionPrice3,
+              },
+            ];
+      const arr18 =
+        labelSelection4 == null
+          ? [
+              {
+                selection: "null",
+                selection_qty: "null",
+                selection_qty_unit: "null",
+                selection_price: "null",
+                selection_price_unit: "null",
+              },
+            ]
+          : [
+              {
+                selection: labelSelection4,
+                selection_qty: quantitySelection4,
+                selection_qty_unit: labelSelectionUnit4,
+                selection_price: priceSelection4,
+                selection_price_unit: labelSelectionPrice4,
+              },
+            ];
+      const arr19 =
+        labelSelection5 == null
+          ? [
+              {
+                selection: "null",
+                selection_qty: "null",
+                selection_qty_unit: "null",
+                selection_price: "null",
+                selection_price_unit: "null",
+              },
+            ]
+          : [
+              {
+                selection: labelSelection5,
+                selection_qty: quantitySelection5,
+                selection_qty_unit: labelSelectionUnit5,
+                selection_price: priceSelection5,
+                selection_price_unit: labelSelectionPrice5,
+              },
+            ];
+      const arr20 =
+        labelSelection6 == null
+          ? [
+              {
+                selection: "null",
+                selection_qty: "null",
+                selection_qty_unit: "null",
+                selection_price: "null",
+                selection_price_unit: "null",
+              },
+            ]
+          : [
+              {
+                selection: labelSelection6,
+                selection_qty: quantitySelection6,
+                selection_qty_unit: labelSelectionUnit6,
+                selection_price: priceSelection6,
+                selection_price_unit: labelSelectionPrice6,
+              },
+            ];
+      const arr23 =
+        labelSelection7 == null
+          ? [
+              {
+                selection: "null",
+                selection_qty: "null",
+                selection_qty_unit: "null",
+                selection_price: "null",
+                selection_price_unit: "null",
+              },
+            ]
+          : [
+              {
+                selection: labelSelection7,
+                selection_qty: quantitySelection7,
+                selection_qty_unit: labelSelectionUnit7,
+                selection_price: priceSelection7,
+                selection_price_unit: labelSelectionPrice7,
+              },
+            ];
+      const arr21 = images.map((value) => ({ ["pimage"]: value }));
+      const arr22 = document.map((value) => ({ ["pdocument"]: value }));
+      let final;
+      final = arr3.concat(
+        arr4,
+        arr5,
+        arr6,
+        arr7,
+        arr8,
+        arr9,
+        arr10,
+        arr11,
+        arr12,
+        arr13,
+        arr14,
+        arr15,
+        arr16,
+        arr17,
+        arr18,
+        arr19,
+        arr20,
+        arr21,
+        arr22,
+        arr23
+      );
+      let final1;
+      final1 = arr.push(final);
+      //  console.log("Raw=" + JSON.stringify(arr));
+    } else if (leatherCondition == "Pickled" || leatherCondition == "Tanned") {
+      arr = [
+        {
+          sub_category: subCategory[0],
+          other_sub_category: "", //"Crust type",
+          origin: origin,
+          product_brand: "", //"origin",
+          continents: continent, //continent,
+          Specification: Specification,
 
-            product_title: productName,
-            product_title_itelian: "",//"Prod-1",
-            selection_choice:"",// "Nice",
-            where_are_leathers_comp_address:
-              toggleCheckBox == true ? address : null,
-            where_are_leathers_other_address:
-              toggleCheckBox2 == true && otherAddress != null
-                ? otherAddress
-                : null,
-            inspection_possible: goodsInspection[0],
-            product_desc: "", //"Nice product",
-            product_keywords: "", //"Nggggggggice product",
-            product_language: "English",
-            logged_in_user_id: id,
-            needExpert: "yes",
-            weightCatType: weightCatType,
-            weightCatType2: weightCatType2,
-            weightCatType3: weightCatType3,
-            weightSelectionSize: weightSelectionSize,
-            surfaceCatType: surfaceCatType,
-            surfaceCatType2: surfaceCatType2,
-            surfaceCatType3: surfaceCatType3,
-            surfaceSelectionSize: surfaceSelectionSize,
-            tableRollLeatherQty: quantityTableRoll,
-            tableRollLeatherQtySelection: labelTableRoll,
-            tableRollLeatherPrice: priceTableRoll,
-            tableRollLeatherPriceUnit: labelTablePrice,
-            selectionQtyPrice: "", //"45",
-            Price: "", //"345.00",
-            Qty: "", //"33",
-            thiknessType: substanceThickness[0],
-            thinkessFrom: fromValue,
-            thinknessTo: toValue,
-            lastInfo:  lastInfo,
-            goodsInspected: goodsInspection[0], //"Yes",
-            addProductType: "", //"Good quality",
-            Others_Tanning_Leathers_val: "",
-            Other_wannaSellLeather_val: "",
-            Other_FlayLeatherF_val: "",
-            Other_rawDefects_val: "",
-            other_HaveLeatherType_val: "",
-            Other_whichColor_val: "",
-            leather_color: leatherColor, //"Blue",
-            Other_certificates_val: "",
-            Other_pakingArrange_val: "",
-            Other_shipmentArrange_val: "",
-            Product_Destination: destination[0],
-            Other_Product_Destination: "",//"Room Furniture",
-            Selected_Leathers: labelTableRoll ? "": "Yes",//"Yes"
-            created_date: new Date().toISOString().split('T')[0]//"2022-03-02"
-          },
-        ];
-        const arr1 = tanningLeather.map((value) => ({
-          ["tanningLeathers"]: value,
-        }));
-        const arr2 = leatherCondition.map((value) => ({
-          ["multi_category"]: value,
-        }));
-        const arr3 =
-          labelSelection == null
-            ? null
-            : [
-                {
-                  selection: labelSelection,
-                  selection_qty: quantitySelection,
-                  selection_qty_unit: labelSelectionUnit,
-                  selection_price: priceSelection,
-                  selection_price_unit: labelSelectionPrice,
-                },
-              ];
-        const arr4 =
-          labelSelection2 == null
-            ? null
-            : [
-                {
-                  selection: labelSelection2,
-                  selection_qty: quantitySelection2,
-                  selection_qty_unit: labelSelectionUnit2,
-                  selection_price: priceSelection2,
-                  selection_price_unit: labelSelectionPrice2,
-                },
-              ];
-        const arr5 =
-          labelSelection3 == null
-            ? null
-            : [
-                {
-                  selection: labelSelection3,
-                  selection_qty: quantitySelection3,
-                  selection_qty_unit: labelSelectionUnit3,
-                  selection_price: priceSelection3,
-                  selection_price_unit: labelSelectionPrice3,
-                },
-              ];
-        const arr6 =
-          labelSelection4 == null
-            ? null
-            : [
-                {
-                  selection: labelSelection4,
-                  selection_qty: quantitySelection4,
-                  selection_qty_unit: labelSelectionUnit4,
-                  selection_price: priceSelection4,
-                  selection_price_unit: labelSelectionPrice4,
-                },
-              ];
-        const arr7 =
-          labelSelection5 == null
-            ? null
-            : [
-                {
-                  selection: labelSelection5,
-                  selection_qty: quantitySelection5,
-                  selection_qty_unit: labelSelectionUnit5,
-                  selection_price: priceSelection5,
-                  selection_price_unit: labelSelectionPrice5,
-                },
-              ];
-        const arr8 =
-          labelSelection6 == null
-            ? null
-            : [
-                {
-                  selection: labelSelection6,
-                  selection_qty: quantitySelection6,
-                  selection_qty_unit: labelSelectionUnit6,
-                  selection_price: priceSelection6,
-                  selection_price_unit: labelSelectionPrice6,
-                },
-              ];
-              const arr19 =
-              labelSelection7 == null
-                ? null
-                : [
-                    {
-                      selection: labelSelection7,
-                      selection_qty: quantitySelection7,
-                      selection_qty_unit: labelSelectionUnit7,
-                      selection_price: priceSelection7,
-                      selection_price_unit: labelSelectionPrice7,
-                    },
-                  ];
-        const arr9 = trim.map((value) => ({ ["wannasellleather_val"]: value }));
-        const arr10 = flay.map((value) => ({ ["Flay_Leather"]: value }));
-        const arr11 = rawDefects.map((value) => ({
-          ["rawdefects_val"]: value,
-        }));
-        const arr12 = hairLeather.map((value) => ({
-          ["haveleathertype_val"]: value,
-        }));
-        const arr13 = color.map((value) => ({ ["productcolor_val"]: value }));
-        const arr14 = certificate.map((value) => ({
-          ["productcertificates_val"]: value,
-        }));
-        const arr15 = kindOfPacking.map((value) => ({
-          ["productpakingarrange_val"]: value,
-        }));
-        const arr16 = kindOfShipment.map((value) => ({
-          ["productshipmentarrange_val"]: value,
-        }));
-        const arr17 = images.map((value) => ({ ["pimage"]: value }));
-        const arr18 = document.map((value) => ({ ["pdocument"]: value }));
-        const arr20 = category.map((value) => ({ ["leather_shape"]: value }));
-        const arr21 = size.map((value) => ({ ["product_multi_sizes"]: value }));
+          product_title: productName,
+          product_title_itelian: "", //"Prod-1",
+          selection_choice: "", // "Nice",
+          where_are_leathers_comp_address:
+            toggleCheckBox == true ? address : null,
+          where_are_leathers_other_address:
+            toggleCheckBox2 == true && otherAddress != null
+              ? otherAddress
+              : null,
+          inspection_possible: goodsInspection[0],
+          product_desc: "", //"Nice product",
+          product_keywords: "", //"Nggggggggice product",
+          product_language: "English",
+          logged_in_user_id: id,
+          needExpert: "yes",
+          weightCatType: weightCatType,
+          weightCatType2: weightCatType2,
+          weightCatType3: weightCatType3,
+          weightSelectionSize: weightSelectionSize,
+          surfaceCatType: surfaceCatType,
+          surfaceCatType2: surfaceCatType2,
+          surfaceCatType3: surfaceCatType3,
+          surfaceSelectionSize: surfaceSelectionSize,
+          tableRollLeatherQty: quantityTableRoll,
+          tableRollLeatherQtySelection: labelTableRoll,
+          tableRollLeatherPrice: priceTableRoll,
+          tableRollLeatherPriceUnit: labelTablePrice,
+          selectionQtyPrice: "", //"45",
+          Price: "", //"345.00",
+          Qty: "", //"33",
+          thiknessType: substanceThickness[0],
+          thinkessFrom: fromValue,
+          thinknessTo: toValue,
+          lastInfo: lastInfo,
+          goodsInspected: goodsInspection[0], //"Yes",
+          addProductType: "", //"Good quality",
+          Others_Tanning_Leathers_val: "",
+          Other_wannaSellLeather_val: "",
+          Other_FlayLeatherF_val: "",
+          Other_rawDefects_val: "",
+          other_HaveLeatherType_val: "",
+          Other_whichColor_val: "",
+          leather_color: leatherColor, //"Blue",
+          Other_certificates_val: "",
+          Other_pakingArrange_val: "",
+          Other_shipmentArrange_val: "",
+          Product_Destination: destination[0],
+          Other_Product_Destination: "", //"Room Furniture",
+          Selected_Leathers: labelTableRoll ? "" : "Yes", //"Yes",
+          created_date: new Date().toISOString().split("T")[0], //"2022-03-02"
+        },
+      ];
+      const arr1 = tanningLeather.map((value) => ({
+        ["tanningLeathers"]: value,
+      }));
+      const arr2 = leatherCondition.map((value) => ({
+        ["multi_category"]: value,
+      }));
+      const pre = [
+        {
+          preservation: "null",
+        },
+      ];
 
-        let final;
-        final = arr1.concat(
-          arr2,
-          arr3,
-          arr4,
-          arr5,
-          arr6,
-          arr7,
-          arr8,
-          arr9,
-          arr10,
-          arr11,
-          arr12,
-          arr13,
-          arr14,
-          arr15,
-          arr16,
-          arr17,
-          arr18, 
-          arr19,
-          arr20,
-          arr21
-        );
-        let final1;
-        final1 = arr.push(final);
-        console.log("Crust and finished=" + JSON.stringify(arr));
-        
-      }
-    
+      const arr3 =
+        labelSelection == null
+          ? [
+              {
+                selection: "null",
+                selection_qty: "null",
+                selection_qty_unit: "null",
+                selection_price: "null",
+                selection_price_unit: "null",
+              },
+            ]
+          : [
+              {
+                selection: labelSelection,
+                selection_qty: quantitySelection,
+                selection_qty_unit: labelSelectionUnit,
+                selection_price: priceSelection,
+                selection_price_unit: labelSelectionPrice,
+              },
+            ];
+      const arr4 =
+        labelSelection2 == null
+          ? [
+              {
+                selection: "null",
+                selection_qty: "null",
+                selection_qty_unit: "null",
+                selection_price: "null",
+                selection_price_unit: "null",
+              },
+            ]
+          : [
+              {
+                selection: labelSelection2,
+                selection_qty: quantitySelection2,
+                selection_qty_unit: labelSelectionUnit2,
+                selection_price: priceSelection2,
+                selection_price_unit: labelSelectionPrice2,
+              },
+            ];
+      const arr5 =
+        labelSelection3 == null
+          ? [
+              {
+                selection: "null",
+                selection_qty: "null",
+                selection_qty_unit: "null",
+                selection_price: "null",
+                selection_price_unit: "null",
+              },
+            ]
+          : [
+              {
+                selection: labelSelection3,
+                selection_qty: quantitySelection3,
+                selection_qty_unit: labelSelectionUnit3,
+                selection_price: priceSelection3,
+                selection_price_unit: labelSelectionPrice3,
+              },
+            ];
+      const arr6 =
+        labelSelection4 == null
+          ? [
+              {
+                selection: "null",
+                selection_qty: "null",
+                selection_qty_unit: "null",
+                selection_price: "null",
+                selection_price_unit: "null",
+              },
+            ]
+          : [
+              {
+                selection: labelSelection4,
+                selection_qty: quantitySelection4,
+                selection_qty_unit: labelSelectionUnit4,
+                selection_price: priceSelection4,
+                selection_price_unit: labelSelectionPrice4,
+              },
+            ];
+      const arr7 =
+        labelSelection5 == null
+          ? [
+              {
+                selection: "null",
+                selection_qty: "null",
+                selection_qty_unit: "null",
+                selection_price: "null",
+                selection_price_unit: "null",
+              },
+            ]
+          : [
+              {
+                selection: labelSelection5,
+                selection_qty: quantitySelection5,
+                selection_qty_unit: labelSelectionUnit5,
+                selection_price: priceSelection5,
+                selection_price_unit: labelSelectionPrice5,
+              },
+            ];
+      const arr8 =
+        labelSelection6 == null
+          ? [
+              {
+                selection: "null",
+                selection_qty: "null",
+                selection_qty_unit: "null",
+                selection_price: "null",
+                selection_price_unit: "null",
+              },
+            ]
+          : [
+              {
+                selection: labelSelection6,
+                selection_qty: quantitySelection6,
+                selection_qty_unit: labelSelectionUnit6,
+                selection_price: priceSelection6,
+                selection_price_unit: labelSelectionPrice6,
+              },
+            ];
+      const arr19 =
+        labelSelection7 == null
+          ? [
+              {
+                selection: "null",
+                selection_qty: "null",
+                selection_qty_unit: "null",
+                selection_price: "null",
+                selection_price_unit: "null",
+              },
+            ]
+          : [
+              {
+                selection: labelSelection7,
+                selection_qty: quantitySelection7,
+                selection_qty_unit: labelSelectionUnit7,
+                selection_price: priceSelection7,
+                selection_price_unit: labelSelectionPrice7,
+              },
+            ];
+      const arr9 = trim.map((value) => ({ ["wannasellleather_val"]: value }));
+      const arr10 = flay.map((value) => ({ ["Flay_Leather"]: value }));
+      const arr11 = rawDefects.map((value) => ({
+        ["rawdefects_val"]: value,
+      }));
+      const arr12 = hairLeather.map((value) => ({
+        ["haveleathertype_val"]: value,
+      }));
+      const arr13 = color.map((value) => ({ ["productcolor_val"]: value }));
+      const arr14 = certificate.map((value) => ({
+        ["productcertificates_val"]: value,
+      }));
+      const arr15 = kindOfPacking.map((value) => ({
+        ["productpakingarrange_val"]: value,
+      }));
+      const arr16 = kindOfShipment.map((value) => ({
+        ["productshipmentarrange_val"]: value,
+      }));
+      const arr17 = images.map((value) => ({ ["pimage"]: value }));
+      const arr18 = document.map((value) => ({ ["pdocument"]: value }));
+      const arr20 = category.map((value) => ({ ["leather_shape"]: value }));
+      const arr21 = size.map((value) => ({ ["product_multi_sizes"]: value }));
+
+      let final;
+      final = arr1.concat(
+        arr2,
+        arr3,
+        arr4,
+        arr5,
+        arr6,
+        arr7,
+        arr8,
+        arr9,
+        arr10,
+        arr11,
+        arr12,
+        arr13,
+        arr14,
+        arr15,
+        arr16,
+        arr17,
+        arr18,
+        arr19,
+        arr20,
+        arr21,
+        pre
+      );
+      let final1;
+      final1 = arr.push(final);
+      console.log("Pickled and tanned=" + JSON.stringify(arr));
+    } else if (leatherCondition == "Crust" || leatherCondition == "Finished") {
+      arr = [
+        {
+          sub_category: subCategory[0],
+          other_sub_category: "", //"Crust type",
+          origin: origin,
+          product_brand: "", //"origin,
+          continents: continent, //continent,
+          Specification: Specification,
+
+          product_title: productName,
+          product_title_itelian: "", //"Prod-1",
+          selection_choice: "", // "Nice",
+          where_are_leathers_comp_address:
+            toggleCheckBox == true ? address : null,
+          where_are_leathers_other_address:
+            toggleCheckBox2 == true && otherAddress != null
+              ? otherAddress
+              : null,
+          inspection_possible: goodsInspection[0],
+          product_desc: "", //"Nice product",
+          product_keywords: "", //"Nggggggggice product",
+          product_language: "English",
+          logged_in_user_id: id,
+          needExpert: "yes",
+          weightCatType: weightCatType,
+          weightCatType2: weightCatType2,
+          weightCatType3: weightCatType3,
+          weightSelectionSize: weightSelectionSize,
+          surfaceCatType: surfaceCatType,
+          surfaceCatType2: surfaceCatType2,
+          surfaceCatType3: surfaceCatType3,
+          surfaceSelectionSize: surfaceSelectionSize,
+          tableRollLeatherQty: quantityTableRoll,
+          tableRollLeatherQtySelection: labelTableRoll,
+          tableRollLeatherPrice: priceTableRoll,
+          tableRollLeatherPriceUnit: labelTablePrice,
+          selectionQtyPrice: "", //"45",
+          Price: "", //"345.00",
+          Qty: "", //"33",
+          thiknessType: substanceThickness[0],
+          thinkessFrom: fromValue,
+          thinknessTo: toValue,
+          lastInfo: lastInfo,
+          goodsInspected: goodsInspection[0], //"Yes",
+          addProductType: "", //"Good quality",
+          Others_Tanning_Leathers_val: "",
+          Other_wannaSellLeather_val: "",
+          Other_FlayLeatherF_val: "",
+          Other_rawDefects_val: "",
+          other_HaveLeatherType_val: "",
+          Other_whichColor_val: "",
+          leather_color: leatherColor, //"Blue",
+          Other_certificates_val: "",
+          Other_pakingArrange_val: "",
+          Other_shipmentArrange_val: "",
+          Product_Destination: destination[0],
+          Other_Product_Destination: "", //"Room Furniture",
+          Selected_Leathers: labelTableRoll ? "" : "Yes", //"Yes"
+          created_date: new Date().toISOString().split("T")[0], //"2022-03-02"
+        },
+      ];
+      const pre = [
+        {
+          preservation: "null",
+        },
+      ];
+      const arr1 = tanningLeather.map((value) => ({
+        ["tanningLeathers"]: value,
+      }));
+      const arr2 = leatherCondition.map((value) => ({
+        ["multi_category"]: value,
+      }));
+      const arr3 =
+        labelSelection == null
+          ? [
+              {
+                selection: "null",
+                selection_qty: "null",
+                selection_qty_unit: "null",
+                selection_price: "null",
+                selection_price_unit: "null",
+              },
+            ]
+          : [
+              {
+                selection: labelSelection,
+                selection_qty: quantitySelection,
+                selection_qty_unit: labelSelectionUnit,
+                selection_price: priceSelection,
+                selection_price_unit: labelSelectionPrice,
+              },
+            ];
+      const arr4 =
+        labelSelection2 == null
+          ? [
+              {
+                selection: "null",
+                selection_qty: "null",
+                selection_qty_unit: "null",
+                selection_price: "null",
+                selection_price_unit: "null",
+              },
+            ]
+          : [
+              {
+                selection: labelSelection2,
+                selection_qty: quantitySelection2,
+                selection_qty_unit: labelSelectionUnit2,
+                selection_price: priceSelection2,
+                selection_price_unit: labelSelectionPrice2,
+              },
+            ];
+      const arr5 =
+        labelSelection3 == null
+          ? [
+              {
+                selection: "null",
+                selection_qty: "null",
+                selection_qty_unit: "null",
+                selection_price: "null",
+                selection_price_unit: "null",
+              },
+            ]
+          : [
+              {
+                selection: labelSelection3,
+                selection_qty: quantitySelection3,
+                selection_qty_unit: labelSelectionUnit3,
+                selection_price: priceSelection3,
+                selection_price_unit: labelSelectionPrice3,
+              },
+            ];
+      const arr6 =
+        labelSelection4 == null
+          ? [
+              {
+                selection: "null",
+                selection_qty: "null",
+                selection_qty_unit: "null",
+                selection_price: "null",
+                selection_price_unit: "null",
+              },
+            ]
+          : [
+              {
+                selection: labelSelection4,
+                selection_qty: quantitySelection4,
+                selection_qty_unit: labelSelectionUnit4,
+                selection_price: priceSelection4,
+                selection_price_unit: labelSelectionPrice4,
+              },
+            ];
+      const arr7 =
+        labelSelection5 == null
+          ? [
+              {
+                selection: "null",
+                selection_qty: "null",
+                selection_qty_unit: "null",
+                selection_price: "null",
+                selection_price_unit: "null",
+              },
+            ]
+          : [
+              {
+                selection: labelSelection5,
+                selection_qty: quantitySelection5,
+                selection_qty_unit: labelSelectionUnit5,
+                selection_price: priceSelection5,
+                selection_price_unit: labelSelectionPrice5,
+              },
+            ];
+      const arr8 =
+        labelSelection6 == null
+          ? [
+              {
+                selection: "null",
+                selection_qty: "null",
+                selection_qty_unit: "null",
+                selection_price: "null",
+                selection_price_unit: "null",
+              },
+            ]
+          : [
+              {
+                selection: labelSelection6,
+                selection_qty: quantitySelection6,
+                selection_qty_unit: labelSelectionUnit6,
+                selection_price: priceSelection6,
+                selection_price_unit: labelSelectionPrice6,
+              },
+            ];
+      const arr19 =
+        labelSelection7 == null
+          ? [
+              {
+                selection: "null",
+                selection_qty: "null",
+                selection_qty_unit: "null",
+                selection_price: "null",
+                selection_price_unit: "null",
+              },
+            ]
+          : [
+              {
+                selection: labelSelection7,
+                selection_qty: quantitySelection7,
+                selection_qty_unit: labelSelectionUnit7,
+                selection_price: priceSelection7,
+                selection_price_unit: labelSelectionPrice7,
+              },
+            ];
+      const arr9 = trim.map((value) => ({ ["wannasellleather_val"]: value }));
+      const arr10 = flay.map((value) => ({ ["Flay_Leather"]: value }));
+      const arr11 = rawDefects.map((value) => ({
+        ["rawdefects_val"]: value,
+      }));
+      const arr12 = hairLeather.map((value) => ({
+        ["haveleathertype_val"]: value,
+      }));
+      const arr13 = color.map((value) => ({ ["productcolor_val"]: value }));
+      const arr14 = certificate.map((value) => ({
+        ["productcertificates_val"]: value,
+      }));
+      const arr15 = kindOfPacking.map((value) => ({
+        ["productpakingarrange_val"]: value,
+      }));
+      const arr16 = kindOfShipment.map((value) => ({
+        ["productshipmentarrange_val"]: value,
+      }));
+      const arr17 = images.map((value) => ({ ["pimage"]: value }));
+      const arr18 = document.map((value) => ({ ["pdocument"]: value }));
+      const arr20 = category.map((value) => ({ ["leather_shape"]: value }));
+      const arr21 = size.map((value) => ({ ["product_multi_sizes"]: value }));
+
+      let final;
+      final = arr1.concat(
+        arr2,
+        arr3,
+        arr4,
+        arr5,
+        arr6,
+        arr7,
+        arr8,
+        arr9,
+        arr10,
+        arr11,
+        arr12,
+        arr13,
+        arr14,
+        arr15,
+        arr16,
+        arr17,
+        arr18,
+        arr19,
+        arr20,
+        arr21,
+        pre
+      );
+      let final1;
+      final1 = arr.push(final);
+      console.log("Crust and finished=" + JSON.stringify(arr));
+    }
   }, [arr]);
 
   console.log("final outside useEffect=" + JSON.stringify(arr));
@@ -780,27 +968,29 @@ const PutUpForSale = (props) => {
   //   console.log('final for put up for sale='+JSON.stringify(final))
   // }
   const putUpForSaleSubmit = () => {
-    console.log("otherAddress",otherAddress, '!!!!!!! ',toggleCheckBox2)
-    console.log("address",address, ' @@@@@@@@ ', toggleCheckBox)
+    console.log("otherAddress", otherAddress, "!!!!!!! ", toggleCheckBox2);
+    console.log("address", address, " @@@@@@@@ ", toggleCheckBox);
     setApiLoader(true);
     console.log("inside use call back=" + JSON.stringify(arr));
     // let webApirUrl = `https://www.hidetrade.eu/app/APIs/AddProduct/AddProductWithLoopData.php`;
-    let webApirUrl = `https://www.hidetrade.eu/app/APIs/AddProduct/AddProductWithLoopData_Phase2.php`;
+    let webApirUrl =
+      "https://www.hidetrade.eu/app/APIs/AddProduct/AddProductWithLoopData_Phase2.php";
 
     axios
       .post(webApirUrl, arr)
       .then((res) => {
         console.log(
-          "api response for put up for sale=" + JSON.stringify(res.data)
+          "api response for put up for sale=" + JSON.stringify(res.data.Message)
         );
         Alert.alert("", res.data.Message, [
           {
             text: "Ok",
             style: "cancel",
-            onPress: () => props.navigation.navigate("Product Details", {
-              product_id: res.data?.Product_Details[0]?.product_id,
-              address: toggleCheckBox ? address : otherAddress,
-            }),
+            onPress: () =>
+              props.navigation.navigate("Product Details", {
+                product_id: res.data?.Product_Details[0]?.product_id,
+                address: toggleCheckBox ? address : otherAddress,
+              }),
           },
         ]);
         setApiLoader(false);
@@ -830,13 +1020,16 @@ const PutUpForSale = (props) => {
         //   />
         //   <ActivityIndicator size={"large"} color="red" />
         // </View>
-        <SpinView style={{alignItems:'center', justifyContent:'center', flex:1}}>
-           <Image
+        <SpinView
+          style={{ alignItems: "center", justifyContent: "center", flex: 1 }}
+        >
+          <Image
             source={require("../../assets/loader.jpg")}
             resizeMode="contain"
             resizeMethod="scale"
             style={{ width: 80, height: 80 }}
-          /><Text style={{fontWeight:'bold', marginTop:10}}>Loading...</Text>
+          />
+          <Text style={{ fontWeight: "bold", marginTop: 10 }}>Loading...</Text>
         </SpinView>
       ) : (
         <ScrollView>
@@ -847,11 +1040,14 @@ const PutUpForSale = (props) => {
                 fontSize: 24,
                 fontWeight: "bold",
                 color: Colors.headerBackground,
-              }}allowFontScaling={false}
+              }}
+              allowFontScaling={false}
             >
               Location and Documents
             </Text>
-            <Text allowFontScaling={false}style={styles.textHeading}>Where are the leathers?</Text>
+            <Text allowFontScaling={false} style={styles.textHeading}>
+              Where are the leathers?
+            </Text>
             <View
               style={{
                 flexDirection: "row",
@@ -859,7 +1055,10 @@ const PutUpForSale = (props) => {
                 marginTop: 5,
               }}
             >
-              <Text allowFontScaling={false}style={{ color: Colors.text, fontWeight: "500" }}>
+              <Text
+                allowFontScaling={false}
+                style={{ color: Colors.text, fontWeight: "500" }}
+              >
                 In the tannery address
               </Text>
               <Checkbox
@@ -879,7 +1078,10 @@ const PutUpForSale = (props) => {
                 marginTop: 5,
               }}
             >
-              <Text allowFontScaling={false}style={{ color: Colors.text, fontWeight: "500" }}>
+              <Text
+                allowFontScaling={false}
+                style={{ color: Colors.text, fontWeight: "500" }}
+              >
                 In a different address
               </Text>
               <Checkbox
@@ -899,7 +1101,9 @@ const PutUpForSale = (props) => {
                   onChangeText={(value) => setOtherAddress(value)}
                   mode="outlined"
                   style={{ maxHeight: 70 }}
-                  multiline={true}allowFontScaling={false}maxFontSizeMultiplier={1}
+                  multiline={true}
+                  allowFontScaling={false}
+                  maxFontSizeMultiplier={1}
                 />
               </View>
             )}
@@ -912,7 +1116,8 @@ const PutUpForSale = (props) => {
                   fontWeight: "bold",
                   marginBottom: 40,
                   color: Colors.headerBackground,
-                }}allowFontScaling={false}
+                }}
+                allowFontScaling={false}
               >
                 Uploads
               </Text>
@@ -960,8 +1165,8 @@ const PutUpForSale = (props) => {
                         surfaceSelectionSize: surfaceSelectionSize,
                         images: images,
                         document: document,
-                        documentLocation:documentLocation,
-                        packingList:packingList,
+                        documentLocation: documentLocation,
+                        packingList: packingList,
 
                         labelTableRoll: labelTableRoll,
                         quantityTableRoll: quantityTableRoll,
@@ -1015,7 +1220,8 @@ const PutUpForSale = (props) => {
                         color: Colors.text,
                         fontWeight: "500",
                         alignSelf: "center",
-                      }}allowFontScaling={false}
+                      }}
+                      allowFontScaling={false}
                     >
                       Pictures
                     </Text>
@@ -1059,8 +1265,8 @@ const PutUpForSale = (props) => {
                         surfaceSelectionSize: surfaceSelectionSize,
                         images: images,
                         document: document,
-                        documentLocation:documentLocation,
-                        packingList:packingList,
+                        documentLocation: documentLocation,
+                        packingList: packingList,
 
                         labelTableRoll: labelTableRoll,
                         quantityTableRoll: quantityTableRoll,
@@ -1114,7 +1320,8 @@ const PutUpForSale = (props) => {
                         color: Colors.text,
                         fontWeight: "500",
                         alignSelf: "center",
-                      }}allowFontScaling={false}
+                      }}
+                      allowFontScaling={false}
                     >
                       Documents
                     </Text>
@@ -1131,8 +1338,9 @@ const PutUpForSale = (props) => {
               >
                 <View>
                   <TouchableOpacity
-                    onPress={() => props.navigation.navigate("Packing List",{
-                      productName: productName,
+                    onPress={() =>
+                      props.navigation.navigate("Packing List", {
+                        productName: productName,
                         category: category,
                         subCategory: subCategory,
                         size: size,
@@ -1165,8 +1373,8 @@ const PutUpForSale = (props) => {
                         surfaceSelectionSize: surfaceSelectionSize,
                         images: images,
                         document: document,
-                        documentLocation:documentLocation,
-                        packingList:packingList,
+                        documentLocation: documentLocation,
+                        packingList: packingList,
 
                         labelTableRoll: labelTableRoll,
                         quantityTableRoll: quantityTableRoll,
@@ -1208,18 +1416,21 @@ const PutUpForSale = (props) => {
                         labelSelectionUnit6: labelSelectionUnit6,
                         labelSelectionPrice6: labelSelectionPrice6,
                         priceSelection6: priceSelection6,
-                    })}
+                      })
+                    }
                   >
                     <Image
                       style={{ width: 80, height: 80 }}
-                      source={require("../../assets/ByClient/IconPakinglist.png")} resizeMode='contain'
+                      source={require("../../assets/ByClient/IconPakinglist.png")}
+                      resizeMode="contain"
                     />
                     <Text
                       style={{
                         color: Colors.text,
                         fontWeight: "500",
                         alignSelf: "center",
-                      }}allowFontScaling={false}
+                      }}
+                      allowFontScaling={false}
                     >
                       Packing List
                     </Text>
@@ -1252,14 +1463,14 @@ const PutUpForSale = (props) => {
                         lastInfo: lastInfo,
                         goodsInspection: goodsInspection,
                         preservationType:
-                        preservationType != "" ? preservationType : null,
+                          preservationType != "" ? preservationType : null,
                         images: images,
-                        document:document,
-                        documentLocation:documentLocation,
-                        packingList:packingList,
-                        Specification:Specification,
-                        continent:continent,
-                        origin:origin,
+                        document: document,
+                        documentLocation: documentLocation,
+                        packingList: packingList,
+                        Specification: Specification,
+                        continent: continent,
+                        origin: origin,
                         address: toggleCheckBox ? address : otherAddress,
 
                         labelTableRoll: labelTableRoll,
@@ -1302,12 +1513,12 @@ const PutUpForSale = (props) => {
                         labelSelectionUnit6: labelSelectionUnit6,
                         labelSelectionPrice6: labelSelectionPrice6,
                         priceSelection6: priceSelection6,
-                      //   where_are_leathers_comp_address:
-                      //   toggleCheckBox == true ? address : null,
-                      //  where_are_leathers_other_address:
-                      //   toggleCheckBox2 == true && otherAddress != null
-                      //     ? otherAddress
-                      //     : null,
+                        //   where_are_leathers_comp_address:
+                        //   toggleCheckBox == true ? address : null,
+                        //  where_are_leathers_other_address:
+                        //   toggleCheckBox2 == true && otherAddress != null
+                        //     ? otherAddress
+                        //     : null,
                       })
                     }
                   >
@@ -1321,7 +1532,8 @@ const PutUpForSale = (props) => {
                         color: Colors.text,
                         fontWeight: "500",
                         alignSelf: "center",
-                      }}allowFontScaling={false}
+                      }}
+                      allowFontScaling={false}
                     >
                       Preview
                     </Text>
@@ -1345,9 +1557,18 @@ const PutUpForSale = (props) => {
             style={{ flexDirection: "row" }}
             onPress={() => props.navigation.goBack()}
           >
-            <Image source={require('../../assets/ByClient/BOTTOMBACK.png')} style={{width:20, height:20, marginHorizontal:10,alignSelf:'center' }} />
-            <Text allowFontScaling={false}
-              style={{ fontSize: 22, alignSelf: "center", color: "#9EBDB8" , }}
+            <Image
+              source={require("../../assets/ByClient/BOTTOMBACK.png")}
+              style={{
+                width: 20,
+                height: 20,
+                marginHorizontal: 10,
+                alignSelf: "center",
+              }}
+            />
+            <Text
+              allowFontScaling={false}
+              style={{ fontSize: 22, alignSelf: "center", color: "#9EBDB8" }}
             >
               Back
             </Text>

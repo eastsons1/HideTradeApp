@@ -62,7 +62,6 @@ export default function CheckoutScreen(props) {
     const { error } = await initPaymentSheet({
       merchantDisplayName: "Hide Trade",
       customerId: customerId,
-      subscriptionId: subscriptionId,
       paymentIntentClientSecret: clientSecret,
     });
 
