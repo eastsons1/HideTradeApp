@@ -7,10 +7,11 @@ import {
   FlatList,
   TouchableOpacity,
   Image,
-  ActivityIndicator,Alert
+  ActivityIndicator,
+  Alert,
 } from "react-native";
 import axios from "axios";
-import { StackActions } from '@react-navigation/native';
+import { StackActions } from "@react-navigation/native";
 
 import Colors from "../../constants/Colors";
 import SpinView from "../../components/Spin";
@@ -28,7 +29,7 @@ const SizeInProfile = (props) => {
   var Select_Size = selected.map((value) => ({ ["Select_Size"]: value }));
 
   const final = finalTanning.concat(Select_Size);
-//   console.log("final Size=" + JSON.stringify(final));
+  //   console.log("final Size=" + JSON.stringify(final));
 
   //   var multi_category = props.route.params.multi_category;
   //   var kindOfShape = props.route.params.kindOfShape;
@@ -52,21 +53,30 @@ const SizeInProfile = (props) => {
     }
   }, []);
 
-
-  const editProfile=async()=>{
-    console.log('inside edit profile')
-    console.log('inside final of edit profile='+JSON.stringify(final))
+  const editProfile = async () => {
+    console.log("inside edit profile");
+    // console.log("inside final of edit profile=" + JSON.stringify(final));
     setApiLoader(true);
-    let webApirUrl=`https://www.hidetrade.eu/app/APIs/UpdateProfile/UpdateProfile.php`;
-    axios.post(webApirUrl, final).then((response)=>{
-        console.log('response in edit profile='+JSON.stringify(response.data))
+    let webApirUrl = `https://www.hidetrade.eu/app/APIs/UpdateProfile/UpdateProfile.php`;
+    axios
+      .post(webApirUrl, final)
+      .then((response) => {
+        // console.log(
+        //   "response in edit profile=" + JSON.stringify(response.data)
+        // );
         setApiLoader(false);
-        Alert.alert('','User Profile Updated Successfully',[{text:'Ok', style:'cancel',onPress:()=>
-        // props.navigation.navigate('User Profile')
-        props.navigation.dispatch(StackActions.replace('User Profile'))
-      }])
-      }).catch((err)=>console.log('error='+JSON.stringify(err)))
-  }
+        Alert.alert("", "User Profile Updated Successfully", [
+          {
+            text: "Ok",
+            style: "cancel",
+            onPress: () =>
+              // props.navigation.navigate('User Profile')
+              props.navigation.dispatch(StackActions.replace("User Profile")),
+          },
+        ]);
+      })
+      .catch((err) => console.log("error=" + JSON.stringify(err)));
+  };
 
   const renderSize = ({ item, index }) => {
     const { psize_id, product_size } = item;
@@ -114,7 +124,8 @@ const SizeInProfile = (props) => {
             resizeMode="contain"
             resizeMethod="scale"
             style={{ width: 80, height: 80 }}
-          /><Text style={{fontWeight:'bold', marginTop:10}}>Loading...</Text>
+          />
+          <Text style={{ fontWeight: "bold", marginTop: 10 }}>Loading...</Text>
         </SpinView>
       ) : (
         <View style={{ flex: 1 }}>
@@ -160,7 +171,9 @@ const SizeInProfile = (props) => {
               divide the sizes into these three macro categories. You will be
               able to enter all the exact size data at a later time.
             </Text>
-            <View style={{marginHorizontal:'10%', marginBottom:20}}><ButtonComp title={"Update"} onPress={editProfile} /></View>
+            <View style={{ marginHorizontal: "10%", marginBottom: 20 }}>
+              <ButtonComp title={"Update"} onPress={editProfile} />
+            </View>
           </View>
         </View>
       )}

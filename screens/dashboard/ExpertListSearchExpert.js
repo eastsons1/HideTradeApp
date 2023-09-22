@@ -7,7 +7,8 @@ import {
   FlatList,
   Image,
   TouchableOpacity,
-  useWindowDimensions,ActivityIndicator
+  useWindowDimensions,
+  ActivityIndicator,
 } from "react-native";
 import axios from "axios";
 // import * as Progress from "react-native-progress";
@@ -23,7 +24,6 @@ const ExpertListSearchExpert = (props) => {
   var selectedCountry = props.route.params.selectedCountry;
   var selectedCity = props.route.params.selectedCity;
   var selectedContinent = props.route.params.selectedContinent;
-
 
   // console.log('leather condition='+leather_conditions)
   // console.log('tanningLeather='+tanningLeatherType);
@@ -56,7 +56,11 @@ const ExpertListSearchExpert = (props) => {
   console.log("arr1=" + JSON.stringify(arr1));
   var arr2 = kindOfLeatherType.map((value) => ({ ["kind_of_leather"]: value }));
   console.log("kind of leather=" + JSON.stringify(arr2));
-  var arr3 = [{ country: selectedCountry }, { city: selectedCity }, {continent:selectedContinent},];
+  var arr3 = [
+    { country: selectedCountry },
+    { city: selectedCity },
+    { continent: selectedContinent },
+  ];
 
   var final = arr1.concat(arr2, arr3);
   console.log("final=" + JSON.stringify(final));
@@ -69,7 +73,7 @@ const ExpertListSearchExpert = (props) => {
     if (dataLoad == false) {
       setApiLoader(true);
       let webApirUrl = `https://www.hidetrade.eu/app/APIs/SearchExpertOrAgent/SearchExpertOrAgent.php`;
-      //console.log('inside useEffect array='+JSON.stringify(arr2));
+      console.log("inside useEffect array=" + JSON.stringify(arr2));
       axios.post(webApirUrl, final).then((res) => {
         setAgentData(res.data.Search_Expert_Details);
         console.log("response in expert list=" + JSON.stringify(res.data));
@@ -100,21 +104,27 @@ const ExpertListSearchExpert = (props) => {
         //     style={{ width: 100, height: 100, marginBottom:10 }}
         // /><ActivityIndicator size={"large"} color='red' />
         // </View>
-        <SpinView style={{alignItems:'center', justifyContent:'center', flex:1}}>
-           <Image
+        <SpinView
+          style={{ alignItems: "center", justifyContent: "center", flex: 1 }}
+        >
+          <Image
             source={require("../../assets/loader.jpg")}
             resizeMode="contain"
             resizeMethod="scale"
             style={{ width: 80, height: 80 }}
-          /><Text style={{fontWeight:'bold', marginTop:10}}>Loading...</Text>
+          />
+          <Text style={{ fontWeight: "bold", marginTop: 10 }}>Loading...</Text>
         </SpinView>
       ) : (
         <View style={{ marginHorizontal: 10, marginTop: 5 }}>
-          <Text allowFontScaling={false} style={styles.heading}>Experts</Text>
+          <Text allowFontScaling={false} style={styles.heading}>
+            Experts
+          </Text>
           {agentData != undefined ? (
             <FlatList
               data={agentData}
-              keyExtractor={(item) => item.user_id} style={{marginBottom:40}}
+              keyExtractor={(item) => item.user_id}
+              style={{ marginBottom: 40 }}
               renderItem={({ item }) => (
                 <View>
                   <TouchableOpacity
@@ -132,7 +142,12 @@ const ExpertListSearchExpert = (props) => {
                         />
                       ) : (
                         <Image
-                          style={{ width: 100, height: 100, marginTop:10, borderRadius:10 }}
+                          style={{
+                            width: 100,
+                            height: 100,
+                            marginTop: 10,
+                            borderRadius: 10,
+                          }}
                           source={{
                             uri:
                               "https://www.hidetrade.eu/app/UPLOAD_file/" +
@@ -140,13 +155,16 @@ const ExpertListSearchExpert = (props) => {
                           }}
                         />
                       )}
-                      <View style={{ justifyContent: "center", marginLeft:10 }}>
+                      <View
+                        style={{ justifyContent: "center", marginLeft: 10 }}
+                      >
                         <Text
                           style={{
                             fontWeight: "bold",
                             textTransform: "capitalize",
                             fontSize: 16,
-                          }}allowFontScaling={false}
+                          }}
+                          allowFontScaling={false}
                         >
                           {item.first_name} {item.last_name}
                         </Text>
@@ -155,7 +173,13 @@ const ExpertListSearchExpert = (props) => {
                       </View>
                     </View>
                   </TouchableOpacity>
-                  <View style={{borderWidth:0.5,marginTop:10,backgroundColor:"grey"}}></View>
+                  <View
+                    style={{
+                      borderWidth: 0.5,
+                      marginTop: 10,
+                      backgroundColor: "grey",
+                    }}
+                  ></View>
 
                   {/* <Progress.Bar
                     color="grey"
@@ -171,8 +195,11 @@ const ExpertListSearchExpert = (props) => {
                 style={{
                   textAlign: "center",
                   height: "100%",
-                  paddingTop: 300,fontWeight:'bold', fontSize:20
-                }}allowFontScaling={false}
+                  paddingTop: 300,
+                  fontWeight: "bold",
+                  fontSize: 20,
+                }}
+                allowFontScaling={false}
               >
                 No Search Result
               </Text>

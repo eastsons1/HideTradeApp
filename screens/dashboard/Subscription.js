@@ -35,21 +35,22 @@ export default function Subscription(props) {
       subId: subId,
     });
 
-    console.log(
-      subDetails,
-      "subDetailssubDetailssubDetailssubDetailssubDetails"
-    );
+    // console.log(
+    //   subDetails,
+    //   "subDetailssubDetailssubDetailssubDetailssubDetails"
+    // );
     setToggle(!subDetails.data.cancel);
 
     const payDetails = await axios.post(
       apiUrl + "/get-payment-method-details",
       { payId: subDetails.data.payId }
     );
-    console.log(payDetails.data);
+    console.log(payDetails.data, "SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS");
+    console.log(payDetails.data.data.card, "PPPPPPPPPPPPPPPPPPPPPPPPPPPPPp");
     setcusId(payDetails.data.data.customer);
-    console.log(cusId);
+    // console.log(cusId);
     setcard(payDetails.data.data.card.brand);
-    setlast4(" .... " + payDetails.data.data.card.last4);
+    setlast4("xxxx xxxx xxxx " + payDetails.data.data.card.last4);
     setholdername(payDetails.data.data.billing_details.name);
 
     setloading(false);
@@ -148,6 +149,7 @@ export default function Subscription(props) {
               flexDirection: "row",
               marginTop: 50,
               marginHorizontal: 10,
+              width: "100%",
             }}
           >
             <Text
@@ -155,13 +157,21 @@ export default function Subscription(props) {
                 color: "black",
                 fontWeight: "700",
                 fontSize: 16,
-                width: "65%",
+                width: "60%",
               }}
             >
               Current Plan :{" "}
             </Text>
-            <Text style={{ color: "gray", fontWeight: "600", fontSize: 16 }}>
-              $ 15.00/Month{" "}
+            <Text
+              style={{
+                color: "gray",
+                fontWeight: "600",
+                fontSize: 16,
+                textAlign: "right",
+                width: "30%",
+              }}
+            >
+              $ 0.99/Month
             </Text>
           </View>
 
@@ -170,6 +180,7 @@ export default function Subscription(props) {
               flexDirection: "row",
               marginTop: 10,
               marginHorizontal: 10,
+              width: "100%",
             }}
           >
             <Text
@@ -177,12 +188,20 @@ export default function Subscription(props) {
                 color: "black",
                 fontWeight: "700",
                 fontSize: 16,
-                width: "65%",
+                width: "60%",
               }}
             >
-              Current Plan Ends :{" "}
+              Plan Start on :{" "}
             </Text>
-            <Text style={{ color: "gray", fontWeight: "600", fontSize: 16 }}>
+            <Text
+              style={{
+                color: "gray",
+                fontWeight: "600",
+                fontSize: 16,
+                textAlign: "right",
+                width: "30%",
+              }}
+            >
               {exp}
             </Text>
           </View>
@@ -192,6 +211,7 @@ export default function Subscription(props) {
               flexDirection: "row",
               marginTop: 10,
               marginHorizontal: 10,
+              width: "100%",
             }}
           >
             <Text
@@ -199,12 +219,20 @@ export default function Subscription(props) {
                 color: "black",
                 fontWeight: "700",
                 fontSize: 16,
-                width: "65%",
+                width: "60%",
               }}
             >
               Card :{" "}
             </Text>
-            <Text style={{ color: "gray", fontWeight: "600", fontSize: 16 }}>
+            <Text
+              style={{
+                color: "gray",
+                fontWeight: "600",
+                fontSize: 16,
+                textAlign: "right",
+                width: "30%",
+              }}
+            >
               {card}
             </Text>
           </View>
@@ -214,6 +242,7 @@ export default function Subscription(props) {
               flexDirection: "row",
               marginTop: 10,
               marginHorizontal: 10,
+              width: "100%",
             }}
           >
             <Text
@@ -221,7 +250,7 @@ export default function Subscription(props) {
                 color: "black",
                 fontWeight: "700",
                 fontSize: 16,
-                width: "65%",
+                width: "50%",
               }}
             >
               Last 4 :{" "}

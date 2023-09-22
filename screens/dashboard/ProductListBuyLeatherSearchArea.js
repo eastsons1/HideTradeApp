@@ -38,7 +38,9 @@ const ProductListBuyLeatherSearchArea = (props) => {
         { continents: selectedContinent },
       ];
 
-      console.log("object=" + JSON.stringify(object));
+      console.log(
+        "object=IIIIIIIIIIIIIIIIIIIIIIIIIII" + JSON.stringify(object)
+      );
       axios
         .post(webApirUrl, object)
         .then((res) => {
@@ -59,7 +61,7 @@ const ProductListBuyLeatherSearchArea = (props) => {
     }
   }, []);
 
-  // console.log("product list=" + JSON.stringify(productList));
+  console.log("product list=" + JSON.stringify(productList));
 
   return (
     <View style={{ flex: 1, backgroundColor: "white" }}>

@@ -2,7 +2,7 @@
   "expo": {
     "name": "hidetrade",
     "slug": "hidetrade",
-    "version": "16.0.3",
+    "version": "16.0.4",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
@@ -18,7 +18,7 @@
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "com.HideTrade.HideTrade",
-      "buildNumber": "1.0.35"
+      "buildNumber": "1.0.36"
     },
     "android": {
       "adaptiveIcon": {

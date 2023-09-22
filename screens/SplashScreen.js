@@ -14,13 +14,13 @@ import axios from "axios";
 import { useRevenueCat } from "../customHook/useRevenueCat";
 
 const SplashScreen = (props) => {
-  // useEffect(()=>{
-  //   console.log('inside splash screen use Effect')
-  //   setTimeout(()=>{
-  //     console.log('inside set time out use effect')
-  //     props.navigation.navigate('Login')
-  //   },2000)
-  // })
+  // useEffect(() => {
+  //   console.log("inside splash screen use Effect");
+  //   setTimeout(() => {
+  //     console.log("inside set time out use effect");
+  //     props.navigation.navigate("Login");
+  //   }, 2000);
+  // });
 
   useEffect(() => {
     checkUser();
