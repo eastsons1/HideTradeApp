@@ -5,7 +5,8 @@ import Purchases, {
 } from 'react-native-purchases';
 
 const APIKeys = {
-    apple : "appl_qYexIugUPTwbdCRyOJSFdkVMLag",
+   // apple : "appl_qYexIugUPTwbdCRyOJSFdkVMLag", old account
+    apple : "appl_unltkNFpBSKVRhLBjFcvWEJyKay", 
     google : "google_purchase_key"
 };
 
