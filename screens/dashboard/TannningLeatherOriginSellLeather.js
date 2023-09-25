@@ -7,7 +7,9 @@ import {
   FlatList,
   StyleSheet,
   Image,
-  ActivityIndicator, KeyboardAvoidingView, Platform
+  ActivityIndicator,
+  KeyboardAvoidingView,
+  Platform,
 } from "react-native";
 import axios from "axios";
 import { Button, Menu, Divider, Provider, TextInput } from "react-native-paper";
@@ -15,14 +17,11 @@ import Checkbox from "expo-checkbox";
 import { Dropdown } from "react-native-element-dropdown";
 import Constants from "expo-constants";
 
-
 import Colors from "../../constants/Colors";
 import RegisterButton from "../../components/RegisterButton";
 import SpinView from "../../components/Spin";
 
-
 const data2 = [
-
   { label: "I-A-TR1", value: "1" },
   { label: "II-B-TR2", value: "2" },
   { label: "III-C-TR3", value: "3" },
@@ -48,9 +47,6 @@ const TanningLeatherOriginSellLeather = (props) => {
   const [continentDropDown, setContinentDropDown] = useState(undefined);
   const [Specification, setSpecification] = useState(undefined);
 
-
-
-
   const populateCountryOrOrigin = (continent) => {
     // setApiLoader(true);
     let webApirUrl = `https://www.hidetrade.eu/app/APIs/ViewAllCountryListBYContinent/ViewAllCountryListBYContinent.php?continent_name=${continent.name}`;
@@ -59,9 +55,8 @@ const TanningLeatherOriginSellLeather = (props) => {
       setCountryDropDown(res.data.Country_List);
       // setApiLoader(false);
       // setDataloaded(true);
-    })
-  }
-
+    });
+  };
 
   const [value, setValue] = useState(null);
   const [label, setLabel] = useState(null);
@@ -71,37 +66,33 @@ const TanningLeatherOriginSellLeather = (props) => {
 
   //   country ends
 
-
-
   // continent starts//
-  useEffect( () => {
+  useEffect(() => {
     if (dataLoad == false) {
-      setApiLoader(true)
-      let webApirUrl = 'https://www.hidetrade.eu/app/APIs/ViewAllContinents/ViewAllContinents.php'
+      setApiLoader(true);
+      let webApirUrl =
+        "https://www.hidetrade.eu/app/APIs/ViewAllContinents/ViewAllContinents.php";
       axios.get(webApirUrl).then((res) => {
-        console.log("🚀 ~ file: TannningLeatherOriginSellLeather.js ~ line 88 ~ axios.get ~ res", res.data)
+        console.log(
+          "🚀 ~ file: TannningLeatherOriginSellLeather.js ~ line 88 ~ axios.get ~ res",
+          res.data
+        );
         setContinentDropDown(res.data.Continents_List);
-        setApiLoader(false)
-        setDataloaded(true)
-      })
+        setApiLoader(false);
+        setDataloaded(true);
+      });
     }
-  })
-
-
+  });
 
   const [valueContinent, setValueContinent] = useState(null);
   const [labelContinent, setLabelContinent] = useState(null);
   const [isFocusContinent, setIsFocusContinent] = useState(false);
-
 
   //contenent end//
 
   const [valueSpecification, setValueSpecification] = useState(null);
   const [labelSpecification, setlabelSpecification] = useState(null);
   const [isFocusSpecification, setIsFocusSpecification] = useState(false);
-
-
-
 
   // weight  starts
   const data = [
@@ -125,9 +116,9 @@ const TanningLeatherOriginSellLeather = (props) => {
   const [labelWeight, setLabelWeight] = useState(null);
   const [isFocusWeight, setIsFocusWeight] = useState(false);
 
-  const [minWeight, setMinWeight] = useState('');
-  const [maxWeight, setMaxWeight] = useState('');
-  const [avgWeight, setAvgWeight] = useState('');
+  const [minWeight, setMinWeight] = useState("");
+  const [maxWeight, setMaxWeight] = useState("");
+  const [avgWeight, setAvgWeight] = useState("");
 
   // const renderWeight = ({ item, index }) => {
   //   const { id, weight } = item;
@@ -186,9 +177,9 @@ const TanningLeatherOriginSellLeather = (props) => {
   const [labelSurface, setLabelSurface] = useState(null);
   const [isFocusSurface, setIsFocusSurface] = useState(false);
 
-  const [minSurface, setMinSurface] = useState('');
-  const [maxSurface, setMaxSurface] = useState('');
-  const [avgSurface, setAvgSurface] = useState('');
+  const [minSurface, setMinSurface] = useState("");
+  const [maxSurface, setMaxSurface] = useState("");
+  const [avgSurface, setAvgSurface] = useState("");
 
   // const renderSurface = ({ item, index }) => {
   //   const { id, surface } = item;
@@ -238,7 +229,7 @@ const TanningLeatherOriginSellLeather = (props) => {
     axios.get(webApirUrl).then((res) => {
       console.log(
         "table roll down=" +
-        JSON.stringify(res.data.selection_measurement_units)
+          JSON.stringify(res.data.selection_measurement_units)
       );
       setTableRollDropDown(res.data.selection_measurement_units);
     });
@@ -253,10 +244,10 @@ const TanningLeatherOriginSellLeather = (props) => {
     axios.get(webApirUrl).then((res) => {
       console.log(
         "response in price=" +
-        JSON.stringify(res.data.selection_price_measurement_units)
+          JSON.stringify(res.data.selection_price_measurement_units)
       );
       setPriceDropDown(res.data.selection_price_measurement_units);
-      console.log("hahahah" + res.data.selection_price_measurement_units)
+      console.log("hahahah" + res.data.selection_price_measurement_units);
       setPriceDropDownSelection(res.data.selection_price_measurement_units);
       setPriceDropDownSelection2(res.data.selection_price_measurement_units);
       setPriceDropDownSelection3(res.data.selection_price_measurement_units);
@@ -271,11 +262,9 @@ const TanningLeatherOriginSellLeather = (props) => {
   const [labelTablePrice, setLabelTablePrice] = useState(null);
   const [isFocusTablePrice, setIsFocusTablePrice] = useState(false);
 
-  const [quantityTableRoll, setQuantityTableRoll] = useState('');
-  const [priceTableRoll, setPriceTableRoll] = useState('');
-  const [SpecificationsTableRoll, setSpecificationsTableRoll] = useState('');
-
-
+  const [quantityTableRoll, setQuantityTableRoll] = useState("");
+  const [priceTableRoll, setPriceTableRoll] = useState("");
+  const [SpecificationsTableRoll, setSpecificationsTableRoll] = useState("");
 
   //Table roll leather ends
 
@@ -285,18 +274,18 @@ const TanningLeatherOriginSellLeather = (props) => {
 
   const [selectionUnitDropDown, setSelectionUnitDropDown] = useState(undefined);
 
-  const [priceDropDownSelection, setPriceDropDownSelection] =  useState(undefined);
-   
-  const [quantitySelection, setQuantitySelection] = useState('');
-  const [priceSelection, setPriceSelection] = useState('')
-  
+  const [priceDropDownSelection, setPriceDropDownSelection] =
+    useState(undefined);
+
+  const [quantitySelection, setQuantitySelection] = useState("");
+  const [priceSelection, setPriceSelection] = useState("");
 
   useEffect(() => {
     let webApirUrl = `https://www.hidetrade.eu/app/APIs/ViewAllSelectionMeasurementUnits/ViewAllSelectionMeasurementUnits.php`;
     axios.get(webApirUrl).then((res) => {
       console.log(
         "selection of dropdown=" +
-        JSON.stringify(res.data.selection_measurement_units)
+          JSON.stringify(res.data.selection_measurement_units)
       );
       setSelectionUnitDropDown(res.data.selection_measurement_units);
       setSelectionUnitDropDown2(res.data.selection_measurement_units);
@@ -326,10 +315,10 @@ const TanningLeatherOriginSellLeather = (props) => {
       setSelectionDropDown4(res.data.Output);
       setSelectionDropDown5(res.data.Output);
       setSelectionDropDown6(res.data.Output);
-      setSelectionDropDown7(res.data.Output)
+      setSelectionDropDown7(res.data.Output);
     });
   }, []);
-  console.log('selection drop down=' + selectionDropDown)
+  console.log("selection drop down=" + selectionDropDown);
   const [valueSelectionPrice, setValueSelectionPrice] = useState(null);
   const [labelSelectionPrice, setLabelSelectionPrice] = useState(null);
   const [isFocusSelectionPrice, setIsFocusSelectionPrice] = useState(false);
@@ -357,8 +346,8 @@ const TanningLeatherOriginSellLeather = (props) => {
   const [labelSelectionPrice2, setLabelSelectionPrice2] = useState(null);
   const [isFocusSelectionPrice2, setIsFocusSelectionPrice2] = useState(false);
 
-  const [quantitySelection2, setQuantitySelection2] = useState('');
-  const [priceSelection2, setPriceSelection2] = useState('');
+  const [quantitySelection2, setQuantitySelection2] = useState("");
+  const [priceSelection2, setPriceSelection2] = useState("");
 
   // selection 2 ends
 
@@ -384,8 +373,8 @@ const TanningLeatherOriginSellLeather = (props) => {
   const [labelSelectionPrice3, setLabelSelectionPrice3] = useState(null);
   const [isFocusSelectionPrice3, setIsFocusSelectionPrice3] = useState(false);
 
-  const [quantitySelection3, setQuantitySelection3] = useState('');
-  const [priceSelection3, setPriceSelection3] = useState('');
+  const [quantitySelection3, setQuantitySelection3] = useState("");
+  const [priceSelection3, setPriceSelection3] = useState("");
 
   // selection 3 ends
 
@@ -411,8 +400,8 @@ const TanningLeatherOriginSellLeather = (props) => {
   const [labelSelectionPrice4, setLabelSelectionPrice4] = useState(null);
   const [isFocusSelectionPrice4, setIsFocusSelectionPrice4] = useState(false);
 
-  const [quantitySelection4, setQuantitySelection4] = useState('');
-  const [priceSelection4, setPriceSelection4] = useState('');
+  const [quantitySelection4, setQuantitySelection4] = useState("");
+  const [priceSelection4, setPriceSelection4] = useState("");
 
   // selection 4 ends
 
@@ -438,8 +427,8 @@ const TanningLeatherOriginSellLeather = (props) => {
   const [labelSelectionPrice5, setLabelSelectionPrice5] = useState(null);
   const [isFocusSelectionPrice5, setIsFocusSelectionPrice5] = useState(false);
 
-  const [quantitySelection5, setQuantitySelection5] = useState('');
-  const [priceSelection5, setPriceSelection5] = useState('');
+  const [quantitySelection5, setQuantitySelection5] = useState("");
+  const [priceSelection5, setPriceSelection5] = useState("");
 
   // selection 5 ends
 
@@ -464,8 +453,8 @@ const TanningLeatherOriginSellLeather = (props) => {
   const [labelSelectionPrice6, setLabelSelectionPrice6] = useState(null);
   const [isFocusSelectionPrice6, setIsFocusSelectionPrice6] = useState(false);
 
-  const [quantitySelection6, setQuantitySelection6] = useState('');
-  const [priceSelection6, setPriceSelection6] = useState('');
+  const [quantitySelection6, setQuantitySelection6] = useState("");
+  const [priceSelection6, setPriceSelection6] = useState("");
 
   //selection 6 ends
 
@@ -491,8 +480,8 @@ const TanningLeatherOriginSellLeather = (props) => {
   const [labelSelectionPrice7, setLabelSelectionPrice7] = useState(null);
   const [isFocusSelectionPrice7, setIsFocusSelectionPrice7] = useState(false);
 
-  const [quantitySelection7, setQuantitySelection7] = useState('');
-  const [priceSelection7, setPriceSelection7] = useState('');
+  const [quantitySelection7, setQuantitySelection7] = useState("");
+  const [priceSelection7, setPriceSelection7] = useState("");
 
   //selection 7 ends
 
@@ -506,8 +495,7 @@ const TanningLeatherOriginSellLeather = (props) => {
   //   }
   // }
 
-  console.log('weight from origin=' + minWeight)
-
+  console.log("weight from origin=" + minWeight);
 
   //  const addCommas = num => num.toString().replace(/\B(?=(\d{2}))/g, ",");
   //  const addCommas = num => num.toString().replace(/.(?=(..)*...$)/g, '$&,');
@@ -515,85 +503,88 @@ const TanningLeatherOriginSellLeather = (props) => {
   // var validNumber = new RegExp(/^[1-9]\d(?:,[1-9]\d){0,2}$/)
 
   const handleChangeMinWeight = (event) => {
-    let x, i
+    let x, i;
     if (minWeight.length == 2) {
       x = minWeight + ",";
       for (i = 2; i <= minWeight.length; i++) {
-        x = x + event[i]
+        x = x + event[i];
       }
     } else {
-      x = event
+      x = event;
     }
-    setMinWeight(x)
+    setMinWeight(x);
   };
 
   const handleChangeMaxWeight = (event) => {
-    let x, i
+    let x, i;
     if (maxWeight.length == 2) {
       x = maxWeight + ",";
       for (i = 2; i <= maxWeight.length; i++) {
-        x = x + event[i]
+        x = x + event[i];
       }
     } else {
-      x = event
+      x = event;
     }
-    setMaxWeight(x)
+    setMaxWeight(x);
   };
 
   const handleChangeAvgWeight = (event) => {
-    let x, i
+    let x, i;
     if (avgWeight.length == 2) {
       x = avgWeight + ",";
       for (i = 2; i <= avgWeight.length; i++) {
-        x = x + event[i]
+        x = x + event[i];
       }
     } else {
-      x = event
+      x = event;
     }
-    setAvgWeight(x)
+    setAvgWeight(x);
   };
 
   const handleChangeMaxSurface = (event) => {
-    let x, i
+    let x, i;
     if (maxSurface.length == 2) {
       x = maxSurface + ",";
       for (i = 2; i <= maxSurface.length; i++) {
-        x = x + event[i]
+        x = x + event[i];
       }
     } else {
-      x = event
+      x = event;
     }
-    setMaxSurface(x)
+    setMaxSurface(x);
   };
 
   const handleChangeMinSurface = (event) => {
-    let x, i
+    let x, i;
     if (minSurface.length == 2) {
       x = minSurface + ",";
       for (i = 2; i <= minSurface.length; i++) {
-        x = x + event[i]
+        x = x + event[i];
       }
     } else {
-      x = event
+      x = event;
     }
-    setMinSurface(x)
+    setMinSurface(x);
   };
 
   const handleChangeAvgSurface = (event) => {
-    let x, i
+    let x, i;
     if (avgSurface.length == 2) {
       x = avgSurface + ",";
       for (i = 2; i <= avgSurface.length; i++) {
-        x = x + event[i]
+        x = x + event[i];
       }
     } else {
-      x = event
+      x = event;
     }
-    setAvgSurface(x)
+    setAvgSurface(x);
   };
 
   return (
-    <KeyboardAvoidingView style={{ backgroundColor: "white", flex: 1 }} behavior={Platform.OS === "ios" && "padding"}>
+    <KeyboardAvoidingView
+      style={{ backgroundColor: "white", flex: 1 }}
+      behavior={Platform.OS === "ios" && "padding"}
+    >
       {/* // <Provider> */}
 
       <View style={{ flex: 1 }}>
@@ -616,13 +607,18 @@ const TanningLeatherOriginSellLeather = (props) => {
           //     style={{ width: 100, height: 100, marginBottom:10 }}
           // /><ActivityIndicator size={"large"} color='red' />
           // </View>
-          <SpinView style={{ alignItems: 'center', justifyContent: 'center', flex: 1 }}>
+          <SpinView
+            style={{ alignItems: "center", justifyContent: "center", flex: 1 }}
+          >
             <Image
               source={require("../../assets/loader.jpg")}
               resizeMode="contain"
               resizeMethod="scale"
               style={{ width: 80, height: 80 }}
-            /><Text style={{ fontWeight: 'bold', marginTop: 10 }}>Loading...</Text>
+            />
+            <Text style={{ fontWeight: "bold", marginTop: 10 }}>
+              Loading...
+            </Text>
           </SpinView>
         ) : (
           <View style={{ marginHorizontal: 10, marginTop: 10, flex: 1 }}>
@@ -631,10 +627,12 @@ const TanningLeatherOriginSellLeather = (props) => {
                 Origin, Qualities and prices
               </Text>
 
-
               <View>
                 <Dropdown
-                  style={[styles.dropdown1, isFocusContinent && { borderColor: "black" }]}
+                  style={[
+                    styles.dropdown1,
+                    isFocusContinent && { borderColor: "black" },
+                  ]}
                   placeholderStyle={{ fontSize: 16 }}
                   selectedTextStyle={styles.selectedTextStyle1}
                   inputSearchStyle={styles.inputSearchStyle1}
@@ -651,15 +649,17 @@ const TanningLeatherOriginSellLeather = (props) => {
                   onFocus={() => setIsFocusContinent(true)}
                   onBlur={() => setIsFocusContinent(false)}
                   onChange={(item) => {
-                    console.log("🚀 ~ file: TannningLeatherOriginSellLeather.js ~ line 655 ~ //onChangeText ~ item", item)
+                    console.log(
+                      "🚀 ~ file: TannningLeatherOriginSellLeather.js ~ line 655 ~ //onChangeText ~ item",
+                      item
+                    );
                     setValueContinent(item.code_1);
                     setLabelContinent(item.name);
                     setIsFocusContinent(false);
-                    populateCountryOrOrigin(item)
+                    populateCountryOrOrigin(item);
                   }}
                 />
               </View>
-
 
               <View>
                 {/* Country starts */}
@@ -685,29 +685,39 @@ const TanningLeatherOriginSellLeather = (props) => {
                     setLabel(item.name);
                     setIsFocus(false);
                   }}
-                />{console.log('country=' + value)}
+                />
+                {console.log("country=" + value)}
 
                 {/* Country Ends */}
               </View>
 
-
-
               {/* weight category starts */}
               <View style={{ marginVertical: 20 }}>
-                <Text allowFontScaling={false} style={styles.headingIndividual}>Weight Category</Text>
-                <View style={{ flexDirection: "row", justifyContent: 'space-evenly' }}>
+                <Text allowFontScaling={false} style={styles.headingIndividual}>
+                  Weight Category
+                </Text>
+                <View
+                  style={{
+                    flexDirection: "row",
+                    justifyContent: "space-evenly",
+                  }}
+                >
                   <TextInput
                     mode="outlined"
                     label={"Min"}
-                    style={{ ...styles.tableRollQuantityInput, width: '23%' }}
+                    style={{ ...styles.tableRollQuantityInput, width: "23%" }}
                     activeOutlineColor={Colors.buttonBackground}
-                    keyboardType={Platform.OS == 'ios' ? "numbers-and-punctuation" : "decimal-pad"}
+                    keyboardType={
+                      Platform.OS == "ios"
+                        ? "numbers-and-punctuation"
+                        : "decimal-pad"
+                    }
                     //  value={minWeight==""?minWeight: parseFloat(minWeight).toFixed(2)}
                     //value={minWeight.toString()}
                     //value={minWeight.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
                     //value={minWeight==null || minWeight==''?'':parseInt(minWeight.  .match(/(\d{2})(\d{2})(\d{3})/).slice(1).join(',')) }
                     // value={minWeight==""?minWeight: parseFloat(minWeight)}
-                    // onChangeText={(value)=>setMinWeight(value.length>2?(value.match(/(\d{2})(\d{2})(\d{3})/).slice(1).join(',')):value)} 
+                    // onChangeText={(value)=>setMinWeight(value.length>2?(value.match(/(\d{2})(\d{2})(\d{3})/).slice(1).join(',')):value)}
                     //value={minWeight.toLocaleString('en-IN', {maximumFractionDigits:0})}
                     // value={new Intl.NumberFormat("en-IN").format(minWeight)}
                     value={minWeight}
@@ -715,26 +725,34 @@ const TanningLeatherOriginSellLeather = (props) => {
                     onChangeText={handleChangeMinWeight}
                     allowFontScaling={false}
                     maxFontSizeMultiplier={1}
-
                   />
                   <TextInput
                     mode="outlined"
                     label={"Max"}
-                    style={{ ...styles.tableRollQuantityInput, width: '23%' }}
+                    style={{ ...styles.tableRollQuantityInput, width: "23%" }}
                     activeOutlineColor={Colors.buttonBackground}
-                    keyboardType={Platform.OS == 'ios' ? "numbers-and-punctuation" : "decimal-pad"}
+                    keyboardType={
+                      Platform.OS == "ios"
+                        ? "numbers-and-punctuation"
+                        : "decimal-pad"
+                    }
                     // value={maxWeight==""?maxWeight: parseFloat(maxWeight).toFixed(2)}
                     // onChangeText={(value)=>setMaxWeight(value)}allowFontScaling={false}
                     value={maxWeight}
                     onChangeText={handleChangeMaxWeight}
-                    allowFontScaling={false} maxFontSizeMultiplier={1}
+                    allowFontScaling={false}
+                    maxFontSizeMultiplier={1}
                   />
                   <TextInput
                     mode="outlined"
                     label={"Average"}
-                    style={{ ...styles.tableRollQuantityInput, width: '23%' }}
+                    style={{ ...styles.tableRollQuantityInput, width: "23%" }}
                     activeOutlineColor={Colors.buttonBackground}
-                    keyboardType={Platform.OS == 'ios' ? "numbers-and-punctuation" : "decimal-pad"}
+                    keyboardType={
+                      Platform.OS == "ios"
+                        ? "numbers-and-punctuation"
+                        : "decimal-pad"
+                    }
                     // value={avgWeight==""?avgWeight: parseFloat(avgWeight).toFixed(2)}
                     // onChangeText={(value)=>setAvgWeight(value)}allowFontScaling={false}
                     value={avgWeight}
@@ -781,14 +799,25 @@ const TanningLeatherOriginSellLeather = (props) => {
 
               {/* Surface category starts */}
               <View style={{ marginVertical: 20 }}>
-                <Text allowFontScaling={false} style={styles.headingIndividual}>Surface Category</Text>
-                <View style={{ flexDirection: "row", justifyContent: 'space-evenly' }}>
+                <Text allowFontScaling={false} style={styles.headingIndividual}>
+                  Surface Category
+                </Text>
+                <View
+                  style={{
+                    flexDirection: "row",
+                    justifyContent: "space-evenly",
+                  }}
+                >
                   <TextInput
                     mode="outlined"
                     label={"Min"}
-                    style={{ ...styles.tableRollQuantityInput, width: '23%' }}
+                    style={{ ...styles.tableRollQuantityInput, width: "23%" }}
                     activeOutlineColor={Colors.buttonBackground}
-                    keyboardType={Platform.OS == 'ios' ? "numbers-and-punctuation" : "decimal-pad"}
+                    keyboardType={
+                      Platform.OS == "ios"
+                        ? "numbers-and-punctuation"
+                        : "decimal-pad"
+                    }
                     allowFontScaling={false}
                     // value={minSurface==""?minSurface: parseFloat(minSurface).toFixed(2)}
                     // onChangeText={(value)=>setMinSurface(value)}allowFontScaling={false}
@@ -799,9 +828,13 @@ const TanningLeatherOriginSellLeather = (props) => {
                   <TextInput
                     mode="outlined"
                     label={"Max"}
-                    style={{ ...styles.tableRollQuantityInput, width: '23%' }}
+                    style={{ ...styles.tableRollQuantityInput, width: "23%" }}
                     activeOutlineColor={Colors.buttonBackground}
-                    keyboardType={Platform.OS == 'ios' ? "numbers-and-punctuation" : "decimal-pad"}
+                    keyboardType={
+                      Platform.OS == "ios"
+                        ? "numbers-and-punctuation"
+                        : "decimal-pad"
+                    }
                     allowFontScaling={false}
                     // value={maxSurface==""?maxSurface: parseFloat(maxSurface).toFixed(2)}
                     // onChangeText={(value)=>setMaxSurface(value)}allowFontScaling={false}
@@ -812,9 +845,13 @@ const TanningLeatherOriginSellLeather = (props) => {
                   <TextInput
                     mode="outlined"
                     label={"Average"}
-                    style={{ ...styles.tableRollQuantityInput, width: '23%' }}
+                    style={{ ...styles.tableRollQuantityInput, width: "23%" }}
                     activeOutlineColor={Colors.buttonBackground}
-                    keyboardType={Platform.OS == 'ios' ? "numbers-and-punctuation" : "decimal-pad"}
+                    keyboardType={
+                      Platform.OS == "ios"
+                        ? "numbers-and-punctuation"
+                        : "decimal-pad"
+                    }
                     allowFontScaling={false}
                     // value={avgSurface==""?avgSurface: parseFloat(avgSurface).toFixed(2)}
                     // onChangeText={(value)=>setAvgSurface(value)}allowFontScaling={false}
@@ -866,34 +903,53 @@ const TanningLeatherOriginSellLeather = (props) => {
                 </Text>
                 <View>
                   <View style={styles.tableRollView}>
-                    <Text allowFontScaling={false} style={{ color: Colors.text, fontWeight: "500" }}>
+                    <Text
+                      allowFontScaling={false}
+                      style={{ color: Colors.text, fontWeight: "500" }}
+                    >
                       Table Roll Leather
                     </Text>
                     <Checkbox
-                      style={{ marginLeft: 10,}}
+                      style={{ marginLeft: 10 }}
                       disabled={false}
                       value={toggleCheckBox}
-                      onValueChange={(newValue) => { setToggleCheckBox(newValue); setToggleCheckBoxSelected(!newValue) }}
+                      onValueChange={(newValue) => {
+                        setToggleCheckBox(newValue);
+                        setToggleCheckBoxSelected(!newValue);
+                      }}
                     />
                   </View>
 
                   <View style={styles.tableRollQuantity}>
-                    <Text allowFontScaling={false} style={{ alignSelf: "center", marginRight: 20, fontWeight: 'bold' }}>
+                    <Text
+                      allowFontScaling={false}
+                      style={{
+                        alignSelf: "center",
+                        marginRight: 20,
+                        fontWeight: "bold",
+                      }}
+                    >
                       Quantity
                     </Text>
                     <TextInput
                       mode="outlined"
                       //label={"Quantity"}
-                      style={{ ...styles.tableRollQuantityInput, width: '23%' }}
+                      style={{ ...styles.tableRollQuantityInput, width: "23%" }}
                       activeOutlineColor={Colors.buttonBackground}
-                      keyboardType={Platform.OS == 'ios' ? "numbers-and-punctuation" : "decimal-pad"}
+                      keyboardType={
+                        Platform.OS == "ios"
+                          ? "numbers-and-punctuation"
+                          : "decimal-pad"
+                      }
                       value={quantityTableRoll}
-                      onChangeText={(value) => setQuantityTableRoll(value)} allowFontScaling={false}
+                      onChangeText={(value) => setQuantityTableRoll(value)}
+                      allowFontScaling={false}
                       maxFontSizeMultiplier={1}
                     />
                     <Dropdown
                       style={[
-                        styles.dropdownWeight, { width: 90 },
+                        styles.dropdownWeight,
+                        { width: 90 },
                         isFocusTableRoll && { borderColor: "black" },
                       ]}
                       placeholderStyle={{ fontSize: 16 }}
@@ -918,22 +974,36 @@ const TanningLeatherOriginSellLeather = (props) => {
                   </View>
 
                   <View style={styles.tableRollQuantity}>
-                    <Text allowFontScaling={false} style={{ alignSelf: "center", marginRight: 20, fontWeight: 'bold' }}>
+                    <Text
+                      allowFontScaling={false}
+                      style={{
+                        alignSelf: "center",
+                        marginRight: 20,
+                        fontWeight: "bold",
+                      }}
+                    >
                       {"       "}
                       Price
                     </Text>
                     <TextInput
                       mode="outlined"
                       //label={"Price"}
-                      style={{ ...styles.tableRollQuantityInput, width: '23%' }}
+                      style={{ ...styles.tableRollQuantityInput, width: "23%" }}
                       activeOutlineColor={Colors.buttonBackground}
-                      keyboardType={Platform.OS == 'ios' ? "numbers-and-punctuation" : "decimal-pad"}
+                      keyboardType={
+                        Platform.OS == "ios"
+                          ? "numbers-and-punctuation"
+                          : "decimal-pad"
+                      }
                       value={priceTableRoll}
-                      onChangeText={(value) => setPriceTableRoll(value)} allowFontScaling={false} maxFontSizeMultiplier={1}
+                      onChangeText={(value) => setPriceTableRoll(value)}
+                      allowFontScaling={false}
+                      maxFontSizeMultiplier={1}
                     />
                     <Dropdown
                       style={[
-                        styles.dropdownWeight, { width: 90 },
+                        styles.dropdownWeight,
+                        { width: 90 },
                         isFocusTablePrice && { borderColor: "black" },
                       ]}
                       placeholderStyle={{ fontSize: 16 }}
@@ -957,31 +1027,51 @@ const TanningLeatherOriginSellLeather = (props) => {
                     />
                   </View>
 
-
-                  <View style={{ flexDirection: 'row', height: 100, width: "60%", alignSelf: 'center', marginTop: 20, }}>
-                    <View style={{ width: "50%", height:100}}>
-                      <Text style={{ fontSize: 15, marginTop: 20, fontWeight: "bold" }}> Specification</Text>
-
+                  <View
+                    style={{
+                      flexDirection: "row",
+                      height: 100,
+                      width: "60%",
+                      alignSelf: "center",
+                      marginTop: 20,
+                    }}
+                  >
+                    <View style={{ width: "50%", height: 100 }}>
+                      <Text
+                        style={{
+                          fontSize: 15,
+                          marginTop: 20,
+                          fontWeight: "bold",
+                        }}
+                      >
+                        {" "}
+                        Specification
+                      </Text>
                     </View>
-                    <View   style={{ ...styles.tableRollQuantitySpecification, width: '50%' ,height:100,}}>
-                    <TextInput
-                    mode="outlined"
-                    // label={"Please Enter"}
-                    style={{  width: '100%',height:50 }}
-                    activeOutlineColor={Colors.buttonBackground}
-                    placeholder="ex"
-                    // keyboardType="number-pad"
-                    // keyboardType={Platform.OS == 'ios' ? "numbers-and-punctuation" : "decimal-pad"}
-                    // value={maxWeight==""?maxWeight: parseFloat(maxWeight).toFixed(2)}
-                    // onChangeText={(value)=>setMaxWeight(value)}allowFontScaling={false}
-                    // value={maxWeight}
-                    onChangeText={(val)=>setSpecification(val)}
-                    // allowFontScaling={false} maxFontSizeMultiplier={1}
-                   />
-
+                    <View
+                      style={{
+                        ...styles.tableRollQuantitySpecification,
+                        width: "50%",
+                        height: 100,
+                      }}
+                    >
+                      <TextInput
+                        mode="outlined"
+                        // label={"Please Enter"}
+                        style={{ width: "100%", height: 50 }}
+                        activeOutlineColor={Colors.buttonBackground}
+                        placeholder="ex"
+                        // keyboardType="number-pad"
+                        // keyboardType={Platform.OS == 'ios' ? "numbers-and-punctuation" : "decimal-pad"}
+                        // value={maxWeight==""?maxWeight: parseFloat(maxWeight).toFixed(2)}
+                        // onChangeText={(value)=>setMaxWeight(value)}allowFontScaling={false}
+                        // value={maxWeight}
+                        onChangeText={(val) => setSpecification(val)}
+                        // allowFontScaling={false} maxFontSizeMultiplier={1}
+                      />
                     </View>
-                  
-                      {/* <Dropdown
+
+                    {/* <Dropdown
                         style={[styles.SpecificationDropdown, isFocusSpecification && { borderColor: "black" }]}
                         placeholderStyle={{ fontSize: 16 }}
                         selectedTextStyle={styles.SpecificationselectedTextStyle}
@@ -1005,15 +1095,7 @@ const TanningLeatherOriginSellLeather = (props) => {
                           setIsFocusSpecification(false);
                         }}
                       /> */}
-
-                 
                   </View>
-
-
-
-
-
-
                 </View>
               </View>
 
@@ -1025,35 +1107,73 @@ const TanningLeatherOriginSellLeather = (props) => {
 
               <View>
                 <View style={{ ...styles.tableRollView, marginBottom: 10 }}>
-                  <Text allowFontScaling={false} style={{ color: Colors.text, fontWeight: "500" }}>
-                    Selected Leather
+                  <Text
+                    allowFontScaling={false}
+                    style={{ color: Colors.text, fontWeight: "500" }}
+                  >
+                    Selected Leatheraaa
                   </Text>
                   <Checkbox
                     style={{ marginLeft: 10 }}
                     disabled={false}
                     value={toggleCheckBoxSelected}
                     onValueChange={(newValue) => {
-                      setToggleCheckBoxSelected(newValue)
-                      setToggleCheckBox(!newValue)
-                    }
-                    }
+                      setToggleCheckBoxSelected(newValue);
+                      setToggleCheckBox(!newValue);
+                    }}
                   />
                 </View>
 
-                <Text style={{ textAlign: 'center', fontWeight: 'bold', fontSize: 20, color: Colors.buttonBackground }} allowFontScaling={false}>{selectionDropDown != undefined ? selectionDropDown[0].title : null}</Text>
+                <Text
+                  style={{
+                    textAlign: "center",
+                    fontWeight: "bold",
+                    fontSize: 20,
+                    color: Colors.buttonBackground,
+                  }}
+                  allowFontScaling={false}
+                >
+                  {selectionDropDown != undefined
+                    ? selectionDropDown[0].title
+                    : null}
+                </Text>
 
-                <View style={{ flexDirection: 'row', justifyContent: 'center', marginVertical: 10, marginBottom: 20 }}>
-                  <Text style={{ textAlignVertical: 'center', alignSelf: "center", fontWeight: 'bold', marginRight: 20 }}>Quantity </Text>
+                <View
+                  style={{
+                    flexDirection: "row",
+                    justifyContent: "center",
+                    marginVertical: 10,
+                    marginBottom: 20,
+                  }}
+                >
+                  <Text
+                    style={{
+                      textAlignVertical: "center",
+                      alignSelf: "center",
+                      fontWeight: "bold",
+                      marginRight: 20,
+                    }}
+                  >
+                    Quantity{" "}
+                  </Text>
                   <TextInput
                     mode="outlined"
-                    style={{ ...styles.tableRollQuantityInput, width: '23%' }}
+                    style={{ ...styles.tableRollQuantityInput, width: "23%" }}
                     activeOutlineColor={Colors.buttonBackground}
-                    keyboardType={Platform.OS == 'ios' ? "numbers-and-punctuation" : "decimal-pad"}
+                    keyboardType={
+                      Platform.OS == "ios"
+                        ? "numbers-and-punctuation"
+                        : "decimal-pad"
+                    }
                     value={quantitySelection}
-                    onChangeText={(value) => setQuantitySelection(value)} allowFontScaling={false} maxFontSizeMultiplier={1} />
+                    onChangeText={(value) => setQuantitySelection(value)}
+                    allowFontScaling={false}
+                    maxFontSizeMultiplier={1}
+                  />
                   <Dropdown
                     style={[
-                      styles.dropdownselectionUnit, { width: 90 },
+                      styles.dropdownselectionUnit,
+                      { width: 90 },
                       isFocusSelectionUnit && { borderColor: "black" },
                     ]}
                     placeholderStyle={{ fontSize: 16 }}
@@ -1147,19 +1267,39 @@ const TanningLeatherOriginSellLeather = (props) => {
                   />
                 </View> */}
 
-                <View style={{ flexDirection: 'row', justifyContent: 'center' }}>
-                  <Text style={{ textAlignVertical: 'center', fontWeight: 'bold', marginRight: 20, alignSelf: "center" }}>      Price </Text>
+                <View
+                  style={{ flexDirection: "row", justifyContent: "center" }}
+                >
+                  <Text
+                    style={{
+                      textAlignVertical: "center",
+                      fontWeight: "bold",
+                      marginRight: 20,
+                      alignSelf: "center",
+                    }}
+                  >
+                    {" "}
+                    Price{" "}
+                  </Text>
                   <TextInput
                     mode="outlined"
                     //label={"Price"}
-                    style={{ ...styles.tableRollQuantityInput, width: '23%' }}
+                    style={{ ...styles.tableRollQuantityInput, width: "23%" }}
                     activeOutlineColor={Colors.buttonBackground}
-                    keyboardType={Platform.OS == 'ios' ? "numbers-and-punctuation" : "decimal-pad"}
+                    keyboardType={
+                      Platform.OS == "ios"
+                        ? "numbers-and-punctuation"
+                        : "decimal-pad"
+                    }
                     value={priceSelection}
-                    onChangeText={(value) => setPriceSelection(value)} allowFontScaling={false} maxFontSizeMultiplier={1} />
+                    onChangeText={(value) => setPriceSelection(value)}
+                    allowFontScaling={false}
+                    maxFontSizeMultiplier={1}
+                  />
                   <Dropdown
                     style={[
-                      styles.dropdownselectionUnit, { width: 90 },
+                      styles.dropdownselectionUnit,
+                      { width: 90 },
                       isFocusSelectionPrice && { borderColor: "black" },
                     ]}
                     placeholderStyle={{ fontSize: 16 }}
@@ -1231,21 +1371,56 @@ const TanningLeatherOriginSellLeather = (props) => {
               {/* selection starts 2*/}
 
               <View>
-                <Text style={{ textAlign: 'center', fontWeight: 'bold', fontSize: 20, color: Colors.buttonBackground }} allowFontScaling={false}>{selectionDropDown != undefined ? selectionDropDown[1].title : null}</Text>
-                <View style={{ flexDirection: 'row', justifyContent: 'center', marginVertical: 10, marginBottom: 20 }}>
-                  <Text style={{ textAlignVertical: 'center', fontWeight: 'bold', marginRight: 20, alignSelf: "center" }}>Quantity </Text>
+                <Text
+                  style={{
+                    textAlign: "center",
+                    fontWeight: "bold",
+                    fontSize: 20,
+                    color: Colors.buttonBackground,
+                  }}
+                  allowFontScaling={false}
+                >
+                  {selectionDropDown != undefined
+                    ? selectionDropDown[1].title
+                    : null}
+                </Text>
+                <View
+                  style={{
+                    flexDirection: "row",
+                    justifyContent: "center",
+                    marginVertical: 10,
+                    marginBottom: 20,
+                  }}
+                >
+                  <Text
+                    style={{
+                      textAlignVertical: "center",
+                      fontWeight: "bold",
+                      marginRight: 20,
+                      alignSelf: "center",
+                    }}
+                  >
+                    Quantity{" "}
+                  </Text>
                   <TextInput
                     mode="outlined"
                     //label={"Quantity"}
-                    style={{ ...styles.tableRollQuantityInput, width: '23%' }}
+                    style={{ ...styles.tableRollQuantityInput, width: "23%" }}
                     activeOutlineColor={Colors.buttonBackground}
-                    keyboardType={Platform.OS == 'ios' ? "numbers-and-punctuation" : "decimal-pad"}
+                    keyboardType={
+                      Platform.OS == "ios"
+                        ? "numbers-and-punctuation"
+                        : "decimal-pad"
+                    }
                     value={quantitySelection2}
-                    onChangeText={(value) => setQuantitySelection2(value)} allowFontScaling={false} maxFontSizeMultiplier={1}
+                    onChangeText={(value) => setQuantitySelection2(value)}
+                    allowFontScaling={false}
+                    maxFontSizeMultiplier={1}
                   />
                   <Dropdown
                     style={[
-                      styles.dropdownselectionUnit, { width: 90 },
+                      styles.dropdownselectionUnit,
+                      { width: 90 },
                       isFocusSelectionUnit2 && { borderColor: "black" },
                     ]}
                     placeholderStyle={{ fontSize: 16 }}
@@ -1269,20 +1444,39 @@ const TanningLeatherOriginSellLeather = (props) => {
                   />
                 </View>
 
-                <View style={{ flexDirection: 'row', justifyContent: 'center' }}>
-                  <Text style={{ textAlignVertical: 'center', fontWeight: 'bold', marginRight: 20, alignSelf: "center" }}>      Price </Text>
+                <View
+                  style={{ flexDirection: "row", justifyContent: "center" }}
+                >
+                  <Text
+                    style={{
+                      textAlignVertical: "center",
+                      fontWeight: "bold",
+                      marginRight: 20,
+                      alignSelf: "center",
+                    }}
+                  >
+                    {" "}
+                    Price{" "}
+                  </Text>
                   <TextInput
                     mode="outlined"
                     //label={"Price"}
-                    style={{ ...styles.tableRollQuantityInput, width: '23%' }}
+                    style={{ ...styles.tableRollQuantityInput, width: "23%" }}
                     activeOutlineColor={Colors.buttonBackground}
-                    keyboardType={Platform.OS == 'ios' ? "numbers-and-punctuation" : "decimal-pad"}
+                    keyboardType={
+                      Platform.OS == "ios"
+                        ? "numbers-and-punctuation"
+                        : "decimal-pad"
+                    }
                     value={priceSelection2}
-                    onChangeText={(value) => setPriceSelection2(value)} allowFontScaling={false} maxFontSizeMultiplier={1}
+                    onChangeText={(value) => setPriceSelection2(value)}
+                    allowFontScaling={false}
+                    maxFontSizeMultiplier={1}
                   />
                   <Dropdown
                     style={[
-                      styles.dropdownselectionUnit, { width: 90 },
+                      styles.dropdownselectionUnit,
+                      { width: 90 },
                       isFocusSelectionPrice2 && { borderColor: "black" },
                     ]}
                     placeholderStyle={{ fontSize: 16 }}
@@ -1314,21 +1508,56 @@ const TanningLeatherOriginSellLeather = (props) => {
               {/* selection starts 3 */}
 
               <View>
-                <Text style={{ textAlign: 'center', fontWeight: 'bold', fontSize: 20, color: Colors.buttonBackground }} allowFontScaling={false}>{selectionDropDown != undefined ? selectionDropDown[2].title : null}</Text>
-                <View style={{ flexDirection: 'row', justifyContent: 'center', marginVertical: 10, marginBottom: 20 }}>
-                  <Text style={{ textAlignVertical: 'center', fontWeight: 'bold', marginRight: 20, alignSelf: "center" }}>Quantity </Text>
+                <Text
+                  style={{
+                    textAlign: "center",
+                    fontWeight: "bold",
+                    fontSize: 20,
+                    color: Colors.buttonBackground,
+                  }}
+                  allowFontScaling={false}
+                >
+                  {selectionDropDown != undefined
+                    ? selectionDropDown[2].title
+                    : null}
+                </Text>
+                <View
+                  style={{
+                    flexDirection: "row",
+                    justifyContent: "center",
+                    marginVertical: 10,
+                    marginBottom: 20,
+                  }}
+                >
+                  <Text
+                    style={{
+                      textAlignVertical: "center",
+                      fontWeight: "bold",
+                      marginRight: 20,
+                      alignSelf: "center",
+                    }}
+                  >
+                    Quantity{" "}
+                  </Text>
                   <TextInput
                     mode="outlined"
                     //label={"Quantity"}
-                    style={{ ...styles.tableRollQuantityInput, width: '23%' }}
+                    style={{ ...styles.tableRollQuantityInput, width: "23%" }}
                     activeOutlineColor={Colors.buttonBackground}
-                    keyboardType={Platform.OS == 'ios' ? "numbers-and-punctuation" : "decimal-pad"}
+                    keyboardType={
+                      Platform.OS == "ios"
+                        ? "numbers-and-punctuation"
+                        : "decimal-pad"
+                    }
                     value={quantitySelection3}
-                    onChangeText={(value) => setQuantitySelection3(value)} allowFontScaling={false} maxFontSizeMultiplier={1}
+                    onChangeText={(value) => setQuantitySelection3(value)}
+                    allowFontScaling={false}
+                    maxFontSizeMultiplier={1}
                   />
                   <Dropdown
                     style={[
-                      styles.dropdownselectionUnit, { width: 90 },
+                      styles.dropdownselectionUnit,
+                      { width: 90 },
                       isFocusSelectionUnit3 && { borderColor: "black" },
                     ]}
                     placeholderStyle={{ fontSize: 16 }}
@@ -1352,20 +1581,39 @@ const TanningLeatherOriginSellLeather = (props) => {
                   />
                 </View>
 
-                <View style={{ flexDirection: 'row', justifyContent: 'center' }}>
-                  <Text style={{ textAlignVertical: 'center', fontWeight: 'bold', marginRight: 20, alignSelf: "center" }}>      Price </Text>
+                <View
+                  style={{ flexDirection: "row", justifyContent: "center" }}
+                >
+                  <Text
+                    style={{
+                      textAlignVertical: "center",
+                      fontWeight: "bold",
+                      marginRight: 20,
+                      alignSelf: "center",
+                    }}
+                  >
+                    {" "}
+                    Price{" "}
+                  </Text>
                   <TextInput
                     mode="outlined"
                     //label={"Price"}
-                    style={{ ...styles.tableRollQuantityInput, width: '23%' }}
+                    style={{ ...styles.tableRollQuantityInput, width: "23%" }}
                     activeOutlineColor={Colors.buttonBackground}
-                    keyboardType={Platform.OS == 'ios' ? "numbers-and-punctuation" : "decimal-pad"}
+                    keyboardType={
+                      Platform.OS == "ios"
+                        ? "numbers-and-punctuation"
+                        : "decimal-pad"
+                    }
                     value={priceSelection3}
-                    onChangeText={(value) => setPriceSelection3(value)} allowFontScaling={false} maxFontSizeMultiplier={1}
+                    onChangeText={(value) => setPriceSelection3(value)}
+                    allowFontScaling={false}
+                    maxFontSizeMultiplier={1}
                   />
                   <Dropdown
                     style={[
-                      styles.dropdownselectionUnit, { width: 90 },
+                      styles.dropdownselectionUnit,
+                      { width: 90 },
                       isFocusSelectionPrice3 && { borderColor: "black" },
                     ]}
                     placeholderStyle={{ fontSize: 16 }}
@@ -1397,21 +1645,56 @@ const TanningLeatherOriginSellLeather = (props) => {
               {/* selection starts 4 */}
 
               <View>
-                <Text style={{ textAlign: 'center', fontWeight: 'bold', fontSize: 20, color: Colors.buttonBackground }} allowFontScaling={false}>{selectionDropDown != undefined ? selectionDropDown[3].title : null}</Text>
-                <View style={{ flexDirection: 'row', justifyContent: 'center', marginVertical: 10, marginBottom: 20 }}>
-                  <Text style={{ textAlignVertical: 'center', fontWeight: 'bold', marginRight: 20, alignSelf: "center" }}>Quantity </Text>
+                <Text
+                  style={{
+                    textAlign: "center",
+                    fontWeight: "bold",
+                    fontSize: 20,
+                    color: Colors.buttonBackground,
+                  }}
+                  allowFontScaling={false}
+                >
+                  {selectionDropDown != undefined
+                    ? selectionDropDown[3].title
+                    : null}
+                </Text>
+                <View
+                  style={{
+                    flexDirection: "row",
+                    justifyContent: "center",
+                    marginVertical: 10,
+                    marginBottom: 20,
+                  }}
+                >
+                  <Text
+                    style={{
+                      textAlignVertical: "center",
+                      fontWeight: "bold",
+                      marginRight: 20,
+                      alignSelf: "center",
+                    }}
+                  >
+                    Quantity{" "}
+                  </Text>
                   <TextInput
                     mode="outlined"
                     //label={"Quantity"}
-                    style={{ ...styles.tableRollQuantityInput, width: '23%' }}
+                    style={{ ...styles.tableRollQuantityInput, width: "23%" }}
                     activeOutlineColor={Colors.buttonBackground}
-                    keyboardType={Platform.OS == 'ios' ? "numbers-and-punctuation" : "decimal-pad"}
+                    keyboardType={
+                      Platform.OS == "ios"
+                        ? "numbers-and-punctuation"
+                        : "decimal-pad"
+                    }
                     value={quantitySelection4}
-                    onChangeText={(value) => setQuantitySelection4(value)} allowFontScaling={false} maxFontSizeMultiplier={1}
+                    onChangeText={(value) => setQuantitySelection4(value)}
+                    allowFontScaling={false}
+                    maxFontSizeMultiplier={1}
                   />
                   <Dropdown
                     style={[
-                      styles.dropdownselectionUnit, { width: 90 },
+                      styles.dropdownselectionUnit,
+                      { width: 90 },
                       isFocusSelectionUnit4 && { borderColor: "black" },
                     ]}
                     placeholderStyle={{ fontSize: 16 }}
@@ -1435,20 +1718,39 @@ const TanningLeatherOriginSellLeather = (props) => {
                   />
                 </View>
 
-                <View style={{ flexDirection: 'row', justifyContent: 'center' }}>
-                  <Text style={{ textAlignVertical: 'center', fontWeight: 'bold', marginRight: 20, alignSelf: "center" }}>      Price </Text>
+                <View
+                  style={{ flexDirection: "row", justifyContent: "center" }}
+                >
+                  <Text
+                    style={{
+                      textAlignVertical: "center",
+                      fontWeight: "bold",
+                      marginRight: 20,
+                      alignSelf: "center",
+                    }}
+                  >
+                    {" "}
+                    Price{" "}
+                  </Text>
                   <TextInput
                     mode="outlined"
                     //label={"Price"}
-                    style={{ ...styles.tableRollQuantityInput, width: '23%' }}
+                    style={{ ...styles.tableRollQuantityInput, width: "23%" }}
                     activeOutlineColor={Colors.buttonBackground}
-                    keyboardType={Platform.OS == 'ios' ? "numbers-and-punctuation" : "decimal-pad"}
+                    keyboardType={
+                      Platform.OS == "ios"
+                        ? "numbers-and-punctuation"
+                        : "decimal-pad"
+                    }
                     value={priceSelection4}
-                    onChangeText={(value) => setPriceSelection4(value)} allowFontScaling={false} maxFontSizeMultiplier={1}
+                    onChangeText={(value) => setPriceSelection4(value)}
+                    allowFontScaling={false}
+                    maxFontSizeMultiplier={1}
                   />
                   <Dropdown
                     style={[
-                      styles.dropdownselectionUnit, { width: 90 },
+                      styles.dropdownselectionUnit,
+                      { width: 90 },
                       isFocusSelectionPrice4 && { borderColor: "black" },
                     ]}
                     placeholderStyle={{ fontSize: 16 }}
@@ -1479,21 +1781,56 @@ const TanningLeatherOriginSellLeather = (props) => {
 
               {/* selection starts 5 */}
               <View>
-                <Text style={{ textAlign: 'center', fontWeight: 'bold', fontSize: 20, color: Colors.buttonBackground }} allowFontScaling={false}>{selectionDropDown != undefined ? selectionDropDown[4].title : null}</Text>
-                <View style={{ flexDirection: 'row', justifyContent: 'center', marginVertical: 10, marginBottom: 20 }}>
-                  <Text style={{ textAlignVertical: 'center', fontWeight: 'bold', marginRight: 20, alignSelf: "center" }}>Quantity </Text>
+                <Text
+                  style={{
+                    textAlign: "center",
+                    fontWeight: "bold",
+                    fontSize: 20,
+                    color: Colors.buttonBackground,
+                  }}
+                  allowFontScaling={false}
+                >
+                  {selectionDropDown != undefined
+                    ? selectionDropDown[4].title
+                    : null}
+                </Text>
+                <View
+                  style={{
+                    flexDirection: "row",
+                    justifyContent: "center",
+                    marginVertical: 10,
+                    marginBottom: 20,
+                  }}
+                >
+                  <Text
+                    style={{
+                      textAlignVertical: "center",
+                      fontWeight: "bold",
+                      marginRight: 20,
+                      alignSelf: "center",
+                    }}
+                  >
+                    Quantity{" "}
+                  </Text>
                   <TextInput
                     mode="outlined"
                     //label={"Quantity"}
-                    style={{ ...styles.tableRollQuantityInput, width: '23%' }}
+                    style={{ ...styles.tableRollQuantityInput, width: "23%" }}
                     activeOutlineColor={Colors.buttonBackground}
-                    keyboardType={Platform.OS == 'ios' ? "numbers-and-punctuation" : "decimal-pad"}
+                    keyboardType={
+                      Platform.OS == "ios"
+                        ? "numbers-and-punctuation"
+                        : "decimal-pad"
+                    }
                     value={quantitySelection5}
-                    onChangeText={(value) => setQuantitySelection5(value)} allowFontScaling={false} maxFontSizeMultiplier={1}
+                    onChangeText={(value) => setQuantitySelection5(value)}
+                    allowFontScaling={false}
+                    maxFontSizeMultiplier={1}
                   />
                   <Dropdown
                     style={[
-                      styles.dropdownselectionUnit, { width: 90 },
+                      styles.dropdownselectionUnit,
+                      { width: 90 },
                       isFocusSelectionUnit5 && { borderColor: "black" },
                     ]}
                     placeholderStyle={{ fontSize: 16 }}
@@ -1516,20 +1853,39 @@ const TanningLeatherOriginSellLeather = (props) => {
                   />
                 </View>
 
-                <View style={{ flexDirection: 'row', justifyContent: 'center' }}>
-                  <Text style={{ textAlignVertical: 'center', fontWeight: 'bold', marginRight: 20, alignSelf: "center" }}>      Price </Text>
+                <View
+                  style={{ flexDirection: "row", justifyContent: "center" }}
+                >
+                  <Text
+                    style={{
+                      textAlignVertical: "center",
+                      fontWeight: "bold",
+                      marginRight: 20,
+                      alignSelf: "center",
+                    }}
+                  >
+                    {" "}
+                    Price{" "}
+                  </Text>
                   <TextInput
                     mode="outlined"
                     //label={"Price"}
-                    style={{ ...styles.tableRollQuantityInput, width: '23%' }}
+                    style={{ ...styles.tableRollQuantityInput, width: "23%" }}
                     activeOutlineColor={Colors.buttonBackground}
-                    keyboardType={Platform.OS == 'ios' ? "numbers-and-punctuation" : "decimal-pad"}
+                    keyboardType={
+                      Platform.OS == "ios"
+                        ? "numbers-and-punctuation"
+                        : "decimal-pad"
+                    }
                     value={priceSelection5}
-                    onChangeText={(value) => setPriceSelection5(value)} allowFontScaling={false} maxFontSizeMultiplier={1}
+                    onChangeText={(value) => setPriceSelection5(value)}
+                    allowFontScaling={false}
+                    maxFontSizeMultiplier={1}
                   />
                   <Dropdown
                     style={[
-                      styles.dropdownselectionUnit, { width: 90 },
+                      styles.dropdownselectionUnit,
+                      { width: 90 },
                       isFocusSelectionPrice5 && { borderColor: "black" },
                     ]}
                     placeholderStyle={{ fontSize: 16 }}
@@ -1552,7 +1908,6 @@ const TanningLeatherOriginSellLeather = (props) => {
                   />
                 </View>
 
-
                 <Divider style={{ borderWidth: 0.5, marginVertical: 20 }} />
               </View>
 
@@ -1561,21 +1916,56 @@ const TanningLeatherOriginSellLeather = (props) => {
               {/* selection starts 6 */}
 
               <View>
-                <Text style={{ textAlign: 'center', fontWeight: 'bold', fontSize: 20, color: Colors.buttonBackground }} allowFontScaling={false}>{selectionDropDown != undefined ? selectionDropDown[5].title : null}</Text>
-                <View style={{ flexDirection: 'row', justifyContent: 'center', marginVertical: 10, marginBottom: 20 }}>
-                  <Text style={{ textAlignVertical: 'center', fontWeight: 'bold', marginRight: 20, alignSelf: "center" }}>Quantity </Text>
+                <Text
+                  style={{
+                    textAlign: "center",
+                    fontWeight: "bold",
+                    fontSize: 20,
+                    color: Colors.buttonBackground,
+                  }}
+                  allowFontScaling={false}
+                >
+                  {selectionDropDown != undefined
+                    ? selectionDropDown[5].title
+                    : null}
+                </Text>
+                <View
+                  style={{
+                    flexDirection: "row",
+                    justifyContent: "center",
+                    marginVertical: 10,
+                    marginBottom: 20,
+                  }}
+                >
+                  <Text
+                    style={{
+                      textAlignVertical: "center",
+                      fontWeight: "bold",
+                      marginRight: 20,
+                      alignSelf: "center",
+                    }}
+                  >
+                    Quantity{" "}
+                  </Text>
                   <TextInput
                     mode="outlined"
                     //label={"Quantity"}
-                    style={{ ...styles.tableRollQuantityInput, width: '23%' }}
+                    style={{ ...styles.tableRollQuantityInput, width: "23%" }}
                     activeOutlineColor={Colors.buttonBackground}
-                    keyboardType={Platform.OS == 'ios' ? "numbers-and-punctuation" : "decimal-pad"}
+                    keyboardType={
+                      Platform.OS == "ios"
+                        ? "numbers-and-punctuation"
+                        : "decimal-pad"
+                    }
                     value={quantitySelection6}
-                    onChangeText={(value) => setQuantitySelection6(value)} allowFontScaling={false} maxFontSizeMultiplier={1}
+                    onChangeText={(value) => setQuantitySelection6(value)}
+                    allowFontScaling={false}
+                    maxFontSizeMultiplier={1}
                   />
                   <Dropdown
                     style={[
-                      styles.dropdownselectionUnit, { width: 90 },
+                      styles.dropdownselectionUnit,
+                      { width: 90 },
                       isFocusSelectionUnit6 && { borderColor: "black" },
                     ]}
                     placeholderStyle={{ fontSize: 16 }}
@@ -1596,23 +1986,45 @@ const TanningLeatherOriginSellLeather = (props) => {
                       setIsFocusSelectionUnit6(false);
                     }}
                   />
-
                 </View>
 
-                <View style={{ flexDirection: 'row', justifyContent: 'center', marginBottom: 30 }}>
-                  <Text style={{ textAlignVertical: 'center', fontWeight: 'bold', marginRight: 20, alignSelf: "center" }}>      Price </Text>
+                <View
+                  style={{
+                    flexDirection: "row",
+                    justifyContent: "center",
+                    marginBottom: 30,
+                  }}
+                >
+                  <Text
+                    style={{
+                      textAlignVertical: "center",
+                      fontWeight: "bold",
+                      marginRight: 20,
+                      alignSelf: "center",
+                    }}
+                  >
+                    {" "}
+                    Price{" "}
+                  </Text>
                   <TextInput
                     mode="outlined"
                     //label={"Price"}
-                    style={{ ...styles.tableRollQuantityInput, width: '23%' }}
+                    style={{ ...styles.tableRollQuantityInput, width: "23%" }}
                     activeOutlineColor={Colors.buttonBackground}
-                    keyboardType={Platform.OS == 'ios' ? "numbers-and-punctuation" : "decimal-pad"}
+                    keyboardType={
+                      Platform.OS == "ios"
+                        ? "numbers-and-punctuation"
+                        : "decimal-pad"
+                    }
                     value={priceSelection6}
-                    onChangeText={(value) => setPriceSelection6(value)} allowFontScaling={false} maxFontSizeMultiplier={1}
+                    onChangeText={(value) => setPriceSelection6(value)}
+                    allowFontScaling={false}
+                    maxFontSizeMultiplier={1}
                   />
                   <Dropdown
                     style={[
-                      styles.dropdownselectionUnit, { width: 90 },
+                      styles.dropdownselectionUnit,
+                      { width: 90 },
                       isFocusSelectionPrice6 && { borderColor: "black" },
                     ]}
                     placeholderStyle={{ fontSize: 16 }}
@@ -1643,21 +2055,56 @@ const TanningLeatherOriginSellLeather = (props) => {
               {/* selection starts 7 */}
 
               <View style={{ marginBottom: 30 }}>
-                <Text style={{ textAlign: 'center', fontWeight: 'bold', fontSize: 20, color: Colors.buttonBackground }} allowFontScaling={false}>{selectionDropDown != undefined ? selectionDropDown[6].title : null}</Text>
-                <View style={{ flexDirection: 'row', justifyContent: 'center', marginVertical: 10, marginBottom: 20 }}>
-                  <Text style={{ textAlignVertical: 'center', fontWeight: 'bold', marginRight: 20, alignSelf: "center" }}>Quantity </Text>
+                <Text
+                  style={{
+                    textAlign: "center",
+                    fontWeight: "bold",
+                    fontSize: 20,
+                    color: Colors.buttonBackground,
+                  }}
+                  allowFontScaling={false}
+                >
+                  {selectionDropDown != undefined
+                    ? selectionDropDown[6].title
+                    : null}
+                </Text>
+                <View
+                  style={{
+                    flexDirection: "row",
+                    justifyContent: "center",
+                    marginVertical: 10,
+                    marginBottom: 20,
+                  }}
+                >
+                  <Text
+                    style={{
+                      textAlignVertical: "center",
+                      fontWeight: "bold",
+                      marginRight: 20,
+                      alignSelf: "center",
+                    }}
+                  >
+                    Quantity{" "}
+                  </Text>
                   <TextInput
                     mode="outlined"
                     //label={"Quantity"}
-                    style={{ ...styles.tableRollQuantityInput, width: '23%' }}
+                    style={{ ...styles.tableRollQuantityInput, width: "23%" }}
                     activeOutlineColor={Colors.buttonBackground}
-                    keyboardType={Platform.OS == 'ios' ? "numbers-and-punctuation" : "decimal-pad"}
+                    keyboardType={
+                      Platform.OS == "ios"
+                        ? "numbers-and-punctuation"
+                        : "decimal-pad"
+                    }
                     value={quantitySelection7}
-                    onChangeText={(value) => setQuantitySelection7(value)} allowFontScaling={false} maxFontSizeMultiplier={1}
+                    onChangeText={(value) => setQuantitySelection7(value)}
+                    allowFontScaling={false}
+                    maxFontSizeMultiplier={1}
                   />
                   <Dropdown
                     style={[
-                      styles.dropdownselectionUnit, { width: 90 },
+                      styles.dropdownselectionUnit,
+                      { width: 90 },
                       isFocusSelectionUnit7 && { borderColor: "black" },
                     ]}
                     placeholderStyle={{ fontSize: 16 }}
@@ -1678,23 +2125,45 @@ const TanningLeatherOriginSellLeather = (props) => {
                       setIsFocusSelectionUnit7(false);
                     }}
                   />
-
                 </View>
 
-                <View style={{ flexDirection: 'row', justifyContent: 'center', marginBottom: 30 }}>
-                  <Text style={{ textAlignVertical: 'center', fontWeight: 'bold', marginRight: 20, alignSelf: "center" }}>      Price </Text>
+                <View
+                  style={{
+                    flexDirection: "row",
+                    justifyContent: "center",
+                    marginBottom: 30,
+                  }}
+                >
+                  <Text
+                    style={{
+                      textAlignVertical: "center",
+                      fontWeight: "bold",
+                      marginRight: 20,
+                      alignSelf: "center",
+                    }}
+                  >
+                    {" "}
+                    Price{" "}
+                  </Text>
                   <TextInput
                     mode="outlined"
                     //label={"Price"}
-                    style={{ ...styles.tableRollQuantityInput, width: '23%' }}
+                    style={{ ...styles.tableRollQuantityInput, width: "23%" }}
                     activeOutlineColor={Colors.buttonBackground}
-                    keyboardType={Platform.OS == 'ios' ? "numbers-and-punctuation" : "decimal-pad"}
+                    keyboardType={
+                      Platform.OS == "ios"
+                        ? "numbers-and-punctuation"
+                        : "decimal-pad"
+                    }
                     value={priceSelection7}
-                    onChangeText={(value) => setPriceSelection7(value)} allowFontScaling={false} maxFontSizeMultiplier={1}
+                    onChangeText={(value) => setPriceSelection7(value)}
+                    allowFontScaling={false}
+                    maxFontSizeMultiplier={1}
                   />
                   <Dropdown
                     style={[
-                      styles.dropdownselectionUnit, { width: 90 },
+                      styles.dropdownselectionUnit,
+                      { width: 90 },
                       isFocusSelectionPrice7 && { borderColor: "black" },
                     ]}
                     placeholderStyle={{ fontSize: 16 }}
@@ -1735,13 +2204,22 @@ const TanningLeatherOriginSellLeather = (props) => {
               style={{ flexDirection: "row" }}
               onPress={() => props.navigation.goBack()}
             >
-              <Image source={require('../../assets/ByClient/BOTTOMBACK.png')} style={{ width: 20, height: 20, marginHorizontal: 10, alignSelf: 'center' }} />
+              <Image
+                source={require("../../assets/ByClient/BOTTOMBACK.png")}
+                style={{
+                  width: 20,
+                  height: 20,
+                  marginHorizontal: 10,
+                  alignSelf: "center",
+                }}
+              />
               <Text
                 style={{
                   fontSize: 22,
                   alignSelf: "center",
                   color: "#9EBDB8",
-                }} allowFontScaling={false}
+                }}
+                allowFontScaling={false}
               >
                 Back
               </Text>
@@ -1753,7 +2231,8 @@ const TanningLeatherOriginSellLeather = (props) => {
               justifyContent: "flex-end",
               flex: 1,
             }}
-          >{console.log('toggleCheckbox=' + toggleCheckBox)}
+          >
+            {console.log("toggleCheckbox=" + toggleCheckBox)}
             <TouchableOpacity
               style={{
                 flexDirection: "row",
@@ -1788,58 +2267,165 @@ const TanningLeatherOriginSellLeather = (props) => {
                     surfaceCatType3: avgSurface,
                     surfaceSelectionSize: labelSurface,
 
-                    labelTableRoll: toggleCheckBox == true ? (labelTableRoll) : null,
-                    quantityTableRoll: toggleCheckBox == true ? (quantityTableRoll) : null,
-                    priceTableRoll: toggleCheckBox == true ? (priceTableRoll) : null,
-                    labelTablePrice: toggleCheckBox == true ? (labelTablePrice) : null,
+                    labelTableRoll:
+                      toggleCheckBox == true ? labelTableRoll : null,
+                    quantityTableRoll:
+                      toggleCheckBox == true ? quantityTableRoll : null,
+                    priceTableRoll:
+                      toggleCheckBox == true ? priceTableRoll : null,
+                    labelTablePrice:
+                      toggleCheckBox == true ? labelTablePrice : null,
 
                     // labelSelection:toggleCheckBoxSelected==true?(labelSelection):null,
-                    labelSelection: toggleCheckBoxSelected == true ? (selectionDropDown != undefined ? selectionDropDown[0].title : null) : null,
-                    quantitySelection: toggleCheckBoxSelected == true ? (quantitySelection) : null,
-                    labelSelectionUnit: toggleCheckBoxSelected == true ? (labelSelectionUnit) : null,
-                    labelSelectionPrice: toggleCheckBoxSelected == true ? (labelSelectionPrice) : null,
-                    priceSelection: toggleCheckBoxSelected == true ? (priceSelection) : null,
+                    labelSelection:
+                      toggleCheckBoxSelected == true
+                        ? selectionDropDown != undefined
+                          ? selectionDropDown[0].title
+                          : null
+                        : null,
+                    quantitySelection:
+                      toggleCheckBoxSelected == true ? quantitySelection : null,
+                    labelSelectionUnit:
+                      toggleCheckBoxSelected == true
+                        ? labelSelectionUnit
+                        : null,
+                    labelSelectionPrice:
+                      toggleCheckBoxSelected == true
+                        ? labelSelectionPrice
+                        : null,
+                    priceSelection:
+                      toggleCheckBoxSelected == true ? priceSelection : null,
 
-                    labelSelection2: toggleCheckBoxSelected == true ? (selectionDropDown != undefined ? selectionDropDown[1].title : null) : null,
-                    quantitySelection2: toggleCheckBoxSelected == true ? (quantitySelection2) : null,
-                    labelSelectionUnit2: toggleCheckBoxSelected == true ? (labelSelectionUnit2) : null,
-                    labelSelectionPrice2: toggleCheckBoxSelected == true ? (labelSelectionPrice2) : null,
-                    priceSelection2: toggleCheckBoxSelected == true ? (priceSelection2) : null,
+                    labelSelection2:
+                      toggleCheckBoxSelected == true
+                        ? selectionDropDown != undefined
+                          ? selectionDropDown[1].title
+                          : null
+                        : null,
+                    quantitySelection2:
+                      toggleCheckBoxSelected == true
+                        ? quantitySelection2
+                        : null,
+                    labelSelectionUnit2:
+                      toggleCheckBoxSelected == true
+                        ? labelSelectionUnit2
+                        : null,
+                    labelSelectionPrice2:
+                      toggleCheckBoxSelected == true
+                        ? labelSelectionPrice2
+                        : null,
+                    priceSelection2:
+                      toggleCheckBoxSelected == true ? priceSelection2 : null,
 
-                    labelSelection3: toggleCheckBoxSelected == true ? (selectionDropDown != undefined ? selectionDropDown[2].title : null) : null,
-                    quantitySelection3: toggleCheckBoxSelected == true ? (quantitySelection3) : null,
-                    labelSelectionUnit3: toggleCheckBoxSelected == true ? (labelSelectionUnit3) : null,
-                    labelSelectionPrice3: toggleCheckBoxSelected == true ? (labelSelectionPrice3) : null,
-                    priceSelection3: toggleCheckBoxSelected == true ? (priceSelection3) : null,
+                    labelSelection3:
+                      toggleCheckBoxSelected == true
+                        ? selectionDropDown != undefined
+                          ? selectionDropDown[2].title
+                          : null
+                        : null,
+                    quantitySelection3:
+                      toggleCheckBoxSelected == true
+                        ? quantitySelection3
+                        : null,
+                    labelSelectionUnit3:
+                      toggleCheckBoxSelected == true
+                        ? labelSelectionUnit3
+                        : null,
+                    labelSelectionPrice3:
+                      toggleCheckBoxSelected == true
+                        ? labelSelectionPrice3
+                        : null,
+                    priceSelection3:
+                      toggleCheckBoxSelected == true ? priceSelection3 : null,
 
-                    labelSelection4: toggleCheckBoxSelected == true ? (selectionDropDown != undefined ? selectionDropDown[3].title : null) : null,
-                    quantitySelection4: toggleCheckBoxSelected == true ? (quantitySelection4) : null,
-                    labelSelectionUnit4: toggleCheckBoxSelected == true ? (labelSelectionUnit4) : null,
-                    labelSelectionPrice4: toggleCheckBoxSelected == true ? (labelSelectionPrice4) : null,
-                    priceSelection4: toggleCheckBoxSelected == true ? (priceSelection4) : null,
+                    labelSelection4:
+                      toggleCheckBoxSelected == true
+                        ? selectionDropDown != undefined
+                          ? selectionDropDown[3].title
+                          : null
+                        : null,
+                    quantitySelection4:
+                      toggleCheckBoxSelected == true
+                        ? quantitySelection4
+                        : null,
+                    labelSelectionUnit4:
+                      toggleCheckBoxSelected == true
+                        ? labelSelectionUnit4
+                        : null,
+                    labelSelectionPrice4:
+                      toggleCheckBoxSelected == true
+                        ? labelSelectionPrice4
+                        : null,
+                    priceSelection4:
+                      toggleCheckBoxSelected == true ? priceSelection4 : null,
 
-                    labelSelection5: toggleCheckBoxSelected == true ? (selectionDropDown != undefined ? selectionDropDown[4].title : null) : null,
-                    quantitySelection5: toggleCheckBoxSelected == true ? (quantitySelection5) : null,
-                    labelSelectionUnit5: toggleCheckBoxSelected == true ? (labelSelectionUnit5) : null,
-                    labelSelectionPrice5: toggleCheckBoxSelected == true ? (labelSelectionPrice5) : null,
-                    priceSelection5: toggleCheckBoxSelected == true ? (priceSelection5) : null,
+                    labelSelection5:
+                      toggleCheckBoxSelected == true
+                        ? selectionDropDown != undefined
+                          ? selectionDropDown[4].title
+                          : null
+                        : null,
+                    quantitySelection5:
+                      toggleCheckBoxSelected == true
+                        ? quantitySelection5
+                        : null,
+                    labelSelectionUnit5:
+                      toggleCheckBoxSelected == true
+                        ? labelSelectionUnit5
+                        : null,
+                    labelSelectionPrice5:
+                      toggleCheckBoxSelected == true
+                        ? labelSelectionPrice5
+                        : null,
+                    priceSelection5:
+                      toggleCheckBoxSelected == true ? priceSelection5 : null,
 
-                    labelSelection6: toggleCheckBoxSelected == true ? (selectionDropDown != undefined ? selectionDropDown[5].title : null) : null,
-                    quantitySelection6: toggleCheckBoxSelected == true ? (quantitySelection6) : null,
-                    labelSelectionUnit6: toggleCheckBoxSelected == true ? (labelSelectionUnit6) : null,
-                    labelSelectionPrice6: toggleCheckBoxSelected == true ? (labelSelectionPrice6) : null,
-                    priceSelection6: toggleCheckBoxSelected == true ? (priceSelection6) : null,
+                    labelSelection6:
+                      toggleCheckBoxSelected == true
+                        ? selectionDropDown != undefined
+                          ? selectionDropDown[5].title
+                          : null
+                        : null,
+                    quantitySelection6:
+                      toggleCheckBoxSelected == true
+                        ? quantitySelection6
+                        : null,
+                    labelSelectionUnit6:
+                      toggleCheckBoxSelected == true
+                        ? labelSelectionUnit6
+                        : null,
+                    labelSelectionPrice6:
+                      toggleCheckBoxSelected == true
+                        ? labelSelectionPrice6
+                        : null,
+                    priceSelection6:
+                      toggleCheckBoxSelected == true ? priceSelection6 : null,
 
-                    labelSelection7: toggleCheckBoxSelected == true ? (selectionDropDown != undefined ? selectionDropDown[6].title : null) : null,
-                    quantitySelection7: toggleCheckBoxSelected == true ? (quantitySelection7) : null,
-                    labelSelectionUnit7: toggleCheckBoxSelected == true ? (labelSelectionUnit7) : null,
-                    labelSelectionPrice7: toggleCheckBoxSelected == true ? (labelSelectionPrice7) : null,
-                    priceSelection7: toggleCheckBoxSelected == true ? (priceSelection7) : null,
-
-
+                    labelSelection7:
+                      toggleCheckBoxSelected == true
+                        ? selectionDropDown != undefined
+                          ? selectionDropDown[6].title
+                          : null
+                        : null,
+                    quantitySelection7:
+                      toggleCheckBoxSelected == true
+                        ? quantitySelection7
+                        : null,
+                    labelSelectionUnit7:
+                      toggleCheckBoxSelected == true
+                        ? labelSelectionUnit7
+                        : null,
+                    labelSelectionPrice7:
+                      toggleCheckBoxSelected == true
+                        ? labelSelectionPrice7
+                        : null,
+                    priceSelection7:
+                      toggleCheckBoxSelected == true ? priceSelection7 : null,
                   });
-                    console.log("🚀 ~ file: TannningLeatherOriginSellLeather.js ~ line 1843 ~ //onChangeText ~ Specification", Specification)
-                   
+                  console.log(
+                    "🚀 ~ file: TannningLeatherOriginSellLeather.js ~ line 1843 ~ //onChangeText ~ Specification",
+                    Specification
+                  );
                 } else if (
                   leatherCondition == "Pickled" ||
                   leatherCondition == "Tanned"
@@ -1855,7 +2441,6 @@ const TanningLeatherOriginSellLeather = (props) => {
                     continent: labelContinent,
                     Specification: Specification,
 
-
                     weightCatType: minWeight,
                     weightCatType2: maxWeight,
                     weightCatType3: avgWeight,
@@ -1867,54 +2452,159 @@ const TanningLeatherOriginSellLeather = (props) => {
                     surfaceSelectionSize: labelSurface,
                     toggleCheckBoxSelected: toggleCheckBoxSelected,
 
-                    labelTableRoll: toggleCheckBox == true ? (labelTableRoll) : null,
-                    quantityTableRoll: toggleCheckBox == true ? (quantityTableRoll) : null,
-                    priceTableRoll: toggleCheckBox == true ? (priceTableRoll) : null,
-                    labelTablePrice: toggleCheckBox == true ? (labelTablePrice) : null,
+                    labelTableRoll:
+                      toggleCheckBox == true ? labelTableRoll : null,
+                    quantityTableRoll:
+                      toggleCheckBox == true ? quantityTableRoll : null,
+                    priceTableRoll:
+                      toggleCheckBox == true ? priceTableRoll : null,
+                    labelTablePrice:
+                      toggleCheckBox == true ? labelTablePrice : null,
 
-                    labelSelection: toggleCheckBoxSelected == true ? (selectionDropDown != undefined ? selectionDropDown[0].title : null) : null,
-                    quantitySelection: toggleCheckBoxSelected == true ? (quantitySelection) : null,
-                    labelSelectionUnit: toggleCheckBoxSelected == true ? (labelSelectionUnit) : null,
-                    labelSelectionPrice: toggleCheckBoxSelected == true ? (labelSelectionPrice) : null,
-                    priceSelection: toggleCheckBoxSelected == true ? (priceSelection) : null,
+                    labelSelection:
+                      toggleCheckBoxSelected == true
+                        ? selectionDropDown != undefined
+                          ? selectionDropDown[0].title
+                          : null
+                        : null,
+                    quantitySelection:
+                      toggleCheckBoxSelected == true ? quantitySelection : null,
+                    labelSelectionUnit:
+                      toggleCheckBoxSelected == true
+                        ? labelSelectionUnit
+                        : null,
+                    labelSelectionPrice:
+                      toggleCheckBoxSelected == true
+                        ? labelSelectionPrice
+                        : null,
+                    priceSelection:
+                      toggleCheckBoxSelected == true ? priceSelection : null,
 
-                    labelSelection2: toggleCheckBoxSelected == true ? (selectionDropDown != undefined ? selectionDropDown[1].title : null) : null,
-                    quantitySelection2: toggleCheckBoxSelected == true ? (quantitySelection2) : null,
-                    labelSelectionUnit2: toggleCheckBoxSelected == true ? (labelSelectionUnit2) : null,
-                    labelSelectionPrice2: toggleCheckBoxSelected == true ? (labelSelectionPrice2) : null,
-                    priceSelection2: toggleCheckBoxSelected == true ? (priceSelection2) : null,
+                    labelSelection2:
+                      toggleCheckBoxSelected == true
+                        ? selectionDropDown != undefined
+                          ? selectionDropDown[1].title
+                          : null
+                        : null,
+                    quantitySelection2:
+                      toggleCheckBoxSelected == true
+                        ? quantitySelection2
+                        : null,
+                    labelSelectionUnit2:
+                      toggleCheckBoxSelected == true
+                        ? labelSelectionUnit2
+                        : null,
+                    labelSelectionPrice2:
+                      toggleCheckBoxSelected == true
+                        ? labelSelectionPrice2
+                        : null,
+                    priceSelection2:
+                      toggleCheckBoxSelected == true ? priceSelection2 : null,
 
-                    labelSelection3: toggleCheckBoxSelected == true ? (selectionDropDown != undefined ? selectionDropDown[2].title : null) : null,
-                    quantitySelection3: toggleCheckBoxSelected == true ? (quantitySelection3) : null,
-                    labelSelectionUnit3: toggleCheckBoxSelected == true ? (labelSelectionUnit3) : null,
-                    labelSelectionPrice3: toggleCheckBoxSelected == true ? (labelSelectionPrice3) : null,
-                    priceSelection3: toggleCheckBoxSelected == true ? (priceSelection3) : null,
+                    labelSelection3:
+                      toggleCheckBoxSelected == true
+                        ? selectionDropDown != undefined
+                          ? selectionDropDown[2].title
+                          : null
+                        : null,
+                    quantitySelection3:
+                      toggleCheckBoxSelected == true
+                        ? quantitySelection3
+                        : null,
+                    labelSelectionUnit3:
+                      toggleCheckBoxSelected == true
+                        ? labelSelectionUnit3
+                        : null,
+                    labelSelectionPrice3:
+                      toggleCheckBoxSelected == true
+                        ? labelSelectionPrice3
+                        : null,
+                    priceSelection3:
+                      toggleCheckBoxSelected == true ? priceSelection3 : null,
 
-                    labelSelection4: toggleCheckBoxSelected == true ? (selectionDropDown != undefined ? selectionDropDown[3].title : null) : null,
-                    quantitySelection4: toggleCheckBoxSelected == true ? (quantitySelection4) : null,
-                    labelSelectionUnit4: toggleCheckBoxSelected == true ? (labelSelectionUnit4) : null,
-                    labelSelectionPrice4: toggleCheckBoxSelected == true ? (labelSelectionPrice4) : null,
-                    priceSelection4: toggleCheckBoxSelected == true ? (priceSelection4) : null,
+                    labelSelection4:
+                      toggleCheckBoxSelected == true
+                        ? selectionDropDown != undefined
+                          ? selectionDropDown[3].title
+                          : null
+                        : null,
+                    quantitySelection4:
+                      toggleCheckBoxSelected == true
+                        ? quantitySelection4
+                        : null,
+                    labelSelectionUnit4:
+                      toggleCheckBoxSelected == true
+                        ? labelSelectionUnit4
+                        : null,
+                    labelSelectionPrice4:
+                      toggleCheckBoxSelected == true
+                        ? labelSelectionPrice4
+                        : null,
+                    priceSelection4:
+                      toggleCheckBoxSelected == true ? priceSelection4 : null,
 
-                    labelSelection5: toggleCheckBoxSelected == true ? (selectionDropDown != undefined ? selectionDropDown[4].title : null) : null,
-                    quantitySelection5: toggleCheckBoxSelected == true ? (quantitySelection5) : null,
-                    labelSelectionUnit5: toggleCheckBoxSelected == true ? (labelSelectionUnit5) : null,
-                    labelSelectionPrice5: toggleCheckBoxSelected == true ? (labelSelectionPrice5) : null,
-                    priceSelection5: toggleCheckBoxSelected == true ? (priceSelection5) : null,
+                    labelSelection5:
+                      toggleCheckBoxSelected == true
+                        ? selectionDropDown != undefined
+                          ? selectionDropDown[4].title
+                          : null
+                        : null,
+                    quantitySelection5:
+                      toggleCheckBoxSelected == true
+                        ? quantitySelection5
+                        : null,
+                    labelSelectionUnit5:
+                      toggleCheckBoxSelected == true
+                        ? labelSelectionUnit5
+                        : null,
+                    labelSelectionPrice5:
+                      toggleCheckBoxSelected == true
+                        ? labelSelectionPrice5
+                        : null,
+                    priceSelection5:
+                      toggleCheckBoxSelected == true ? priceSelection5 : null,
 
-                    labelSelection6: toggleCheckBoxSelected == true ? (selectionDropDown != undefined ? selectionDropDown[5].title : null) : null,
-                    quantitySelection6: toggleCheckBoxSelected == true ? (quantitySelection6) : null,
-                    labelSelectionUnit6: toggleCheckBoxSelected == true ? (labelSelectionUnit6) : null,
-                    labelSelectionPrice6: toggleCheckBoxSelected == true ? (labelSelectionPrice6) : null,
-                    priceSelection6: toggleCheckBoxSelected == true ? (priceSelection6) : null,
+                    labelSelection6:
+                      toggleCheckBoxSelected == true
+                        ? selectionDropDown != undefined
+                          ? selectionDropDown[5].title
+                          : null
+                        : null,
+                    quantitySelection6:
+                      toggleCheckBoxSelected == true
+                        ? quantitySelection6
+                        : null,
+                    labelSelectionUnit6:
+                      toggleCheckBoxSelected == true
+                        ? labelSelectionUnit6
+                        : null,
+                    labelSelectionPrice6:
+                      toggleCheckBoxSelected == true
+                        ? labelSelectionPrice6
+                        : null,
+                    priceSelection6:
+                      toggleCheckBoxSelected == true ? priceSelection6 : null,
 
-                    labelSelection7: toggleCheckBoxSelected == true ? (selectionDropDown != undefined ? selectionDropDown[6].title : null) : null,
-                    quantitySelection7: toggleCheckBoxSelected == true ? (quantitySelection7) : null,
-                    labelSelectionUnit7: toggleCheckBoxSelected == true ? (labelSelectionUnit7) : null,
-                    labelSelectionPrice7: toggleCheckBoxSelected == true ? (labelSelectionPrice7) : null,
-                    priceSelection7: toggleCheckBoxSelected == true ? (priceSelection7) : null,
-
-
+                    labelSelection7:
+                      toggleCheckBoxSelected == true
+                        ? selectionDropDown != undefined
+                          ? selectionDropDown[6].title
+                          : null
+                        : null,
+                    quantitySelection7:
+                      toggleCheckBoxSelected == true
+                        ? quantitySelection7
+                        : null,
+                    labelSelectionUnit7:
+                      toggleCheckBoxSelected == true
+                        ? labelSelectionUnit7
+                        : null,
+                    labelSelectionPrice7:
+                      toggleCheckBoxSelected == true
+                        ? labelSelectionPrice7
+                        : null,
+                    priceSelection7:
+                      toggleCheckBoxSelected == true ? priceSelection7 : null,
                   });
                 } else if (
                   leatherCondition == "Crust" ||
@@ -1931,7 +2621,6 @@ const TanningLeatherOriginSellLeather = (props) => {
                     continent: labelContinent,
                     Specification: Specification,
 
-
                     weightCatType: minWeight,
                     weightCatType2: maxWeight,
                     weightCatType3: avgWeight,
@@ -1942,64 +2631,178 @@ const TanningLeatherOriginSellLeather = (props) => {
                     surfaceCatType3: avgSurface,
                     surfaceSelectionSize: labelSurface,
 
-                    labelTableRoll: toggleCheckBox == true ? (labelTableRoll) : null,
-                    quantityTableRoll: toggleCheckBox == true ? (quantityTableRoll) : null,
-                    priceTableRoll: toggleCheckBox == true ? (priceTableRoll) : null,
-                    labelTablePrice: toggleCheckBox == true ? (labelTablePrice) : null,
+                    labelTableRoll:
+                      toggleCheckBox == true ? labelTableRoll : null,
+                    quantityTableRoll:
+                      toggleCheckBox == true ? quantityTableRoll : null,
+                    priceTableRoll:
+                      toggleCheckBox == true ? priceTableRoll : null,
+                    labelTablePrice:
+                      toggleCheckBox == true ? labelTablePrice : null,
 
-                    labelSelection: toggleCheckBoxSelected == true ? (selectionDropDown != undefined ? selectionDropDown[0].title : null) : null,
-                    quantitySelection: toggleCheckBoxSelected == true ? (quantitySelection) : null,
-                    labelSelectionUnit: toggleCheckBoxSelected == true ? (labelSelectionUnit) : null,
-                    labelSelectionPrice: toggleCheckBoxSelected == true ? (labelSelectionPrice) : null,
-                    priceSelection: toggleCheckBoxSelected == true ? (priceSelection) : null,
+                    labelSelection:
+                      toggleCheckBoxSelected == true
+                        ? selectionDropDown != undefined
+                          ? selectionDropDown[0].title
+                          : null
+                        : null,
+                    quantitySelection:
+                      toggleCheckBoxSelected == true ? quantitySelection : null,
+                    labelSelectionUnit:
+                      toggleCheckBoxSelected == true
+                        ? labelSelectionUnit
+                        : null,
+                    labelSelectionPrice:
+                      toggleCheckBoxSelected == true
+                        ? labelSelectionPrice
+                        : null,
+                    priceSelection:
+                      toggleCheckBoxSelected == true ? priceSelection : null,
 
-                    labelSelection2: toggleCheckBoxSelected == true ? (selectionDropDown != undefined ? selectionDropDown[1].title : null) : null,
-                    quantitySelection2: toggleCheckBoxSelected == true ? (quantitySelection2) : null,
-                    labelSelectionUnit2: toggleCheckBoxSelected == true ? (labelSelectionUnit2) : null,
-                    labelSelectionPrice2: toggleCheckBoxSelected == true ? (labelSelectionPrice2) : null,
-                    priceSelection2: toggleCheckBoxSelected == true ? (priceSelection2) : null,
+                    labelSelection2:
+                      toggleCheckBoxSelected == true
+                        ? selectionDropDown != undefined
+                          ? selectionDropDown[1].title
+                          : null
+                        : null,
+                    quantitySelection2:
+                      toggleCheckBoxSelected == true
+                        ? quantitySelection2
+                        : null,
+                    labelSelectionUnit2:
+                      toggleCheckBoxSelected == true
+                        ? labelSelectionUnit2
+                        : null,
+                    labelSelectionPrice2:
+                      toggleCheckBoxSelected == true
+                        ? labelSelectionPrice2
+                        : null,
+                    priceSelection2:
+                      toggleCheckBoxSelected == true ? priceSelection2 : null,
 
-                    labelSelection3: toggleCheckBoxSelected == true ? (selectionDropDown != undefined ? selectionDropDown[2].title : null) : null,
-                    quantitySelection3: toggleCheckBoxSelected == true ? (quantitySelection3) : null,
-                    labelSelectionUnit3: toggleCheckBoxSelected == true ? (labelSelectionUnit3) : null,
-                    labelSelectionPrice3: toggleCheckBoxSelected == true ? (labelSelectionPrice3) : null,
-                    priceSelection3: toggleCheckBoxSelected == true ? (priceSelection3) : null,
+                    labelSelection3:
+                      toggleCheckBoxSelected == true
+                        ? selectionDropDown != undefined
+                          ? selectionDropDown[2].title
+                          : null
+                        : null,
+                    quantitySelection3:
+                      toggleCheckBoxSelected == true
+                        ? quantitySelection3
+                        : null,
+                    labelSelectionUnit3:
+                      toggleCheckBoxSelected == true
+                        ? labelSelectionUnit3
+                        : null,
+                    labelSelectionPrice3:
+                      toggleCheckBoxSelected == true
+                        ? labelSelectionPrice3
+                        : null,
+                    priceSelection3:
+                      toggleCheckBoxSelected == true ? priceSelection3 : null,
 
-                    labelSelection4: toggleCheckBoxSelected == true ? (selectionDropDown != undefined ? selectionDropDown[3].title : null) : null,
-                    quantitySelection4: toggleCheckBoxSelected == true ? (quantitySelection4) : null,
-                    labelSelectionUnit4: toggleCheckBoxSelected == true ? (labelSelectionUnit4) : null,
-                    labelSelectionPrice4: toggleCheckBoxSelected == true ? (labelSelectionPrice4) : null,
-                    priceSelection4: toggleCheckBoxSelected == true ? (priceSelection4) : null,
+                    labelSelection4:
+                      toggleCheckBoxSelected == true
+                        ? selectionDropDown != undefined
+                          ? selectionDropDown[3].title
+                          : null
+                        : null,
+                    quantitySelection4:
+                      toggleCheckBoxSelected == true
+                        ? quantitySelection4
+                        : null,
+                    labelSelectionUnit4:
+                      toggleCheckBoxSelected == true
+                        ? labelSelectionUnit4
+                        : null,
+                    labelSelectionPrice4:
+                      toggleCheckBoxSelected == true
+                        ? labelSelectionPrice4
+                        : null,
+                    priceSelection4:
+                      toggleCheckBoxSelected == true ? priceSelection4 : null,
 
-                    labelSelection5: toggleCheckBoxSelected == true ? (selectionDropDown != undefined ? selectionDropDown[4].title : null) : null,
-                    quantitySelection5: toggleCheckBoxSelected == true ? (quantitySelection5) : null,
-                    labelSelectionUnit5: toggleCheckBoxSelected == true ? (labelSelectionUnit5) : null,
-                    labelSelectionPrice5: toggleCheckBoxSelected == true ? (labelSelectionPrice5) : null,
-                    priceSelection5: toggleCheckBoxSelected == true ? (priceSelection5) : null,
+                    labelSelection5:
+                      toggleCheckBoxSelected == true
+                        ? selectionDropDown != undefined
+                          ? selectionDropDown[4].title
+                          : null
+                        : null,
+                    quantitySelection5:
+                      toggleCheckBoxSelected == true
+                        ? quantitySelection5
+                        : null,
+                    labelSelectionUnit5:
+                      toggleCheckBoxSelected == true
+                        ? labelSelectionUnit5
+                        : null,
+                    labelSelectionPrice5:
+                      toggleCheckBoxSelected == true
+                        ? labelSelectionPrice5
+                        : null,
+                    priceSelection5:
+                      toggleCheckBoxSelected == true ? priceSelection5 : null,
 
-                    labelSelection6: toggleCheckBoxSelected == true ? (selectionDropDown != undefined ? selectionDropDown[5].title : null) : null,
-                    quantitySelection6: toggleCheckBoxSelected == true ? (quantitySelection6) : null,
-                    labelSelectionUnit6: toggleCheckBoxSelected == true ? (labelSelectionUnit6) : null,
-                    labelSelectionPrice6: toggleCheckBoxSelected == true ? (labelSelectionPrice6) : null,
-                    priceSelection6: toggleCheckBoxSelected == true ? (priceSelection6) : null,
+                    labelSelection6:
+                      toggleCheckBoxSelected == true
+                        ? selectionDropDown != undefined
+                          ? selectionDropDown[5].title
+                          : null
+                        : null,
+                    quantitySelection6:
+                      toggleCheckBoxSelected == true
+                        ? quantitySelection6
+                        : null,
+                    labelSelectionUnit6:
+                      toggleCheckBoxSelected == true
+                        ? labelSelectionUnit6
+                        : null,
+                    labelSelectionPrice6:
+                      toggleCheckBoxSelected == true
+                        ? labelSelectionPrice6
+                        : null,
+                    priceSelection6:
+                      toggleCheckBoxSelected == true ? priceSelection6 : null,
 
-                    labelSelection7: toggleCheckBoxSelected == true ? (selectionDropDown != undefined ? selectionDropDown[6].title : null) : null,
-                    quantitySelection7: toggleCheckBoxSelected == true ? (quantitySelection7) : null,
-                    labelSelectionUnit7: toggleCheckBoxSelected == true ? (labelSelectionUnit7) : null,
-                    labelSelectionPrice7: toggleCheckBoxSelected == true ? (labelSelectionPrice7) : null,
-                    priceSelection7: toggleCheckBoxSelected == true ? (priceSelection7) : null,
-
-
+                    labelSelection7:
+                      toggleCheckBoxSelected == true
+                        ? selectionDropDown != undefined
+                          ? selectionDropDown[6].title
+                          : null
+                        : null,
+                    quantitySelection7:
+                      toggleCheckBoxSelected == true
+                        ? quantitySelection7
+                        : null,
+                    labelSelectionUnit7:
+                      toggleCheckBoxSelected == true
+                        ? labelSelectionUnit7
+                        : null,
+                    labelSelectionPrice7:
+                      toggleCheckBoxSelected == true
+                        ? labelSelectionPrice7
+                        : null,
+                    priceSelection7:
+                      toggleCheckBoxSelected == true ? priceSelection7 : null,
                   });
                 }
               }}
             >
-              <Text allowFontScaling={false}
+              <Text
+                allowFontScaling={false}
                 style={{ fontSize: 22, alignSelf: "center", color: "#62B0A2" }}
               >
                 Next
               </Text>
-              <Image source={require('../../assets/ByClient/BOTTOMNEXT.png')} style={{ width: 20, height: 20, marginHorizontal: 10, alignSelf: 'center' }} />
+              <Image
+                source={require("../../assets/ByClient/BOTTOMNEXT.png")}
+                style={{
+                  width: 20,
+                  height: 20,
+                  marginHorizontal: 10,
+                  alignSelf: "center",
+                }}
+              />
             </TouchableOpacity>
           </View>
         </View>
@@ -2019,7 +2822,7 @@ const styles = StyleSheet.create({
     fontSize: 18,
     // color: Colors.text,
     marginBottom: 10,
-    color: Colors.buttonBackground
+    color: Colors.buttonBackground,
   },
   countryView: {
     borderWidth: 1,
@@ -2038,7 +2841,7 @@ const styles = StyleSheet.create({
     //width: 100,
     height: 40,
     borderWidth: 0.5,
-    flex: 1
+    flex: 1,
   },
   insideMenuView: {
     borderWidth: 1,
@@ -2075,14 +2878,14 @@ const styles = StyleSheet.create({
     height: 30,
     backgroundColor: "white",
     marginRight: 10,
-    textAlignVertical: 'center'
+    textAlignVertical: "center",
   },
   tableRollQuantitySpecification: {
     //width: 50,
     height: 50,
     backgroundColor: "white",
     marginRight: 10,
-    textAlignVertical: 'center'
+    textAlignVertical: "center",
   },
   tableRollQuantityView: {
     borderWidth: 1,
@@ -2138,7 +2941,8 @@ const styles = StyleSheet.create({
     borderColor: "black",
     borderWidth: 0.5,
     borderRadius: 8,
-    paddingHorizontal: 8, alignSelf: 'flex-end'
+    paddingHorizontal: 8,
+    alignSelf: "flex-end",
   },
   dropdownselection: {
     height: 36,
@@ -2146,7 +2950,8 @@ const styles = StyleSheet.create({
     borderColor: "black",
     borderWidth: 0.5,
     borderRadius: 8,
-    paddingHorizontal: 8, alignSelf: 'flex-end'
+    paddingHorizontal: 8,
+    alignSelf: "flex-end",
   },
   dropdownselectionUnit: {
     height: 33,
@@ -2154,7 +2959,8 @@ const styles = StyleSheet.create({
     borderColor: "black",
     borderWidth: 0.5,
     borderRadius: 8,
-    paddingHorizontal: 8, alignSelf: 'flex-end'
+    paddingHorizontal: 8,
+    alignSelf: "flex-end",
   },
   placeholderStyle1: {
     fontSize: 16,
@@ -2177,7 +2983,7 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     paddingHorizontal: 8,
     // marginTop: 10,
-    opacity: 0.7
+    opacity: 0.7,
   },
   icon1: {
     marginRight: 5,

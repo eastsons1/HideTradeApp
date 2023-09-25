@@ -231,7 +231,11 @@ const PutUpForSale = (props) => {
         //   Specification
         // ),
       ];
-
+      const tanni = [
+        {
+          tanningLeathers: "null",
+        },
+      ];
       const arr3 = leatherCondition.map((value) => ({
         ["multi_category"]: value,
       }));
@@ -280,15 +284,7 @@ const PutUpForSale = (props) => {
             ];
       const arr16 =
         labelSelection2 == null
-          ? [
-              {
-                selection: "null",
-                selection_qty: "null",
-                selection_qty_unit: "null",
-                selection_price: "null",
-                selection_price_unit: "null",
-              },
-            ]
+          ? []
           : [
               {
                 selection: labelSelection2,
@@ -300,15 +296,7 @@ const PutUpForSale = (props) => {
             ];
       const arr17 =
         labelSelection3 == null
-          ? [
-              {
-                selection: "null",
-                selection_qty: "null",
-                selection_qty_unit: "null",
-                selection_price: "null",
-                selection_price_unit: "null",
-              },
-            ]
+          ? []
           : [
               {
                 selection: labelSelection3,
@@ -320,15 +308,7 @@ const PutUpForSale = (props) => {
             ];
       const arr18 =
         labelSelection4 == null
-          ? [
-              {
-                selection: "null",
-                selection_qty: "null",
-                selection_qty_unit: "null",
-                selection_price: "null",
-                selection_price_unit: "null",
-              },
-            ]
+          ? []
           : [
               {
                 selection: labelSelection4,
@@ -340,15 +320,7 @@ const PutUpForSale = (props) => {
             ];
       const arr19 =
         labelSelection5 == null
-          ? [
-              {
-                selection: "null",
-                selection_qty: "null",
-                selection_qty_unit: "null",
-                selection_price: "null",
-                selection_price_unit: "null",
-              },
-            ]
+          ? []
           : [
               {
                 selection: labelSelection5,
@@ -360,15 +332,7 @@ const PutUpForSale = (props) => {
             ];
       const arr20 =
         labelSelection6 == null
-          ? [
-              {
-                selection: "null",
-                selection_qty: "null",
-                selection_qty_unit: "null",
-                selection_price: "null",
-                selection_price_unit: "null",
-              },
-            ]
+          ? []
           : [
               {
                 selection: labelSelection6,
@@ -380,15 +344,7 @@ const PutUpForSale = (props) => {
             ];
       const arr23 =
         labelSelection7 == null
-          ? [
-              {
-                selection: "null",
-                selection_qty: "null",
-                selection_qty_unit: "null",
-                selection_price: "null",
-                selection_price_unit: "null",
-              },
-            ]
+          ? []
           : [
               {
                 selection: labelSelection7,
@@ -421,7 +377,8 @@ const PutUpForSale = (props) => {
         arr20,
         arr21,
         arr22,
-        arr23
+        arr23,
+        tanni
       );
       let final1;
       final1 = arr.push(final);
@@ -484,7 +441,7 @@ const PutUpForSale = (props) => {
           Other_shipmentArrange_val: "",
           Product_Destination: destination[0],
           Other_Product_Destination: "", //"Room Furniture",
-          Selected_Leathers: labelTableRoll ? "" : "Yes", //"Yes",
+          Selected_Leathers: labelTableRoll ? "No" : "Yes", //"Yes",
           created_date: new Date().toISOString().split("T")[0], //"2022-03-02"
         },
       ];
@@ -522,15 +479,7 @@ const PutUpForSale = (props) => {
             ];
       const arr4 =
         labelSelection2 == null
-          ? [
-              {
-                selection: "null",
-                selection_qty: "null",
-                selection_qty_unit: "null",
-                selection_price: "null",
-                selection_price_unit: "null",
-              },
-            ]
+          ? []
           : [
               {
                 selection: labelSelection2,
@@ -542,15 +491,7 @@ const PutUpForSale = (props) => {
             ];
       const arr5 =
         labelSelection3 == null
-          ? [
-              {
-                selection: "null",
-                selection_qty: "null",
-                selection_qty_unit: "null",
-                selection_price: "null",
-                selection_price_unit: "null",
-              },
-            ]
+          ? []
           : [
               {
                 selection: labelSelection3,
@@ -562,15 +503,7 @@ const PutUpForSale = (props) => {
             ];
       const arr6 =
         labelSelection4 == null
-          ? [
-              {
-                selection: "null",
-                selection_qty: "null",
-                selection_qty_unit: "null",
-                selection_price: "null",
-                selection_price_unit: "null",
-              },
-            ]
+          ? []
           : [
               {
                 selection: labelSelection4,
@@ -582,15 +515,7 @@ const PutUpForSale = (props) => {
             ];
       const arr7 =
         labelSelection5 == null
-          ? [
-              {
-                selection: "null",
-                selection_qty: "null",
-                selection_qty_unit: "null",
-                selection_price: "null",
-                selection_price_unit: "null",
-              },
-            ]
+          ? []
           : [
               {
                 selection: labelSelection5,
@@ -602,15 +527,7 @@ const PutUpForSale = (props) => {
             ];
       const arr8 =
         labelSelection6 == null
-          ? [
-              {
-                selection: "null",
-                selection_qty: "null",
-                selection_qty_unit: "null",
-                selection_price: "null",
-                selection_price_unit: "null",
-              },
-            ]
+          ? []
           : [
               {
                 selection: labelSelection6,
@@ -622,15 +539,7 @@ const PutUpForSale = (props) => {
             ];
       const arr19 =
         labelSelection7 == null
-          ? [
-              {
-                selection: "null",
-                selection_qty: "null",
-                selection_qty_unit: "null",
-                selection_price: "null",
-                selection_price_unit: "null",
-              },
-            ]
+          ? []
           : [
               {
                 selection: labelSelection7,
@@ -748,7 +657,7 @@ const PutUpForSale = (props) => {
           Other_shipmentArrange_val: "",
           Product_Destination: destination[0],
           Other_Product_Destination: "", //"Room Furniture",
-          Selected_Leathers: labelTableRoll ? "" : "Yes", //"Yes"
+          Selected_Leathers: labelTableRoll ? "No" : "Yes", //"Yes"
           created_date: new Date().toISOString().split("T")[0], //"2022-03-02"
         },
       ];
@@ -785,15 +694,7 @@ const PutUpForSale = (props) => {
             ];
       const arr4 =
         labelSelection2 == null
-          ? [
-              {
-                selection: "null",
-                selection_qty: "null",
-                selection_qty_unit: "null",
-                selection_price: "null",
-                selection_price_unit: "null",
-              },
-            ]
+          ? []
           : [
               {
                 selection: labelSelection2,
@@ -805,15 +706,7 @@ const PutUpForSale = (props) => {
             ];
       const arr5 =
         labelSelection3 == null
-          ? [
-              {
-                selection: "null",
-                selection_qty: "null",
-                selection_qty_unit: "null",
-                selection_price: "null",
-                selection_price_unit: "null",
-              },
-            ]
+          ? []
           : [
               {
                 selection: labelSelection3,
@@ -825,15 +718,7 @@ const PutUpForSale = (props) => {
             ];
       const arr6 =
         labelSelection4 == null
-          ? [
-              {
-                selection: "null",
-                selection_qty: "null",
-                selection_qty_unit: "null",
-                selection_price: "null",
-                selection_price_unit: "null",
-              },
-            ]
+          ? []
           : [
               {
                 selection: labelSelection4,
@@ -845,15 +730,7 @@ const PutUpForSale = (props) => {
             ];
       const arr7 =
         labelSelection5 == null
-          ? [
-              {
-                selection: "null",
-                selection_qty: "null",
-                selection_qty_unit: "null",
-                selection_price: "null",
-                selection_price_unit: "null",
-              },
-            ]
+          ? []
           : [
               {
                 selection: labelSelection5,
@@ -865,15 +742,7 @@ const PutUpForSale = (props) => {
             ];
       const arr8 =
         labelSelection6 == null
-          ? [
-              {
-                selection: "null",
-                selection_qty: "null",
-                selection_qty_unit: "null",
-                selection_price: "null",
-                selection_price_unit: "null",
-              },
-            ]
+          ? []
           : [
               {
                 selection: labelSelection6,
@@ -885,15 +754,7 @@ const PutUpForSale = (props) => {
             ];
       const arr19 =
         labelSelection7 == null
-          ? [
-              {
-                selection: "null",
-                selection_qty: "null",
-                selection_qty_unit: "null",
-                selection_price: "null",
-                selection_price_unit: "null",
-              },
-            ]
+          ? []
           : [
               {
                 selection: labelSelection7,

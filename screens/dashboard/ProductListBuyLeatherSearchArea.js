@@ -121,6 +121,7 @@ const ProductListBuyLeatherSearchArea = (props) => {
                 renderItem={({ item }) => (
                   <View>
                     <TouchableOpacity
+                      key={item.product_id}
                       onPress={() =>
                         props.navigation.navigate("Product Details", {
                           product_id: item.product_id,
