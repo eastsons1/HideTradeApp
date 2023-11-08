@@ -1,12 +1,11 @@
-import React, {useEffect, useRef} from 'react';
-import {Animated, View} from 'react-native'
+import React, { useEffect, useRef } from "react";
+import { Animated, View } from "react-native";
 
-const SpinView=(props)=>{
-
-const Spin = useRef(new Animated.Value(0)).current;
+const SpinView = (props) => {
+  const Spin = useRef(new Animated.Value(0)).current;
   const SpinValue = Spin.interpolate({
     inputRange: [0, 1],
-    outputRange: ["0deg", "1800deg"],
+    outputRange: ["0deg", "0deg"],
   });
   useEffect(() => {
     Animated.timing(Spin, {
@@ -17,15 +16,15 @@ const Spin = useRef(new Animated.Value(0)).current;
   }, [Spin]);
 
   return (
-    <Animated.View                 // Special animatable View
+    <Animated.View // Special animatable View
       style={{
         ...props.style,
-        transform:[{rotate:SpinValue}],         // Bind opacity to animated value
+        transform: [{ rotate: SpinValue }], // Bind opacity to animated value
       }}
     >
       {props.children}
     </Animated.View>
   );
-}
+};
 
-export default SpinView
+export default SpinView;
