@@ -92,6 +92,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import CheckoutScreen from "../screens/paymentScreens/checkout";
 import Subscription from "../screens/dashboard/Subscription";
 import MyStripeCheckout from "../screens/paymentScreens/changeCard";
+import { CreateNewPass } from "../screens/signup/CreateNewPass";
 
 const HomeTabNavigator = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
@@ -1455,6 +1456,15 @@ export const StackNavigator = () => {
       <Stack.Screen
         name="ForgotPassword"
         component={ForgotPassword}
+        options={{
+          animation: "slide_from_left",
+          headerShown: false,
+          headerStyle: { backgroundColor: Colors.status },
+        }}
+      />
+      <Stack.Screen
+        name="CreateNewPass"
+        component={CreateNewPass}
         options={{
           animation: "slide_from_left",
           headerShown: false,

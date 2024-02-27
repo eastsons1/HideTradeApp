@@ -109,7 +109,7 @@ const SplashScreen = (props) => {
       if (Platform.OS === "android")
         ToastAndroid.show("Your Subsciption Expired!", ToastAndroid.LONG);
       setTimeout(() => {
-        Alert.alert("hiiiiii");
+       // Alert.alert("hiiiiii");
         props.navigation.navigate("CheckoutScreen", { Data: Data });
       }, 3000);
     } else {
