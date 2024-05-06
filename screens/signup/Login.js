@@ -117,7 +117,8 @@ const Login = (props) => {
           let flag = false;
 
           if (label === "Tannery") {
-            if (Platform.OS === "android" || Platform.OS === "ios") {
+           // if (Platform.OS === "android" || Platform.OS === "ios") {
+              if (Platform.OS === "android") {
               const timestamp = res.data.User_Details.timestamp + "";
 
               if (
@@ -126,6 +127,7 @@ const Login = (props) => {
                 isNaN(Number(timestamp))
               ) {
                 flag = true;
+
               } else {
                 const date_exp = new Date(Number(timestamp) * 1000);
                 console.log("Exp : " + date_exp);
@@ -134,15 +136,23 @@ const Login = (props) => {
                 }
               }
             } else {
+
               const response = await useRevenueCat();
+               // Alert.alert('kiiiii')
+              console.log(response.ci,'responseresponseresponseresponse')
               const customerInfo = response.ci;
+              console.log(customerInfo,'isSubscribedisSubscribedisSubscribed')
+
               const isSubscribed =
-                customerInfo.activeSubscriptions.includes("tannery");
+              customerInfo.activeSubscriptions.includes("tannery");
+
 
               if (!isSubscribed) {
                 flag = true;
               }
             }
+
+
           }
 
           if (flag) {

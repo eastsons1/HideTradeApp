@@ -71,7 +71,9 @@ export default function CheckoutScreen(props) {
   };
 
   const openPaymentSheet = async () => {
+    
     if (Platform.OS === "android") {
+      
       const { error } = await presentPaymentSheet();
 
       if (error) {
@@ -94,7 +96,8 @@ export default function CheckoutScreen(props) {
         );
       }
     } else {
-      console.log("Offering : ");
+
+      console.log("OfferingOfferingOfferingOfferingOfferingOfferingOfferingOffering : ");
       console.log(offering);
 
       if (!offering?.monthly) {

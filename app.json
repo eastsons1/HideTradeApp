@@ -2,7 +2,7 @@
   "expo": {
     "name": "hidetrade",
     "slug": "hidetrade",
-    "version": "16.0.6",
+    "version": "17.0.1",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
@@ -18,15 +18,15 @@
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "com.HideTrade.HideTrade",
-      "buildNumber": "1.0.37"
+      "buildNumber": "1.0.40"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/300.png",
         "backgroundColor": "#FFFFFF"
       },
-      "package": "com.HideTrade.HideTrade",
-      "versionCode": 21,
+      "package": "com.HideTrade.HideTrade.HideTrade",
+      "versionCode": 31,
       "permissions": ["android.permission.RECORD_AUDIO"]
     },
     "web": {
@@ -35,7 +35,7 @@
     "plugins": [
       [
         "expo-build-properties",
-        {
+        { 
           "android": {
             "compileSdkVersion": 33,
             "targetSdkVersion": 33,
